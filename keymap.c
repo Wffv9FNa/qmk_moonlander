@@ -6,6 +6,9 @@
 #include "audio.h"
 #include "user_song_list.h"
 #include "print.h"  // Add debug printing support
+#include "tap_dance/tap_dance_setup.c"
+#include "tap_dance/tap_dances.c"
+#include "tap_dance/tap_dance_actions.c"
 #define MOON_LED_LEVEL LED_LEVEL
 #define ML_SAFE_RANGE SAFE_RANGE
 
@@ -50,7 +53,7 @@ KC_EQL,         	KC_1,           		KC_2,           KC_3,           KC_4,        
 KC_DEL,         	KC_Q,           		KC_W,           KC_E,           KC_R,           KC_T,           TG(2),                        TG(2),          KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           KC_BSLS,
 KC_BSPC,        	KC_A,           		KC_S,           KC_D,           KC_F,           KC_G,           KC_NUBS,                      KC_MEH,         KC_H,           KC_J,           KC_K,           KC_L,           KC_SCLN,        MT(MOD_LGUI, KC_QUOTE),
 KC_LEFT_SHIFT,  	MT(MOD_LCTL, KC_Z),	KC_X,       	  KC_C,           KC_V,           KC_B,                                         				        KC_N,           KC_M,           KC_COMM,        KC_DOT,         KC_SLSH,        KC_RIGHT_SHIFT,
-MO(2),          	KC_LEFT_GUI,    		CW_TOGG,        TD(DANCE_0),    MO(1),          						KC_CAPS,  KC_ESC,     								                            MO(3),          KC_HYPR,        KC_LBRC,        KC_RBRC,        MO(1),
+MO(2),          	KC_LEFT_GUI,    		CW_TOGG,        TD(TD_TOG_L4), MO(1),          						KC_CAPS,  KC_ESC,     								                            MO(3),          KC_HYPR,        KC_LBRC,        KC_RBRC,        MO(1),
 																								                              KC_SPC, KC_LEFT_ALT, KC_F13,  KC_BSPC, KC_TAB, KC_ENT
 ),
 
@@ -83,9 +86,9 @@ MO(2),          	KC_LEFT_GUI,    		CW_TOGG,        TD(DANCE_0),    MO(1),       
     [4] = LAYOUT(
       KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_NO,                                          KC_NO,          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
       KC_NO,          KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           KC_NO,                                          KC_NO,          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
-      KC_NO,          KC_A,           KC_S,           KC_D,           KC_F,           KC_G,           KC_NO,                                                                          KC_NO,          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
-      KC_LEFT_SHIFT,  KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                           KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
-      KC_LEFT_CTRL,   KC_NO,          KC_NO,          TD(DANCE_1),    KC_NO,          KC_ESCAPE,                                                                                                      KC_CAPS,        KC_NO,          KC_NO,          KC_TRANSPARENT, KC_TRANSPARENT, KC_NO,
+      KC_NO,          KC_A,           KC_S,           KC_D,           KC_F,           KC_G,           KC_NO,                                          KC_NO,          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
+      KC_LEFT_SHIFT,  KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                                                           KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
+      KC_LEFT_CTRL,   KC_NO,          KC_NO,          TD(TD_TOG_L4),  KC_NO,                                    KC_ESCAPE,    KC_CAPS,                                                         KC_NO,          KC_NO, KC_TRANSPARENT, KC_TRANSPARENT, KC_NO,
       KC_SPACE,       KC_TAB,         KC_LEFT_ALT,                    KC_NO,          KC_NO,          KC_NO
     ),
   };
