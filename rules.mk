@@ -10,3 +10,6 @@ TAP_DANCE_ENABLE = yes
 
 # Add tap dance source file
 SRC += tap_dance/tap_dance.c
+
+# Add RGB config source file
+SRC += rgb_config/rgb_config.c
