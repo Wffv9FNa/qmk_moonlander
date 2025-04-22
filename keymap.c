@@ -23,6 +23,10 @@ enum custom_keycodes {
     NEW_SAFE_RANGE
 };
 
+enum tap_dance_keycodes {
+    TD_TGLL_4,
+};
+
 // Add rawhid state structure
 typedef struct {
     bool rgb_control;
@@ -33,6 +37,56 @@ rawhid_state_t rawhid_state;
 #if __has_include("keymap.h")
 #    include "keymap.h"
 #endif
+
+// Tap Dance definitions
+typedef struct {
+    bool is_press_action;
+    int state;
+} tap;
+
+enum {
+    SINGLE_TAP = 1,
+    SINGLE_HOLD,
+    DOUBLE_TAP,
+    DOUBLE_HOLD,
+    DOUBLE_SINGLE_TAP, // Send two single taps
+    TRIPLE_TAP,
+    TRIPLE_HOLD
+};
+
+int cur_dance(tap_dance_state_t *state) {
+    if (state->count == 1) {
+        if (state->interrupted || !state->pressed) return SINGLE_TAP;
+        else return SINGLE_HOLD;
+    } else if (state->count == 2) {
+        if (state->interrupted) return DOUBLE_SINGLE_TAP;
+        else if (state->pressed) return DOUBLE_HOLD;
+        else return DOUBLE_TAP;
+    }
+    if (state->count == 3) {
+        if (state->interrupted || !state->pressed) return TRIPLE_TAP;
+        else return TRIPLE_HOLD;
+    } else return 8; // Magic number. At some point this method will expand to work for more presses
+}
+
+// Tap dance handler function for TD_TGLL_4
+void td_tgll_4_finished(tap_dance_state_t *state, void *user_data) {
+    int dance_state = cur_dance(state);
+    switch (dance_state) {
+        case DOUBLE_TAP:
+            layer_invert(4); // Toggle layer 4 on double tap
+            break;
+        // Add cases for other tap counts or actions if needed
+        // case SINGLE_TAP:
+        // case SINGLE_HOLD:
+        // etc.
+    }
+}
+
+// Define tap dance actions
+tap_dance_action_t tap_dance_actions[] = {
+    [TD_TGLL_4] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_tgll_4_finished, NULL)
+};
 
 socd_cleaner_t socd_opposing_pairs[] = {
   {{KC_W, KC_S}, SOCD_CLEANER_LAST},
@@ -51,7 +105,7 @@ KC_EQL,         	KC_1,           		KC_2,           KC_3,           KC_4,        
 KC_DEL,         	KC_Q,           		KC_W,           KC_E,           KC_R,           KC_T,           TG(2),                        TG(2),          KC_Y,           KC_U,           KC_I,           KC_O,           KC_P,           KC_BSLS,
 KC_BSPC,        	KC_A,           		KC_S,           KC_D,           KC_F,           KC_G,           KC_NUBS,                      KC_MEH,         KC_H,           KC_J,           KC_K,           KC_L,           KC_SCLN,        MT(MOD_LGUI, KC_QUOTE),
 KC_LEFT_SHIFT,  	MT(MOD_LCTL, KC_Z),	KC_X,       	  KC_C,           KC_V,           KC_B,                                         				        KC_N,           KC_M,           KC_COMM,        KC_DOT,         KC_SLSH,        KC_RIGHT_SHIFT,
-MO(2),          	KC_LEFT_GUI,    		CW_TOGG,        TG(4),        MO(1),          						KC_CAPS,  KC_ESC,     								                            MO(3),          KC_HYPR,        KC_LBRC,        KC_RBRC,        MO(1),
+MO(2),          	KC_LEFT_GUI,    		CW_TOGG,        TD(TD_TGLL_4),  MO(1),          						KC_CAPS,  KC_ESC,     								                            MO(3),          KC_HYPR,        KC_LBRC,        KC_RBRC,        MO(1),
 																								                              KC_SPC, KC_LEFT_ALT, KC_F13,  KC_BSPC, KC_TAB, KC_ENT
 ),
 
@@ -86,7 +140,7 @@ MO(2),          	KC_LEFT_GUI,    		CW_TOGG,        TG(4),        MO(1),         
       KC_NO,          KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           KC_NO,                                          KC_NO,          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
       KC_NO,          KC_A,           KC_S,           KC_D,           KC_F,           KC_G,           KC_NO,                                          KC_NO,          KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
       KC_LEFT_SHIFT,  KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                                                           KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT, KC_TRANSPARENT,
-      KC_LEFT_CTRL,   KC_NO,          KC_NO,          TG(4),		  KC_NO,                                    KC_ESCAPE,    KC_CAPS,                                                         KC_NO,          KC_NO, KC_TRANSPARENT, KC_TRANSPARENT, KC_NO,
+      KC_LEFT_CTRL,   KC_NO,          KC_NO,          TD(TD_TGLL_4),	KC_NO,                                    KC_ESCAPE,    KC_CAPS,                                                         KC_NO,          KC_NO, KC_TRANSPARENT, KC_TRANSPARENT, KC_NO,
       KC_SPACE,       KC_TAB,         KC_LEFT_ALT,                    KC_NO,          KC_NO,          KC_NO
     ),
 };
