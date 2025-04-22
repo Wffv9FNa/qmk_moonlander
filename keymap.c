@@ -111,7 +111,7 @@ MO(2),          	KC_LEFT_GUI,    		CW_TOGG,        TD(TD_TGLL_4),  MO(1),       
     ),
     [4]=LAYOUT(
       KC_TRNS,        KC_TRNS,        KC_TRNS,        KC_TRNS,        KC_TRNS,        KC_TRNS,        KC_F5,                              KC_TRNS,      KC_TRNS,        KC_TRNS,        KC_TRNS,        KC_TRNS,        KC_TRNS,        KC_F11,
-      KC_NO,          KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           KC_NO,                              KC_HOME,      KC_TRNS,        KC_TRNS,        KC_TRNS,        KC_TRNS,        KC_TRNS,        KC_F12,
+      KC_ESCAPE,      KC_Q,           KC_W,           KC_E,           KC_R,           KC_T,           KC_NO,                              KC_HOME,      KC_TRNS,        KC_TRNS,        KC_TRNS,        KC_TRNS,        KC_TRNS,        KC_F12,
       KC_NO,          KC_A,           KC_S,           KC_D,           KC_F,           KC_G,           KC_NO,                              KC_END,       KC_TRNS,        KC_TRNS,        KC_TRNS,        KC_TRNS,        KC_TRNS,        KC_TRNS,
       KC_LEFT_SHIFT,  KC_Z,           KC_X,           KC_C,           KC_V,           KC_B,                                                             KC_TRNS,        KC_TRNS,        KC_TRNS,        KC_TRNS,        KC_TRNS,        KC_TRNS,
       KC_LEFT_CTRL,   KC_NO,          KC_NO,          TD(TD_TGLL_4),  KC_NO,                                  KC_ESCAPE,      KC_CAPS,                                  KC_NO,          KC_NO,          KC_TRNS,        KC_TRNS,        KC_NO,
