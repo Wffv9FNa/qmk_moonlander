@@ -6,6 +6,7 @@
 #include "audio.h"
 #include "user_song_list.h"
 #include "print.h"  // Add debug printing support
+#include "tap_dance/tap_dance.h" // Include tap dance definitions
 #define MOON_LED_LEVEL LED_LEVEL
 #define ML_SAFE_RANGE SAFE_RANGE
 
@@ -23,10 +24,6 @@ enum custom_keycodes {
     NEW_SAFE_RANGE
 };
 
-enum tap_dance_keycodes {
-    TD_TGLL_4,
-};
-
 // Add rawhid state structure
 typedef struct {
     bool rgb_control;
@@ -37,51 +34,6 @@ rawhid_state_t rawhid_state;
 #if __has_include("keymap.h")
 #    include "keymap.h"
 #endif
-
-// Tap Dance definitions
-typedef struct {
-    bool is_press_action;
-    int state;
-} tap;
-
-enum {
-    SINGLE_TAP = 1,
-    SINGLE_HOLD,
-    DOUBLE_TAP,
-    DOUBLE_HOLD,
-    DOUBLE_SINGLE_TAP, // Send two single taps
-    TRIPLE_TAP,
-    TRIPLE_HOLD
-};
-
-int cur_dance(tap_dance_state_t *state) {
-    if (state->count == 1) {
-        if (state->interrupted || !state->pressed) return SINGLE_TAP;
-        else return SINGLE_HOLD;
-    } else if (state->count == 2) {
-        if (state->interrupted) return DOUBLE_SINGLE_TAP;
-        else if (state->pressed) return DOUBLE_HOLD;
-        else return DOUBLE_TAP;
-    }
-    if (state->count == 3) {
-        if (state->interrupted || !state->pressed) return TRIPLE_TAP;
-        else return TRIPLE_HOLD;
-    } else return 8; // Magic number. At some point this method will expand to work for more presses
-}
-
-// Tap dance handler function for TD_TGLL_4
-void td_tgll_4_finished(tap_dance_state_t *state, void *user_data) {
-    int dance_state = cur_dance(state);
-    switch (dance_state) {
-        case DOUBLE_TAP:
-            layer_invert(4); // Toggle layer 4 on double tap
-            break;
-        // Add cases for other tap counts or actions if needed
-        // case SINGLE_TAP:
-        // case SINGLE_HOLD:
-        // etc.
-    }
-}
 
 // Define tap dance actions
 tap_dance_action_t tap_dance_actions[] = {

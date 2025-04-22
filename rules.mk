@@ -7,3 +7,6 @@ SPACE_CADET_ENABLE = no
 CAPS_WORD_ENABLE = yes
 AUDIO_ENABLE = yes
 TAP_DANCE_ENABLE = yes
+
+# Add tap dance source file
+SRC += tap_dance/tap_dance.c
