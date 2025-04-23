@@ -7,6 +7,7 @@
 // Reds / Pinks
 #define CLR_RED         {   0, 255, 255 } // Red (RGB 255,0,0)
 #define CLR_MAGENTA     { 213, 255, 255 } // Magenta (RGB 255,0,255)
+#define CLR_PSPYR       { 206, 198, 176 } // Pink Spyro (RGB ~156,39,176)
 #define CLR_SALMN       {   2, 198, 244 } // Salmon Pink (RGB ~244,157,162)
 
 // Browns
