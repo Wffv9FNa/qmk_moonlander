@@ -8,7 +8,6 @@
 #include "i18n.h"
 #include "audio.h"
 #include "user_song_list.h"
-#include "print.h"  // Add debug printing support
 #include "tap_dance/tap_dance.h" // Include tap dance definitions
 #include "rgb_config/rgb_config.h" // Include RGB config definitions
 
@@ -164,9 +163,6 @@ bool rgb_matrix_indicators_user(void) {
   return true;
 }
 
-// Track Caps Lock state
-static bool caps_lock_on = false;
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     // First let the SOCD cleaner process the key
     bool socd_handled = process_record_socd_cleaner(keycode, record);
@@ -185,7 +181,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     PLAY_SONG(caps_off_song);
                 }
                 #endif
-                caps_lock_on = new_caps_state;
             }
             return true;
 
