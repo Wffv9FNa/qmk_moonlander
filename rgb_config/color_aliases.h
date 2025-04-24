@@ -3,10 +3,12 @@
 // Basic Colors
 #define CLR_OFF         {   0,   0,   0 } // Black / Off
 #define CLR_WHT         {   0,   0, 255 } // White
+#define CLR_SYDHARB     { 139,  61, 200 } // SydneyHarbour
 
 // Reds / Pinks
 #define CLR_RED         {   0, 255, 255 } // Red (RGB 255,0,0)
 #define CLR_MAGENTA     { 213, 255, 255 } // Magenta (RGB 255,0,255)
+#define CLR_TLMGNTA     { 217, 235, 252 } // Telemagenta
 #define CLR_PSPYR       { 206, 198, 176 } // Pink Spyro (RGB ~156,39,176)
 #define CLR_SALMN       {   2, 198, 244 } // Salmon Pink (RGB ~244,157,162)
 
@@ -22,6 +24,7 @@
 #define CLR_AQUA        { 124, 255, 150 } // Aquamarine-like (RGB ~0,150,75)
 
 // Blues / Cyans
+#define CLR_ARTCWTR     { 126, 255, 255 } // ArcticWater
 #define CLR_BLUE        { 170, 255, 255 } // Blue (RGB 0,0,255)
 #define CLR_CYAN        { 128, 255, 255 } // Cyan (RGB 0,255,255)
 #define CLR_CYPRO       { 131, 255, 255 } // Cyan Process (RGB ~0,183,235)

@@ -5,7 +5,7 @@
 
 // New layout-based LED map, defined using COLOR_LAYOUT and HSV aliases
 static const uint8_t PROGMEM ledmap_layout[][MATRIX_ROWS][MATRIX_COLS][3] = {
-
+//clang-format off
 /*  _                             ___   */
 /* | |    __ _ _   _  ___ _ __   / _ \  */
 /* | |   / _` | | | |/ _ \ '__| | | | | */
@@ -82,7 +82,7 @@ static const uint8_t PROGMEM ledmap_layout[][MATRIX_ROWS][MATRIX_COLS][3] = {
         /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    CLR_YELLOW ,    CLR_YELLOW ,    CLR_YELLOW ,        CLR_OFF    ,    CLR_OFF    ,    CLR_OFF         /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/
     ),
 };
-
+//clang-format on
 // Updated function to use the layout-based map and LED index mapping (now expecting HSV)
 void set_layer_color(int layer) {
     // Ensure g_led_config is accessible (defined in keyboard's .c file)
