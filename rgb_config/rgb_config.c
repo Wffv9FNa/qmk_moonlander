@@ -27,13 +27,14 @@ static const uint8_t PROGMEM ledmap_layout[][MATRIX_ROWS][MATRIX_COLS][3] = {
 /* | |__| (_| | |_| |  __/ |    | | */
 /* |_____\__,_|\__, |\___|_|    |_| */
 /*             |___/                */
-    [1] = COLOR_LAYOUT( /* Layer 1 */
-        CLR_OFF  ,  CLR_BEAVR,  CLR_OFF  ,  CLR_OFF  ,  CLR_OFF  ,  CLR_OFF  ,  CLR_BEAVR,                      CLR_OFF  ,  CLR_OFF  ,  CLR_BEAVR,  CLR_OFF  ,  CLR_SPGRN,  CLR_OFF  ,  CLR_SPGRN,
-        CLR_OFF  ,  CLR_OFF  ,  CLR_OFF  ,  CLR_OFF  ,  CLR_BEAVR,  CLR_OFF  ,  CLR_OFF  ,                      CLR_OFF  ,  CLR_OFF  ,  CLR_SALMN,  CLR_BEAVR,  CLR_SPGRN,  CLR_OFF  ,  CLR_OFF  ,
-        CLR_OFF  ,  CLR_OFF  ,  CLR_OFF  ,  CLR_SALMN,  CLR_RED  ,  CLR_OFF  ,  CLR_BEAVR,                      CLR_OFF  ,  CLR_OFF  ,  CLR_BEAVR,  CLR_BEAVR,  CLR_SPGRN,  CLR_OFF  ,  CLR_OFF  ,
-        CLR_OFF  ,  CLR_OFF  ,  CLR_OFF  ,  CLR_CHART,  CLR_RED  ,  CLR_OFF  ,                                              CLR_OFF  ,  CLR_CHART,  CLR_OFF  ,  CLR_SPGRN,  CLR_OFF  ,  CLR_CYPRO,
-        CLR_OFF  ,  CLR_BEAVR,  CLR_BEAVR,  CLR_OFF  ,  CLR_SPGRN,              CLR_BEAVR,                      CLR_BEAVR,              CLR_RED  ,  CLR_RED  ,  CLR_RED  ,  CLR_OFF  ,  CLR_SALMN,
-                                                        CLR_RED  ,  CLR_RED  ,  CLR_RED  ,                      CLR_OFF  ,  CLR_RED  ,  CLR_RED
+    [1] = COLOR_LAYOUT(
+            /* =               1               2               3               4               5               --                  --              6               7               8               9               0               --       */
+        CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,        CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,
+        CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,        CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,
+        CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,        CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,
+        CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    /*XXXXXXXX*/        /*XXXXXXXX*/    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,
+        CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    /*XXXXXXXX*/        /*XXXXXXXX*/    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,
+        /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,        CLR_WHT    ,    CLR_WHT    ,    CLR_WHT         /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/
     ),
 /*  _                            ____   */
 /* | |    __ _ _   _  ___ _ __  |___ \  */
@@ -41,13 +42,14 @@ static const uint8_t PROGMEM ledmap_layout[][MATRIX_ROWS][MATRIX_COLS][3] = {
 /* | |__| (_| | |_| |  __/ |     / __/  */
 /* |_____\__,_|\__, |\___|_|    |_____| */
 /*             |___/                    */
-    [2] = COLOR_LAYOUT( /* Layer 2 */
-        CLR_OFF  ,  CLR_OFF  ,  CLR_OFF  ,  CLR_OFF  ,  CLR_OFF  ,  CLR_OFF  ,  CLR_OFF  ,                      CLR_OFF  ,  CLR_CHART,  CLR_CHART,  CLR_OFF  ,  CLR_OFF  ,  CLR_OFF  ,  CLR_CHART,
-        CLR_OFF  ,  CLR_OFF  ,  CLR_OFF  ,  CLR_OFF  ,  CLR_CHART,  CLR_OFF  ,  CLR_OFF  ,                      CLR_OFF  ,  CLR_CHART,  CLR_CHART,  CLR_CHART,  CLR_OFF  ,  CLR_OFF  ,  CLR_OFF  ,
-        CLR_CHART,  CLR_OFF  ,  CLR_OFF  ,  CLR_CHART,  CLR_CHART,  CLR_CHART,  CLR_OFF  ,                      CLR_OFF  ,  CLR_OFF  ,  CLR_OFF  ,  CLR_CHART,  CLR_OFF  ,  CLR_OFF  ,  CLR_OFF  ,
-        CLR_OFF  ,  CLR_OFF  ,  CLR_OFF  ,  CLR_OFF  ,  CLR_OFF  ,  CLR_OFF  ,                                              CLR_RED  ,  CLR_OFF  ,  CLR_OFF  ,  CLR_OFF  ,  CLR_RED  ,  CLR_OFF  ,
-        CLR_RED  ,  CLR_OFF  ,  CLR_OFF  ,  CLR_OFF  ,  CLR_OFF  ,              CLR_OFF  ,                      CLR_OFF  ,              CLR_CYPRO,  CLR_CYPRO,  CLR_OFF  ,  CLR_OFF  ,  CLR_RED  ,
-                                                        CLR_OFF  ,  CLR_OFF  ,  CLR_OFF  ,                      CLR_OFF  ,  CLR_OFF  ,  CLR_OFF
+    [2] = COLOR_LAYOUT(
+        /* =               1               2               3               4               5               --                  --              6               7               8               9               0               --           */
+        CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,        CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,
+        CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_YELLOW ,    CLR_WHT    ,    CLR_WHT    ,        CLR_WHT    ,    CLR_CYAN   ,    CLR_WHT    ,    CLR_RED    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,
+        CLR_WHT    ,    CLR_YELLOW ,    CLR_YELLOW ,    CLR_WHT    ,    CLR_YELLOW ,    CLR_WHT    ,    CLR_WHT    ,        CLR_WHT    ,    CLR_CYAN   ,    CLR_RED    ,    CLR_RED    ,    CLR_RED    ,    CLR_WHT    ,    CLR_WHT    ,
+        CLR_WHT    ,    CLR_YELLOW ,    CLR_YELLOW ,    CLR_YELLOW ,    CLR_YELLOW ,    CLR_YELLOW ,    /*XXXXXXXX*/        /*XXXXXXXX*/    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,
+        CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    /*XXXXXXXX*/    CLR_WHT    ,        CLR_WHT    ,    /*XXXXXXXX*/    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,
+        /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,        CLR_WHT    ,    CLR_WHT    ,    CLR_WHT         /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/
     ),
 /*  _                            _____  */
 /* | |    __ _ _   _  ___ _ __  |___ /  */
