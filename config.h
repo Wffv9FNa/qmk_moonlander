@@ -32,3 +32,6 @@
 #ifdef AUDIO_ENABLE
 # define STARTUP_SONG SONG(CLOSE_ENCOUNTERS_5_NOTE)
 #endif
+
+#define TAPPING_TERM 200
+#define QUICK_TAP_TERM 0 // Disable double tap hold auto repeat
