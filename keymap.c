@@ -8,8 +8,8 @@
 #include "i18n.h"
 #include "audio.h"
 #include "user_song_list.h"
-#include "tap_dance/tap_dance.h" // Include tap dance definitions
-#include "rgb_config/rgb_config.h" // Include RGB config definitions
+#include "tap_dance/tap_dance.h"
+#include "rgb_config/rgb_config.h"
 
 // +---------+
 // | DEFINES |
@@ -36,7 +36,7 @@ typedef struct {
 
 rawhid_state_t rawhid_state;
 
-// RGB Matrix configuration (defined elsewhere)
+// RGB Matrix configuration
 extern rgb_config_t rgb_matrix_config;
 
 // +-------+
@@ -46,7 +46,6 @@ enum custom_keycodes {
     NEW_SAFE_RANGE // This now implicitly starts at SAFE_RANGE
 };
 
-// Optional include for custom keymap definitions
 #if __has_include("keymap.h")
 #    include "keymap.h"
 #endif
@@ -54,9 +53,9 @@ enum custom_keycodes {
 // +--------------------+
 // | TAP DANCE ACTIONS  |
 // +--------------------+
-// Define tap dance actions
 tap_dance_action_t tap_dance_actions[] = {
-    [TD_TGLL_4] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_tgll_4_finished, NULL)
+    [TD_TGLL_4] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_tgll_4_finished, NULL),
+    // Add the new tap dance action
 };
 
 // +--------------------+
@@ -77,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_DEL ,    KC_Q   ,    KC_W   ,    KC_E   ,    KC_R   ,    KC_T   ,    TG(2)  ,            TG(2)  ,    KC_Y   ,    KC_U   ,    KC_I   ,    KC_O   ,    KC_P   ,    KC_BSLS ,
         KC_BSPC,    KC_A   ,    KC_S   ,    KC_D   ,    KC_F   ,    KC_G   ,    KC_NUBS,            KC_MEH ,    KC_H   ,    KC_J   ,    KC_K   ,    KC_L   ,    KC_SCLN,    KC_QUOTE,
         L_SHFT ,    MT_CZ  ,    KC_X   ,    KC_C   ,    KC_V   ,    KC_B   ,                                    KC_N   ,    KC_M   ,    KC_COMM,    KC_DOT ,    KC_SLSH,    R_SHFT  ,
-        MO(2)  ,    L_GUI  ,    CW_TOGG,    TD_L4TG,    MO(1)  ,                KC_CAPS,            KC_ESC ,                MO(3)  ,    KC_HYPR,    KC_LBRC,    KC_RBRC,    MO(1)   ,
+        TT(2)  ,    L_GUI  ,    CW_TOGG,    TD_L4TG,    TT(1)  ,                KC_CAPS,            KC_ESC ,                TT(3)  ,    KC_HYPR,    KC_LBRC,    KC_RBRC,    TT(1)   ,
                                                         KC_SPC ,    L_ALT  ,    KC_F13 ,            KC_BSPC,    KC_TAB ,    KC_ENT
     ),
 
@@ -85,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_GRV ,    KC_F1  ,    KC_F2  ,    KC_F3  ,    KC_F4  ,    KC_F5  ,    KC_TRNS,            KC_TRNS,    KC_F6  ,    KC_F7  ,    KC_F8  ,    KC_F9  ,    KC_F10 ,    KC_F11 ,
         KC_TRNS,    KC_NO  ,    SELWBK ,    KC_NO  ,    SELWRD ,    KC_NUBS,    KC_NO  ,            KC_NO  ,    KC_HOME,    KC_7   ,    KC_8   ,    KC_9   ,    KC_PAST,    KC_F12 ,
         KC_TRNS,    KC_NO  ,    GC_Y   ,    KC_NO  ,    CS_X   ,    KC_NO  ,    KC_TRNS,            KC_NO  ,    KC_END ,    KC_4   ,    KC_5   ,    KC_6   ,    KC_PPLS,    KC_NO  ,
-        L_SHFT,    L_CTRL  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,                                    KC_PSLS,    KC_1   ,    KC_2   ,    KC_3   ,    KC_PMNS,    R_SHFT ,
+        L_SHFT ,    L_CTRL ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,                                    KC_PSLS,    KC_1   ,    KC_2   ,    KC_3   ,    KC_PMNS,    R_SHFT ,
         KC_NO  ,    KC_TRNS,    KC_NO  ,    KC_NO  ,    KC_TRNS,                KC_NO  ,            KC_TRNS,                KC_NO  ,    KC_0   ,    KC_PDOT,    KC_PEQL,    KC_TRNS,
                                                         KC_TRNS,    KC_NO  ,    KC_NO  ,            KC_TRNS,    KC_TRNS,    KC_TRNS
     ),

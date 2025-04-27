@@ -34,4 +34,5 @@
 #endif
 
 #define TAPPING_TERM 200
-#define QUICK_TAP_TERM 0 // Disable double tap hold auto repeat
+#define TAP_TOGGLE_LAYER_TERM 200
+#define TAPPING_TOGGLE 1
