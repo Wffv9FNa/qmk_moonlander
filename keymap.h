@@ -35,13 +35,3 @@
 #define SOCDTG   SOCDTOG                  // SOCD Toggle
 #define KC_ESC   KC_ESCAPE                // Standard QMK alias
 #define KC_SPC   KC_SPACE                 // Standard QMK alias
-// Left-hand home row mods
-#define GUI_A LGUI_T(KC_A)                //GUI+A
-#define ALT_S LALT_T(KC_S)                //ALT+S
-#define SFT_D LSFT_T(KC_D)                //SHIFT+D
-#define CTL_F LCTL_T(KC_F)                //CTRL+F
-// Right-hand home row mods
-#define CTL_J RCTL_T(KC_J)                //CTRL+J
-#define SFT_K RSFT_T(KC_K)                //SHIFT+K
-#define ALT_L LALT_T(KC_L)                //ALT+L
-#define GUI_SCL RGUI_T(KC_SCLN)           //GUI+SCLN
