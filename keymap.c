@@ -71,6 +71,12 @@ socd_cleaner_t socd_opposing_pairs[] = {
 // +---------+
 //clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+/*  _                             ___   */
+/* | |    __ _ _   _  ___ _ __   / _ \  */
+/* | |   / _` | | | |/ _ \ '__| | | | | */
+/* | |__| (_| | |_| |  __/ |    | |_| | */
+/* |_____\__,_|\__, |\___|_|     \___/  */
+/*             |___/                    */
     [0]=LAYOUT(
         KC_EQL ,    KC_1   ,    KC_2   ,    KC_3   ,    KC_4   ,    KC_5   ,    TG(1)  ,            TG(1)  ,    KC_6   ,    KC_7   ,    KC_8   ,    KC_9   ,    KC_0   ,    KC_MINS ,
         KC_DEL ,    KC_Q   ,    KC_W   ,    KC_E   ,    KC_R   ,    KC_T   ,    TG(2)  ,            TG(2)  ,    KC_Y   ,    KC_U   ,    KC_I   ,    KC_O   ,    KC_P   ,    KC_BSLS ,
@@ -79,7 +85,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TT(2)  ,    L_GUI  ,    CW_TOGG,    TD_L4TG,    TT(1)  ,                KC_CAPS,            KC_ESC ,                TT(3)  ,    KC_HYPR,    KC_LBRC,    KC_RBRC,    TT(1)   ,
                                                         KC_SPC ,    L_ALT  ,    KC_F13 ,            KC_BSPC,    KC_TAB ,    KC_ENT
     ),
-
+/*  _                            _  */
+/* | |    __ _ _   _  ___ _ __  / | */
+/* | |   / _` | | | |/ _ \ '__| | | */
+/* | |__| (_| | |_| |  __/ |    | | */
+/* |_____\__,_|\__, |\___|_|    |_| */
+/*             |___/                */
     [1] = LAYOUT(
         KC_GRV ,    KC_F1  ,    KC_F2  ,    KC_F3  ,    KC_F4  ,    KC_F5  ,    KC_TRNS,            KC_TRNS,    KC_F6  ,    KC_F7  ,    KC_F8  ,    KC_F9  ,    KC_F10 ,    KC_F11 ,
         KC_TRNS,    KC_NO  ,    SELWBK ,    KC_NO  ,    SELWRD ,    KC_NUBS,    KC_NO  ,            KC_NO  ,    KC_HOME,    KC_7   ,    KC_8   ,    KC_9   ,    KC_PAST,    KC_F12 ,
@@ -88,7 +99,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO  ,    KC_TRNS,    KC_NO  ,    KC_NO  ,    KC_TRNS,                KC_NO  ,            KC_TRNS,                KC_NO  ,    KC_0   ,    KC_PDOT,    KC_PEQL,    KC_TRNS,
                                                         KC_TRNS,    KC_NO  ,    KC_NO  ,            KC_TRNS,    KC_TRNS,    KC_TRNS
     ),
-
+/*  _                            ____   */
+/* | |    __ _ _   _  ___ _ __  |___ \  */
+/* | |   / _` | | | |/ _ \ '__|   __) | */
+/* | |__| (_| | |_| |  __/ |     / __/  */
+/* |_____\__,_|\__, |\___|_|    |_____| */
+/*             |___/                    */
     [2] = LAYOUT(
         KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
         KC_TRNS,    CT_Q   ,    CT_W   ,    CT_E   ,    CT_R   ,    KC_NO  ,    KC_TRNS,            KC_TRNS,    KC_HOME,    KC_NO  ,    KC_UP  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
@@ -97,7 +113,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_TRNS,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,                KC_NO  ,            KC_NO  ,                KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_TRNS,
                                                         KC_NO  ,    KC_NO  ,    KC_TRNS,            KC_NO  ,    KC_TRNS,    KC_NO
     ),
-
+/*  _                            _____  */
+/* | |    __ _ _   _  ___ _ __  |___ /  */
+/* | |   / _` | | | |/ _ \ '__|   |_ \  */
+/* | |__| (_| | |_| |  __/ |     ___) | */
+/* |_____\__,_|\__, |\___|_|    |____/  */
+/*             |___/                    */
     [3] = LAYOUT(
         QK_BOOT,    KC_F1  ,    KC_F2  ,    KC_F3  ,    KC_F4  ,    KC_F5  ,    KC_NO  ,            KC_NO  ,    KC_F6  ,    KC_F7  ,    KC_F8  ,    KC_F9  ,    KC_F10 ,    KC_F11 ,
         KC_NO  ,    KC_NO  ,    S_LEFT ,    CS_X   ,    S_RGHT ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_F12 ,
@@ -106,13 +127,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,                KC_NO  ,            KC_NO  ,                KC_TRNS,    SOCDTG ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
                                                         KC_NO  ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_NO  ,    KC_NO
     ),
-
+/*  _                            _  _    */
+/* | |    __ _ _   _  ___ _ __  | || |   */
+/* | |   / _` | | | |/ _ \ '__| | || |_  */
+/* | |__| (_| | |_| |  __/ |    |__   _| */
+/* |_____\__,_|\__, |\___|_|       |_|   */
+/*             |___/                     */
     [4]=LAYOUT(
-        KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_F5  ,            KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_F11 ,
-        KC_ESC ,    KC_Q   ,    KC_W   ,    KC_E   ,    KC_R   ,    KC_T   ,    KC_NO  ,            KC_HOME,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_F12 ,
-        KC_NO  ,    KC_A   ,    KC_S   ,    KC_D   ,    KC_F   ,    KC_G   ,    SOCDTG ,            KC_END ,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
+        KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_F5  ,    KC_NO  ,            KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_F11 ,
+        KC_NO  ,    KC_Q   ,    KC_W   ,    KC_E   ,    KC_R   ,    KC_T   ,    KC_NO  ,            KC_HOME,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_F12 ,
+        KC_ESC ,    KC_A   ,    KC_S   ,    KC_D   ,    KC_F   ,    KC_G   ,    SOCDTG ,            KC_END ,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
         L_SHFT ,    KC_Z   ,    KC_X   ,    KC_C   ,    KC_V   ,    KC_B   ,                                    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
-        L_CTRL ,    KC_NO  ,    KC_NO  ,    TD_L4TG,    KC_NO  ,                KC_ESC ,            KC_CAPS,                KC_NO  ,    KC_NO  ,    KC_TRNS,    KC_TRNS,    KC_NO  ,
+        L_CTRL ,    KC_NO  ,    KC_NO  ,    TD_L4TG,    KC_NO  ,                KC_NO  ,            KC_CAPS,                KC_NO  ,    KC_NO  ,    KC_TRNS,    KC_TRNS,    KC_NO  ,
                                                         KC_SPC ,    KC_TAB ,    L_ALT  ,            L_GUI  ,    KC_NO  ,    KC_NO
     ),
 };
