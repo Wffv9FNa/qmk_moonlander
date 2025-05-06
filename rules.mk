@@ -13,3 +13,7 @@ SRC += tap_dance/tap_dance.c
 
 # Add RGB config source file
 SRC += rgb_config/rgb_config.c
+
+# Add Turbo Click requirements
+MOUSEKEY_ENABLE = yes
+DEFERRED_EXEC_ENABLE = yes

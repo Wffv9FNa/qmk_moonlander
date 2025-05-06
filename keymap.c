@@ -10,6 +10,7 @@
 #include "user_song_list.h"
 #include "tap_dance/tap_dance.h"
 #include "rgb_config/rgb_config.h"
+#include "keymap_japanese.h"
 
 // +---------+
 // | DEFINES |
@@ -85,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_BSPC,    KC_A   ,    KC_S   ,    KC_D   ,    KC_F   ,    KC_G   ,    KC_NUBS,            KC_MEH ,    KC_H   ,    KC_J   ,    KC_K   ,    KC_L   ,    KC_SCLN,    KC_QUOTE,
         L_SHFT ,    MT_CZ  ,    KC_X   ,    KC_C   ,    KC_V   ,    KC_B   ,                                    KC_N   ,    KC_M   ,    KC_COMM,    KC_DOT ,    KC_SLSH,    R_SHFT  ,
         TT(2)  ,    L_GUI  ,    CW_TOGG,    TD_L4TG,    TT(1)  ,                KC_CAPS,            KC_ESC ,                TT(3)  ,    KC_HYPR,    KC_LBRC,    KC_RBRC,    TT(1)   ,
-                                                        KC_SPC ,    L_ALT  ,    KC_F13 ,            KC_BSPC,    KC_TAB ,    KC_ENT
+                                                        KC_SPC ,    L_ALT  ,    KC_F13 ,            TG(5)  ,    KC_TAB ,    KC_ENT
     ),
 /*  _                            _  */
 /* | |    __ _ _   _  ___ _ __  / | */
@@ -140,10 +141,40 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO  ,    KC_Q   ,    KC_W   ,    KC_E   ,    KC_R   ,    KC_T   ,    KC_NO  ,            KC_HOME,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_F12 ,
         KC_ESC ,    KC_A   ,    KC_S   ,    KC_D   ,    KC_F   ,    KC_G   ,    SOCDTG ,            KC_END ,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
         L_SHFT ,    KC_Z   ,    KC_X   ,    KC_C   ,    KC_V   ,    KC_B   ,                                    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
-        L_CTRL ,    KC_NO  ,    KC_NO  ,    TD_L4TG,    KC_NO  ,                KC_NO  ,            KC_CAPS,                KC_NO  ,    KC_NO  ,    KC_TRNS,    KC_TRNS,    KC_NO  ,
-                                                        KC_SPC ,    KC_TAB ,    L_ALT  ,            L_GUI  ,    KC_NO  ,    KC_NO
+        L_CTRL ,    KC_NO  ,    KC_NO  ,    TD_L4TG,    TURBO  ,                KC_NO  ,            KC_CAPS,                KC_NO  ,    KC_NO  ,    KC_TRNS,    KC_TRNS,    KC_NO  ,
+                                                        KC_SPC ,    KC_TAB ,    L_ALT  ,            L_GUI  ,    KC_NO  ,    KC_ENT
+    ),
+/*  _                            ____   */
+/* | |    __ _ _   _  ___ _ __  | ___|  */
+/* | |   / _` | | | |/ _ \ '__| |___ \  */
+/* | |__| (_| | |_| |  __/ |     ___) | */
+/* |_____\__,_|\__, |\___|_|    |____/  */
+/*             |___/                    */
+    [5]=LAYOUT(
+        KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,            KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
+        KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,            KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
+        KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,            KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
+        KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,                                    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
+        KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,                JP_KANA,            KC_TRNS,                KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
+                                                        KC_TRNS,    KC_TRNS,    KC_F13 ,            TG(5)  ,    KC_TRNS,    KC_TRNS
     ),
 };
+/*  _____                    _       _        */
+/* |_   _|__ _ __ ___  _ __ | | __ _| |_ ___  */
+/*   | |/ _ \ '_ ` _ \| '_ \| |/ _` | __/ _ \ */
+/*   | |  __/ | | | | | |_) | | (_| | ||  __/ */
+/*   |_|\___|_| |_| |_| .__/|_|\__,_|\__\___| */
+/*                    |_|                     */
+/*
+    [X]=LAYOUT(
+        KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,            KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
+        KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,            KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
+        KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,            KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
+        KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,                                    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
+        KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,                KC_TRNS,            KC_TRNS,                KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
+                                                        KC_TRNS,    KC_TRNS,    KC_TRNS,            KC_TRNS,    KC_TRNS,    KC_TRNS
+    ),
+*/
 //clang-format on
 
 // +----------------+
@@ -201,6 +232,9 @@ bool rgb_matrix_indicators_user(void)
       break;
     case 4:
       set_layer_color(4);
+      break;
+    case 5:
+      set_layer_color(5);
       break;
     default:
       if (rgb_matrix_get_flags() == LED_FLAG_NONE)

@@ -81,6 +81,21 @@ static const uint8_t PROGMEM ledmap_layout[][MATRIX_ROWS][MATRIX_COLS][3] = {
         CLR_YELLOW ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    /*XXXXXXXX*/    CLR_YELLOW ,        CLR_OFF    ,    /*XXXXXXXX*/    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,
         /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    CLR_YELLOW ,    CLR_YELLOW ,    CLR_YELLOW ,        CLR_OFF    ,    CLR_OFF    ,    CLR_OFF         /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/
     ),
+/*  _                            ____   */
+/* | |    __ _ _   _  ___ _ __  | ___|  */
+/* | |   / _` | | | |/ _ \ '__| |___ \  */
+/* | |__| (_| | |_| |  __/ |     ___) | */
+/* |_____\__,_|\__, |\___|_|    |____/  */
+/*             |___/                    */
+    [5] = COLOR_LAYOUT( //Japanese
+    /*  =               1               2               3               4               5               --                  --              6               7               8               9               0               --           */
+        CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_MAGENTA,    CLR_OFF    ,        CLR_OFF    ,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,
+        CLR_OFF    ,    CLR_WHT    ,    CLR_RED    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_OFF    ,        CLR_BLUE   ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_MAGENTA,
+        CLR_YELLOW ,    CLR_RED    ,    CLR_RED    ,    CLR_RED    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_MAGENTA,        CLR_BLUE   ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,
+        CLR_YELLOW ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    CLR_WHT    ,    /*XXXXXXXX*/        /*XXXXXXXX*/    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_YELLOW ,
+        CLR_YELLOW ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    /*XXXXXXXX*/    CLR_YELLOW ,        CLR_OFF    ,    /*XXXXXXXX*/    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,
+        /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    CLR_YELLOW ,    CLR_YELLOW ,    CLR_YELLOW ,        CLR_OFF    ,    CLR_OFF    ,    CLR_OFF         /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/
+    ),
 };
 //clang-format on
 // Updated function to use the layout-based map and LED index mapping (now expecting HSV)
