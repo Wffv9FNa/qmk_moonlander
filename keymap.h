@@ -35,3 +35,5 @@
 #define SOCDTG   SOCDTOG                  // SOCD Toggle
 #define KC_ESC   KC_ESCAPE                // Standard QMK alias
 #define KC_SPC   KC_SPACE                 // Standard QMK alias
+#define KATAK LCTL(LSFT(KC_F17))  // カタカナ変換
+#define HIRAG LCTL(LSFT(KC_F18))  // ひらがな変換
