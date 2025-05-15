@@ -11,6 +11,8 @@
 #define CLR_TLMGNTA     { 217, 235, 252 } // Telemagenta
 #define CLR_PSPYR       { 206, 198, 176 } // Pink Spyro (RGB ~156,39,176)
 #define CLR_SALMN       {   2, 198, 244 } // Salmon Pink (RGB ~244,157,162)
+#define CLR_PURPLE      { 200, 255, 255 } // Purple (RGB 255,0,255)
+#define CLR_ORANGE      {  20, 255, 255 } // Orange (RGB 255,165,0)
 
 // Browns
 #define CLR_BEAVR       {  22, 108, 176 } // Beaver Brown (RGB ~159,129,112) - Adjusted HSV for better RGB match
@@ -29,3 +31,4 @@
 #define CLR_CYAN        { 128, 255, 255 } // Cyan (RGB 0,255,255)
 #define CLR_CYPRO       { 131, 255, 255 } // Cyan Process (RGB ~0,183,235)
 #define CLR_PRBLU       { 148, 220, 243 } // Persian Blue (RGB ~45,96,243)
+#define CLR_WHTBLU      { 170, 100, 255 } // White Blue (RGB ~170,100,255)
