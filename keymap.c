@@ -86,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_DEL ,    KC_Q   ,    KC_W   ,    KC_E   ,    KC_R   ,    KC_T   ,    KC_NO  ,            KC_NO  ,    KC_Y   ,    KC_U   ,    KC_I   ,    KC_O   ,    KC_P   ,    KC_BSLS ,
         KC_BSPC,    KC_A   ,    KC_S   ,    KC_D   ,    KC_F   ,    KC_G   ,    KC_NUBS,            KC_MEH ,    KC_H   ,    KC_J   ,    KC_K   ,    KC_L   ,    KC_SCLN,    KC_QUOTE,
         L_SHFT ,    MT_CZ  ,    KC_X   ,    KC_C   ,    KC_V   ,    KC_B   ,                                    KC_N   ,    KC_M   ,    KC_COMM,    KC_DOT ,    KC_SLSH,    R_SHFT  ,
-        TT(2)  ,    L_GUI  ,    CW_TOGG,    TD_L4TG,    TT(1)  ,                KC_CAPS,            KC_ESC ,                TT(3)  ,    KC_HYPR,    KC_LBRC,    KC_RBRC,    TT(1)   ,
+        TT(1)  ,    L_GUI  ,    CW_TOGG,    TD_L4TG,    TT(3)  ,                KC_ESC ,            KC_CAPS,                TT(1)  ,    KC_HYPR,    KC_LBRC,    KC_RBRC,    TT(3)   ,
                                                         KC_SPC ,    L_ALT  ,    KC_F13 ,            TG(5)  ,    KC_TAB ,    KC_ENT
     ),
 /*  _                            _  */
@@ -97,10 +97,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*             |___/                */
     [1] = LAYOUT( //Numpad
         KC_GRV ,    KC_F1  ,    KC_F2  ,    KC_F3  ,    KC_F4  ,    KC_F5  ,    KC_TRNS,            KC_TRNS,    KC_F6  ,    KC_F7  ,    KC_F8  ,    KC_F9  ,    KC_F10 ,    KC_F11 ,
-        KC_TRNS,    KC_NO  ,    SELWBK ,    KC_NO  ,    SELWRD ,    KC_NUBS,    KC_NO  ,            KC_NO  ,    KC_HOME,    KC_7   ,    KC_8   ,    KC_9   ,    KC_PAST,    KC_F12 ,
-        KC_TRNS,    KC_NO  ,    GC_Y   ,    KC_NO  ,    CS_X   ,    KC_NO  ,    KC_TRNS,            KC_NO  ,    KC_END ,    KC_4   ,    KC_5   ,    KC_6   ,    KC_PPLS,    KC_NO  ,
-        L_SHFT ,    L_CTRL ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,                                    KC_PSLS,    KC_1   ,    KC_2   ,    KC_3   ,    KC_PMNS,    R_SHFT ,
-        KC_NO  ,    KC_TRNS,    KC_NO  ,    KC_NO  ,    KC_TRNS,                KC_NO  ,            KC_TRNS,                KC_NO  ,    KC_0   ,    KC_PDOT,    KC_PEQL,    KC_TRNS,
+        KC_TRNS,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_HOME,    KC_7   ,    KC_8   ,    KC_9   ,    KC_PAST,    KC_F12 ,
+        KC_TRNS,    KC_NO  ,    CT_S   ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_TRNS,            KC_NO  ,    KC_END ,    KC_4   ,    KC_5   ,    KC_6   ,    KC_PPLS,    KC_NO  ,
+        L_SHFT ,    CT_Z   ,    KC_NO  ,    CT_C   ,    CT_V   ,    KC_NO  ,                                    KC_PSLS,    KC_1   ,    KC_2   ,    KC_3   ,    KC_PMNS,    R_SHFT ,
+        TT(1)  ,    KC_TRNS,    KC_NO  ,    KC_NO  ,    KC_TRNS,                KC_NO  ,            KC_TRNS,                TT(1)  ,    KC_0   ,    KC_PDOT,    KC_PEQL,    KC_NO  ,
                                                         KC_TRNS,    KC_NO  ,    KC_NO  ,            KC_TRNS,    KC_TRNS,    KC_TRNS
     ),
 /*  _                            ____   */
@@ -123,14 +123,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* | |__| (_| | |_| |  __/ |     ___) | */
 /* |_____\__,_|\__, |\___|_|    |____/  */
 /*             |___/                    */
-    [3] = LAYOUT( //WordMon
+    [3] = LAYOUT( // WordMon + Arrows
         QK_BOOT,    KC_F1  ,    KC_F2  ,    KC_F3  ,    KC_F4  ,    KC_F5  ,    KC_NO  ,            KC_NO  ,    KC_F6  ,    KC_F7  ,    KC_F8  ,    KC_F9  ,    KC_F10 ,    KC_F11 ,
-        KC_NO  ,    KC_NO  ,    S_LEFT ,    CS_X   ,    S_RGHT ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_F12 ,
-        KC_NO  ,    CT_BSPC,    CT_LEFT,    GC_Y   ,    CT_RGHT,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
-        KC_NO  ,    CS_BSPC,    CS_LEFT,    KC_NO  ,    CS_RGHT,    KC_NO  ,                                    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
-        KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,                KC_NO  ,            KC_NO  ,                KC_TRNS,    SOCDTG ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
-                                                        KC_NO  ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_NO  ,    KC_NO
-    ),
+        KC_NO  ,    KC_NO  ,    SELWBK ,    CS_X   ,    SELWRD ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_HOME,    KC_NO  ,    KC_UP  ,    KC_NO  ,    KC_NO  ,    KC_F12 ,
+        CT_BSPC,    KC_NO  ,    S_LEFT ,    GC_Y   ,    S_RGHT ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_END ,    KC_LEFT,    KC_DOWN,    KC_RGHT,    KC_NO  ,    KC_NO  ,
+        KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    /*XXXX*/            /*XXXX*/    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
+        KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    TT(3)  ,    /*XXXX*/    KC_NO  ,            KC_NO  ,    /*XXXX*/    KC_TRNS,    SOCDTG ,    KC_NO  ,    KC_NO  ,    TT(3)  ,
+        /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_NO  ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_NO  ,    KC_NO       /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
+),
 /*  _                            _  _    */
 /* | |    __ _ _   _  ___ _ __  | || |   */
 /* | |   / _` | | | |/ _ \ '__| | || |_  */
@@ -236,20 +236,18 @@ bool rgb_matrix_indicators_user(void)
     case 0:
       // No specific exit key animation on the base layer
       break;
-    case 1: // Numpad, activated by TT(1)
-      r_exit = 4; c_exit = 4;    // Left TT(1) -> Mapped to c44 position [4][4]
-      r_exit2 = 10; c_exit2 = 6; // Right TT(1) -> Mapped to ca6 position [10][6]
+    case 1: // Numpad layer
+      r_exit = 4; c_exit = 0;    // Left TT(1) -> Mapped to c40 position [4][0]
+      r_exit2 = 10; c_exit2 = 2; // Right TT(1) -> Mapped to ca2 position [10][2]
       break;
-    case 2: // Arrows, activated by TT(2)
-      r_exit = 4; c_exit = 0;    // Left TT(2) -> Mapped [4][0]
+    case 3: // WordMon + Arrows layer
+      r_exit = 4; c_exit = 4;    // Left TT(3) -> Mapped to c44 position [4][4]
+      r_exit2 = 10; c_exit2 = 6; // Right TT(3) -> Mapped to ca6 position [10][6]
       break;
-    case 3: // WordMon, activated by TT(3)
-      r_exit = 10; c_exit = 2;   // Right TT(3) -> Mapped to ca2 position [10][2]
-      break;
-    case 4: // Gaming, activated by TD_L4TG (which is TT(4))
+    case 4: // Gaming layer
       r_exit = 4; c_exit = 3;    // Left TD_L4TG -> Mapped [4][3]
       break;
-    case 5: // Kana, activated by TG(5)
+    case 5: // Kana layer
       r_exit = 11; c_exit = 4;   // TG(5) on right thumb cluster -> Mapped to kb4 position [11][4]
       break;
     default:
