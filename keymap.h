@@ -9,6 +9,7 @@
 #define L_ALT    KC_LEFT_ALT              // Left Alt
 #define SELWBK   SELWBAK                  // Select Word Back
 #define SELWRD   SELWORD                  // Select Word
+#define SELINE   SELLINE                  // Select Line
 #define GC_Y     LGUI(LCTL(KC_Y))         // Gui+Ctrl+Y
 #define CS_X     LCTL(LSFT(KC_X))         // Ctrl+Shift+X
 #define L_CTRL   KC_LEFT_CTRL             // Left Control
