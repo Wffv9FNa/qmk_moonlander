@@ -218,7 +218,7 @@ bool rgb_matrix_indicators_user(void)
   if (host_keyboard_led_state().caps_lock)
   {
     // Set all keys to red when Caps Lock is on
-    rgb_matrix_set_color_all(255, 0, 0);
+    rgb_matrix_set_color_all(255, 0, 0);  // Full brightness red for Caps Lock
   }
   else
   {
@@ -264,7 +264,7 @@ bool rgb_matrix_indicators_user(void)
     {
       uint8_t led_index = g_led_config.matrix_co[r_exit][c_exit];
       if (led_index != NO_LED) {
-        HSV hsv = {.h = exit_key_hue, .s = 255, .v = rgb_matrix_config.hsv.v};
+        HSV hsv = {.h = exit_key_hue, .s = 255, .v = 255};  // Force maximum brightness
         RGB rgb = hsv_to_rgb(hsv);
         rgb_matrix_set_color(led_index, rgb.r, rgb.g, rgb.b);
         animated_this_cycle = true;
@@ -276,7 +276,7 @@ bool rgb_matrix_indicators_user(void)
     {
       uint8_t led_index2 = g_led_config.matrix_co[r_exit2][c_exit2];
       if (led_index2 != NO_LED) {
-        HSV hsv = {.h = exit_key_hue, .s = 255, .v = rgb_matrix_config.hsv.v};
+        HSV hsv = {.h = exit_key_hue, .s = 255, .v = 255};  // Force maximum brightness
         RGB rgb = hsv_to_rgb(hsv);
         rgb_matrix_set_color(led_index2, rgb.r, rgb.g, rgb.b);
         animated_this_cycle = true; // Already true if primary animated, but safe
