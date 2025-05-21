@@ -40,6 +40,7 @@ rawhid_state_t rawhid_state;
 
 // RGB Matrix configuration
 extern rgb_config_t rgb_matrix_config;
+extern led_config_t g_led_config; // Added for LED physical index mapping
 
 // +-------+
 // | ENUMS |
@@ -110,7 +111,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*             |___/                    */
     [2] = LAYOUT( //Arrows
         KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
-        KC_TRNS,    CT_Q   ,    CT_W   ,    CT_E   ,    CT_R   ,    KC_NO  ,    KC_TRNS,            KC_TRNS,    KC_HOME,    KC_NO  ,    KC_UP  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
+        KC_TRNS,    CT_Q   ,    CT_W   ,    CT_E   ,    CT_R   ,    KC_NO  ,    KC_TRNS,            KC_NO  ,    KC_HOME,    KC_NO  ,    KC_UP  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
         KC_TRNS,    CT_A   ,    CT_S   ,    KC_NO  ,    CT_F   ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_END ,    KC_LEFT,    KC_DOWN,    KC_RGHT,    KC_NO  ,    KC_NO  ,
         KC_TRNS,    CT_Z   ,    CT_X   ,    CT_C   ,    CT_V   ,    CT_B   ,                                    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_TRNS,
         KC_TRNS,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,                KC_NO  ,            KC_NO  ,                KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_TRNS,
@@ -209,6 +210,10 @@ bool rgb_matrix_indicators_user(void)
     return false;
   }
 
+  uint8_t current_layer = biton32(layer_state);
+  static uint8_t exit_key_hue = 0; // Hue for animating layer exit keys
+  bool animated_this_cycle = false;
+
   // Check if Caps Lock is on
   if (host_keyboard_led_state().caps_lock)
   {
@@ -217,34 +222,73 @@ bool rgb_matrix_indicators_user(void)
   }
   else
   {
-    // Normal layer-based lighting when Caps Lock is off
-    switch (biton32(layer_state))
+    // Set base static colors for the current layer first
+    set_layer_color(current_layer);
+
+    // Define exit key positions (row, col) for layers > 0
+    // These are the positions on the *target layer* that correspond to the
+    // TT(x) or TG(x) keys used to activate the layer from layer 0.
+    uint8_t r_exit = 255, c_exit = 255;   // Primary exit key
+    uint8_t r_exit2 = 255, c_exit2 = 255; // Secondary exit key (for Layer 1 which has two TT(1) keys)
+
+    switch (current_layer)
     {
     case 0:
-      set_layer_color(0);
+      // No specific exit key animation on the base layer
       break;
-    case 1:
-      set_layer_color(1);
+    case 1: // Numpad, activated by TT(1)
+      r_exit = 4; c_exit = 4;    // Left TT(1) -> Mapped to c44 position [4][4]
+      r_exit2 = 10; c_exit2 = 6; // Right TT(1) -> Mapped to ca6 position [10][6]
       break;
-    case 2:
-      set_layer_color(2);
+    case 2: // Arrows, activated by TT(2)
+      r_exit = 4; c_exit = 0;    // Left TT(2) -> Mapped [4][0]
       break;
-    case 3:
-      set_layer_color(3);
+    case 3: // WordMon, activated by TT(3)
+      r_exit = 10; c_exit = 2;   // Right TT(3) -> Mapped to ca2 position [10][2]
       break;
-    case 4:
-      set_layer_color(4);
+    case 4: // Gaming, activated by TD_L4TG (which is TT(4))
+      r_exit = 4; c_exit = 3;    // Left TD_L4TG -> Mapped [4][3]
       break;
-    case 5:
-      set_layer_color(5);
+    case 5: // Kana, activated by TG(5)
+      r_exit = 11; c_exit = 4;   // TG(5) on right thumb cluster -> Mapped to kb4 position [11][4]
       break;
     default:
-      if (rgb_matrix_get_flags() == LED_FLAG_NONE)
-        rgb_matrix_set_color_all(0, 0, 0);
+      // For any other layers not explicitly handled, rely on set_layer_color.
+      // If rgb_matrix_get_flags() == LED_FLAG_NONE was part of set_layer_color's
+      // handling for unknown layers, that will still apply.
       break;
     }
+
+    // Apply animation to the primary exit key if defined for the current layer
+    if (r_exit != 255 && c_exit != 255) // r_exit, c_exit are MAPPED coordinates for g_led_config.matrix_co
+    {
+      uint8_t led_index = g_led_config.matrix_co[r_exit][c_exit];
+      if (led_index != NO_LED) {
+        HSV hsv = {.h = exit_key_hue, .s = 255, .v = rgb_matrix_config.hsv.v};
+        RGB rgb = hsv_to_rgb(hsv);
+        rgb_matrix_set_color(led_index, rgb.r, rgb.g, rgb.b);
+        animated_this_cycle = true;
+      }
+    }
+
+    // Apply animation to the secondary exit key if defined (for Layer 1)
+    if (r_exit2 != 255 && c_exit2 != 255) // r_exit2, c_exit2 are MAPPED coordinates
+    {
+      uint8_t led_index2 = g_led_config.matrix_co[r_exit2][c_exit2];
+      if (led_index2 != NO_LED) {
+        HSV hsv = {.h = exit_key_hue, .s = 255, .v = rgb_matrix_config.hsv.v};
+        RGB rgb = hsv_to_rgb(hsv);
+        rgb_matrix_set_color(led_index2, rgb.r, rgb.g, rgb.b);
+        animated_this_cycle = true; // Already true if primary animated, but safe
+      }
+    }
+
+    if (animated_this_cycle)
+    {
+      exit_key_hue += 2; // Increment hue for next frame, speed factor of 2
+    }
   }
-  return true;
+  return true; // Allow QMK default RGB matrix processing to continue if needed
 }
 
 /**
