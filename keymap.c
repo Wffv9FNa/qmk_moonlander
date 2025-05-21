@@ -245,6 +245,9 @@ bool rgb_matrix_indicators_user(void)
       r_exit = 4; c_exit = 0;    // Left TT(1) -> Mapped to c40 position [4][0]
       r_exit2 = 10; c_exit2 = 2; // Right TT(1) -> Mapped to ca2 position [10][2]
       break;
+    case 2: // Mouse layer
+      r_exit = 1; c_exit = 6;    // TT(2) in top right of left side [1][6]
+      break;
     case 3: // WordMon + Arrows layer
       r_exit = 4; c_exit = 4;    // Left TT(3) -> Mapped to c44 position [4][4]
       r_exit2 = 10; c_exit2 = 6; // Right TT(3) -> Mapped to ca6 position [10][6]
