@@ -39,3 +39,5 @@
 #define KATAK LCTL(LSFT(KC_F17))          // カタカナ変換
 #define HIRAG LCTL(LSFT(KC_F18))          // ひらがな変換
 #define IME_TOG LGUI(KC_SPC)              // Windows + Spacebar
+#define MINWIN   LGUI(KC_DOWN)            // Minimise Window
+#define MAXWIN   LGUI(KC_UP)              // Maximise Window

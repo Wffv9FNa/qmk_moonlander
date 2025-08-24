@@ -29,7 +29,7 @@ static const uint8_t PROGMEM ledmap_layout[][MATRIX_ROWS][MATRIX_COLS][3] = {
 /*             |___/                */
     [1] = COLOR_LAYOUT( //Numpad
     /*  =               1               2               3               4               5               ---                 ---             6               7               8               9               0               --           */
-        CLR_OFF    ,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_OFF    ,        CLR_OFF    ,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,
+        CLR_CYAN   ,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_OFF    ,        CLR_OFF    ,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,
         CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,        CLR_OFF    ,    CLR_CYAN   ,    CLR_RED    ,    CLR_RED    ,    CLR_RED    ,    CLR_GREEN  ,    CLR_MAGENTA,
         CLR_OFF    ,    CLR_OFF    ,    CLR_YELLOW ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,        CLR_OFF    ,    CLR_CYAN   ,    CLR_RED    ,    CLR_RED    ,    CLR_RED    ,    CLR_GREEN  ,    CLR_OFF    ,
         CLR_OFF    ,    CLR_YELLOW ,    CLR_OFF    ,    CLR_YELLOW ,    CLR_YELLOW ,    CLR_OFF    ,    /*XXXXXXXX*/        /*XXXXXXXX*/    CLR_GREEN  ,    CLR_RED    ,    CLR_RED    ,    CLR_RED    ,    CLR_GREEN  ,    CLR_OFF    ,
@@ -61,7 +61,7 @@ static const uint8_t PROGMEM ledmap_layout[][MATRIX_ROWS][MATRIX_COLS][3] = {
     [3] = COLOR_LAYOUT( // WordMon + Arrows
     /*  =               1               2               3               4               5               ---                 ---             6               7               8               9               0               ---          */
         CLR_CYAN   ,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_OFF    ,        CLR_OFF    ,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,
-        CLR_OFF    ,    CLR_OFF    ,    CLR_RED    ,    CLR_GREEN  ,    CLR_RED    ,    CLR_OFF    ,    CLR_OFF    ,        CLR_OFF    ,    CLR_YELLOW ,    CLR_OFF    ,    CLR_RED    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_MAGENTA,
+        CLR_OFF    ,    CLR_OFF    ,    CLR_RED    ,    CLR_GREEN  ,    CLR_RED    ,    CLR_OFF    ,    CLR_OFF    ,        CLR_OFF    ,    CLR_YELLOW ,    CLR_GREEN  ,    CLR_RED    ,    CLR_GREEN  ,    CLR_OFF    ,    CLR_MAGENTA,
         CLR_PURPLE ,    CLR_OFF    ,    CLR_ORANGE ,    CLR_GREEN  ,    CLR_ORANGE ,    CLR_OFF    ,    CLR_OFF    ,        CLR_OFF    ,    CLR_YELLOW ,    CLR_RED    ,    CLR_RED    ,    CLR_RED    ,    CLR_OFF    ,    CLR_OFF    ,
         CLR_OFF    ,    CLR_OFF    ,    CLR_PRBLU  ,    CLR_YELLOW ,    CLR_PRBLU  ,    CLR_OFF    ,    /*XXXXXXXX*/        /*XXXXXXXX*/    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,
         CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    /*XXXXXXXX*/    CLR_OFF    ,        CLR_OFF    ,    /*XXXXXXXX*/    CLR_OFF    ,    CLR_GREEN  ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,
