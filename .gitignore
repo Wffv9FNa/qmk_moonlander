@@ -2,3 +2,5 @@
 /docs/
 .vscode/settings.json
 /builds/
+/.cursor/
+/memory-bank/
