@@ -1,73 +1,73 @@
-#ifndef MYKEYS_KEYMAP_C
-#define MYKEYS_KEYMAP_C
+#ifndef MYKEYS_KEYMAP_C                               // Begin include guard for this file (MYKEYS_KEYMAP_C)
+#define MYKEYS_KEYMAP_C                               // Define symbol to prevent multiple inclusion of this file
 
 // +----------+
 // | INCLUDES |
 // +----------+
-#include QMK_KEYBOARD_H
-#include "i18n.h"
-#include "audio.h"
-#include "user_song_list.h"
-#include "tap_dance/tap_dance.h"
-#include "rgb_config/rgb_config.h"
-#include "keymap_japanese.h"
+#include QMK_KEYBOARD_H                               // Core QMK headers
+#include "i18n.h"                                     // Localization helpers
+#include "audio.h"                                    // Audio feature interface
+#include "user_song_list.h"                           // User-defined song data
+#include "tap_dance/tap_dance.h"                      // Tap dance actions
+#include "rgb_config/rgb_config.h"                    // RGB configuration helpers
+#include "keymap_japanese.h"                          // JP keymap definitions
 
 // +---------+
 // | DEFINES |
 // +---------+
-#define MOON_LED_LEVEL LED_LEVEL
-#define ML_SAFE_RANGE SAFE_RANGE
+#define MOON_LED_LEVEL LED_LEVEL                      // Alias board LED level control
+#define ML_SAFE_RANGE SAFE_RANGE                      // Base for custom keycodes
 
 // +--------------------------+
 // | GLOBAL STATE & VARIABLES |
 // +--------------------------+
-extern bool socd_cleaner_enabled; // Add this to access the global SOCD state
+extern bool socd_cleaner_enabled;                     // Access global SOCD enable state
 
 #ifdef AUDIO_ENABLE
-// Audio song data
-float caps_on_song[][2] = SONG(CAPS_ON_SOUND);
-float caps_off_song[][2] = SONG(CAPS_OFF_SOUND);
-float overwatch_song[][2] = SONG(OVERWATCH_THEME);
+float caps_on_song[][2] = SONG(CAPS_ON_SOUND);        // Audio pattern when Caps Lock turns on
+float caps_off_song[][2] = SONG(CAPS_OFF_SOUND);      // Audio pattern when Caps Lock turns off
+float overwatch_song[][2] = SONG(OVERWATCH_THEME);    // Overwatch theme to play on layer event
 #endif
 
-// Rawhid state structure
-typedef struct
+typedef struct                                        // Raw HID state shared with host
 {
-  bool rgb_control;
+  bool rgb_control;                                   // When true, host owns RGB control
 } rawhid_state_t;
 
-rawhid_state_t rawhid_state;
+rawhid_state_t rawhid_state;                          // Global instance of Raw HID state
 
-// RGB Matrix configuration
-extern rgb_config_t rgb_matrix_config;
-extern led_config_t g_led_config; // Added for LED physical index mapping
+extern rgb_config_t rgb_matrix_config;                // Global RGB matrix configuration
+extern led_config_t g_led_config;                     // LED mapping for matrix coords -> indices
 
 // +-------+
 // | ENUMS |
 // +-------+
 enum custom_keycodes
 {
-  NEW_SAFE_RANGE // This now implicitly starts at SAFE_RANGE
+  NEW_SAFE_RANGE                                      // First custom code (starts at SAFE_RANGE)
 };
 
 #if __has_include("keymap.h")
-#include "keymap.h"
+#include "keymap.h"                                   // Optional per-user/per-layout overrides
 #endif
 
 // +--------------------+
 // | TAP DANCE ACTIONS  |
 // +--------------------+
 tap_dance_action_t tap_dance_actions[] = {
-    [TD_TGLL_4] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_tgll_4_finished, NULL),
-    // Add the new tap dance action
+  [TD_TGLL_4] = ACTION_TAP_DANCE_FN_ADVANCED(       // Tap-dance index for layer 4 toggle
+      NULL,                                         // No on-each-tap handler
+      td_tgll_4_finished,                           // On-finished handler toggles layer 4
+      NULL),                                        // No reset handler
+  // Add the new tap dance action
 };
 
 // +--------------------+
 // | SOCD CONFIGURATION |
 // +--------------------+
 socd_cleaner_t socd_opposing_pairs[] = {
-    {{KC_W, KC_S}, SOCD_CLEANER_LAST},
-    {{KC_A, KC_D}, SOCD_CLEANER_LAST},
+  {{KC_W, KC_S}, SOCD_CLEANER_LAST},                // Vertical pair: W vs S, prefer last input
+  {{KC_A, KC_D}, SOCD_CLEANER_LAST},                // Horizontal pair: A vs D, prefer last input
 };
 
 // +---------+
@@ -75,12 +75,12 @@ socd_cleaner_t socd_opposing_pairs[] = {
 // +---------+
 //clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-/*  _                             ___   */
-/* | |    __ _ _   _  ___ _ __   / _ \  */
-/* | |   / _` | | | |/ _ \ '__| | | | | */
-/* | |__| (_| | |_| |  __/ |    | |_| | */
-/* |_____\__,_|\__, |\___|_|     \___/  */
-/*             |___/                    */
+/*  _                             ___       _   _                       */
+/* | |    __ _ _   _  ___ _ __   / _ \     | | | | ___  _ __ ___   ___  */
+/* | |   / _` | | | |/ _ \ '__| | | | |    | |_| |/ _ \| '_ ` _ \ / _ \ */
+/* | |__| (_| | |_| |  __/ |    | |_| |    |  _  | (_) | | | | | |  __/ */
+/* |_____\__,_|\__, |\___|_|     \___/     |_| |_|\___/|_| |_| |_|\___| */
+/*             |___/                                                    */
     [0] = LAYOUT( //Home
     /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
         KC_EQL ,    KC_1   ,    KC_2   ,    KC_3   ,    KC_4   ,    KC_5   ,    KC_NO  ,            KC_NO  ,    KC_6   ,    KC_7   ,    KC_8   ,    KC_9   ,    KC_0   ,    KC_MINS ,
@@ -90,12 +90,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TT(1)  ,    L_GUI  ,    CW_TOGG,    TD_L4TG,    TT(3)  ,                KC_ESC ,            KC_CAPS,                TT(1)  ,    KC_HYPR,    KC_LBRC,    KC_RBRC,    TT(3)   ,
                                                         KC_SPC ,    L_ALT  ,    KC_F13 ,            TG(5)  ,    KC_TAB ,    KC_ENT
     ),
-/*  _                            _  */
-/* | |    __ _ _   _  ___ _ __  / | */
-/* | |   / _` | | | |/ _ \ '__| | | */
-/* | |__| (_| | |_| |  __/ |    | | */
-/* |_____\__,_|\__, |\___|_|    |_| */
-/*             |___/                */
+/*  _                            _      _   _                                 _  */
+/* | |    __ _ _   _  ___ _ __  / |    | \ | |_   _ _ __ ___  _ __   __ _  __| | */
+/* | |   / _` | | | |/ _ \ '__| | |    |  \| | | | | '_ ` _ \| '_ \ / _` |/ _` | */
+/* | |__| (_| | |_| |  __/ |    | |    | |\  | |_| | | | | | | |_) | (_| | (_| | */
+/* |_____\__,_|\__, |\___|_|    |_|    |_| \_|\__,_|_| |_| |_| .__/ \__,_|\__,_| */
+/*             |___/                                         |_|                 */
     [1] = LAYOUT( //Numpad
     /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
         KC_GRV ,    KC_F1  ,    KC_F2  ,    KC_F3  ,    KC_F4  ,    KC_F5  ,    KC_NO  ,            KC_NO  ,    KC_F6  ,    KC_F7  ,    KC_F8  ,    KC_F9  ,    KC_F10 ,    KC_F11 ,
@@ -105,12 +105,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         TT(1)  ,    L_GUI  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    /*XXXX*/    KC_NO  ,            KC_TRNS,    /*XXXX*/    TT(1)  ,    KC_0   ,    KC_PDOT,    KC_PEQL,    KC_NO  ,
         /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_SPC ,    L_ALT  ,    KC_NO  ,            KC_NO  ,    KC_TAB ,    KC_ENT      /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
     ),
-/*  _                            ____   */
-/* | |    __ _ _   _  ___ _ __  |___ \  */
-/* | |   / _` | | | |/ _ \ '__|   __) | */
-/* | |__| (_| | |_| |  __/ |     / __/  */
-/* |_____\__,_|\__, |\___|_|    |_____| */
-/*             |___/                    */
+/*  _                            ____       __  __                       */
+/* | |    __ _ _   _  ___ _ __  |___ \     |  \/  | ___  _   _ ___  ___  */
+/* | |   / _` | | | |/ _ \ '__|   __) |    | |\/| |/ _ \| | | / __|/ _ \ */
+/* | |__| (_| | |_| |  __/ |     / __/     | |  | | (_) | |_| \__ \  __/ */
+/* |_____\__,_|\__, |\___|_|    |_____|    |_|  |_|\___/ \__,_|___/\___| */
+/*             |___/                                                     */
     [2] = LAYOUT( //Mouse
     /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
         KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
@@ -120,27 +120,27 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    /*XXXX*/    KC_ESC ,            KC_CAPS,    /*XXXX*/    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
         /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_SPC ,    L_ALT  ,    KC_NO  ,            KC_NO  ,    KC_TAB ,    KC_NO       /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
     ),
-/*  _                            _____  */
-/* | |    __ _ _   _  ___ _ __  |___ /  */
-/* | |   / _` | | | |/ _ \ '__|   |_ \  */
-/* | |__| (_| | |_| |  __/ |     ___) | */
-/* |_____\__,_|\__, |\___|_|    |____/  */
-/*             |___/                    */
+/*  _                            _____         _                                */
+/* | |    __ _ _   _  ___ _ __  |___ /        / \   _ __ _ __ _____      _____  */
+/* | |   / _` | | | |/ _ \ '__|   |_ \       / _ \ | '__| '__/ _ \ \ /\ / / __| */
+/* | |__| (_| | |_| |  __/ |     ___) |     / ___ \| |  | | | (_) \ V  V /\__ \ */
+/* |_____\__,_|\__, |\___|_|    |____/     /_/   \_\_|  |_|  \___/ \_/\_/ |___/ */
+/*             |___/                                                            */
     [3] = LAYOUT( // WordMon + Arrows
     /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
         QK_BOOT,    KC_F1  ,    KC_F2  ,    KC_F3  ,    KC_F4  ,    KC_F5  ,    KC_NO  ,            KC_NO  ,    KC_F6  ,    KC_F7  ,    KC_F8  ,    KC_F9  ,    KC_F10 ,    KC_F11 ,
         KC_NO  ,    KC_NO  ,    SELWBK ,    CS_X   ,    SELWRD ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_HOME,    MINWIN ,    KC_UP  ,    MAXWIN ,    KC_NO  ,    KC_F12 ,
         CT_BSPC,    KC_NO  ,    S_LEFT ,    GC_Y   ,    S_RGHT ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_END ,    KC_LEFT,    KC_DOWN,    KC_RGHT,    KC_NO  ,    KC_NO  ,
-        KC_NO  ,    KC_NO  ,    CT_LEFT,    SELINE ,    CT_RGHT,    KC_NO  ,    /*XXXX*/            /*XXXX*/    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
+        L_SHFT ,    KC_NO  ,    CT_LEFT,    SELINE ,    CT_RGHT,    KC_NO  ,    /*XXXX*/            /*XXXX*/    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    R_SHFT ,
         KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    TT(3)  ,    /*XXXX*/    KC_NO  ,            KC_NO  ,    /*XXXX*/    KC_TRNS,    SOCDTG ,    KC_NO  ,    KC_NO  ,    TT(3)  ,
         /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_NO  ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_NO  ,    KC_NO       /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
 ),
-/*  _                            _  _    */
-/* | |    __ _ _   _  ___ _ __  | || |   */
-/* | |   / _` | | | |/ _ \ '__| | || |_  */
-/* | |__| (_| | |_| |  __/ |    |__   _| */
-/* |_____\__,_|\__, |\___|_|       |_|   */
-/*             |___/                     */
+/*  _                            _  _         ____                            */
+/* | |    __ _ _   _  ___ _ __  | || |       / ___| __ _ _ __ ___   ___  ___  */
+/* | |   / _` | | | |/ _ \ '__| | || |_     | |  _ / _` | '_ ` _ \ / _ \/ __| */
+/* | |__| (_| | |_| |  __/ |    |__   _|    | |_| | (_| | | | | | |  __/\__ \ */
+/* |_____\__,_|\__, |\___|_|       |_|       \____|\__,_|_| |_| |_|\___||___/ */
+/*             |___/                                                          */
     [4] = LAYOUT( // Gaming Layer
     /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
         KC_EQL ,    KC_1   ,    KC_2   ,    KC_3   ,    KC_4   ,    KC_F5  ,    KC_NO  ,            KC_NO  ,    KC_6   ,    KC_7   ,    KC_8   ,    KC_9   ,    KC_F10 ,    KC_F11  ,
@@ -151,12 +151,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         /*XXXXX*/   /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_SPC ,    KC_TAB ,    L_ALT  ,            L_GUI  ,    KC_NO  ,    KC_ENT      /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
     ),
 
-/*  _                            ____   */
-/* | |    __ _ _   _  ___ _ __  | ___|  */
-/* | |   / _` | | | |/ _ \ '__| |___ \  */
-/* | |__| (_| | |_| |  __/ |     ___) | */
-/* |_____\__,_|\__, |\___|_|    |____/  */
-/*             |___/                    */
+/*  _                            ____       _  __                  */
+/* | |    __ _ _   _  ___ _ __  | ___|     | |/ /__ _ _ __   __ _  */
+/* | |   / _` | | | |/ _ \ '__| |___ \     | ' // _` | '_ \ / _` | */
+/* | |__| (_| | |_| |  __/ |     ___) |    | . \ (_| | | | | (_| | */
+/* |_____\__,_|\__, |\___|_|    |____/     |_|\_\__,_|_| |_|\__,_| */
+/*             |___/                                               */
     [5] = LAYOUT( //Kana Layer
     /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
         KC_EQL ,    KC_1   ,    KC_2   ,    KC_3   ,    KC_4   ,    KC_5   ,    KC_NO  ,            KC_NO  ,    KC_6   ,    KC_7   ,    KC_8   ,    KC_9   ,    KC_0   ,    KC_MINS ,
@@ -189,14 +189,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // +----------------+
 // | USER FUNCTIONS |
 // +----------------+
-/**
- * @brief Initialize the keyboard after startup
- *
- * Runs once at keyboard initialization to set up initial LED state.
- */
+
 void keyboard_post_init_user(void)
 {
-  rgb_matrix_enable();
+  rgb_matrix_enable();  // Enable RGB matrix lighting after keyboard initialization
 }
 
 /**
@@ -229,158 +225,87 @@ bool rgb_matrix_indicators_user(void)
   // 4. Animate exit keys with rainbow effect
   // 5. Update animation timing
 
-  // Check if external RGB control is active (e.g., from host software)
-  if (rawhid_state.rgb_control)
+  if (rawhid_state.rgb_control)                     // Check if external RGB control is active (e.g., from host software)
   {
-    return false; // Let external control handle RGB
+    return false;                                   // Let external control handle RGB
   }
 
-  // Check if layer LED indicators are disabled in keyboard config
-  if (keyboard_config.disable_layer_led)
+  if (keyboard_config.disable_layer_led)            // Check if layer LED indicators are disabled in keyboard config
   {
-    return false; // Don't show layer colours
+    return false;                                   // Don't show layer colours
   }
 
-  // Get the currently active layer (highest priority layer)
-  uint8_t current_layer = biton32(layer_state);
+  uint8_t current_layer = biton32(layer_state);     // Get the currently active layer (highest priority layer)
 
-  // Static variable to track animation progress across function calls
-  // This creates a continuous rainbow effect on exit keys
-  static uint8_t exit_key_hue = 0; // Hue for animating layer exit keys
+  static uint8_t exit_key_hue = 0;                  // Static variable to track animation progress across function calls (continuous rainbow effect on exit keys)
+  bool animated_this_cycle = false;                 // Flag to track if we animated any exit keys this cycle (decides hue update)
 
-  // Flag to track if we animated any exit keys this cycle
-  // Used to determine if we should update the hue for next frame
-  bool animated_this_cycle = false;
-
-  // CAPS LOCK VISUAL FEEDBACK
-  // When Caps Lock is active, override all other RGB effects with red
-  // This provides immediate visual feedback that caps are on
-  if (host_keyboard_led_state().caps_lock)
+  if (host_keyboard_led_state().caps_lock)          // CAPS LOCK VISUAL FEEDBACK: When active, override all effects with red
   {
-    // Override all keys with bright red to clearly indicate Caps Lock state
-    // This takes priority over layer colours and exit key animations
-    rgb_matrix_set_color_all(255, 0, 0);  // Full brightness red for Caps Lock
-    return true; // Exit early - no need for layer colours or animations
+    rgb_matrix_set_color_all(255, 0, 0);            // Override all keys with bright red to clearly indicate Caps Lock state
+    return true;                                    // Exit early - no need for layer colours or animations
   }
   else
   {
-    // LAYER COLOUR SYSTEM
-    // First, apply the base colours for the current layer
-    // This sets the overall colour scheme for all keys on this layer
-    set_layer_color(current_layer);
+    set_layer_color(current_layer);                 // LAYER COLOUR SYSTEM: Apply the base colours for the current layer
 
-    // EXIT KEY ANIMATION SYSTEM
-    // Exit keys are the keys that got you to the current layer (TT(x) or TG(x))
-    // We animate these keys to help users understand how to navigate back
-    //
-    // Coordinate system: [row][col] in the 12x7 Moonlander matrix
-    // Magic number 255 is used as a "no exit key" marker since valid coordinates
-    // are 0-11 for rows and 0-6 for columns, so 255 is safely out of range
-    uint8_t r_exit = 255, c_exit = 255;   // Primary exit key position
-    uint8_t r_exit2 = 255, c_exit2 = 255; // Secondary exit key (for layers with multiple entry points)
+    uint8_t r_exit = 255, c_exit = 255;             // Primary exit key position (255 means "no exit key")
+    uint8_t r_exit2 = 255, c_exit2 = 255;           // Secondary exit key position (for multiple entry points)
 
-    // LAYER-SPECIFIC EXIT KEY MAPPING
-    // Each layer defines where its exit keys are located in the matrix
-    // These coordinates correspond to the physical positions of TT(x) or TG(x) keys
-    switch (current_layer)
+    switch (current_layer)                          // LAYER-SPECIFIC EXIT KEY MAPPING
     {
-    case 0:
-      // Base layer has no exit keys (it's the destination, not a layer you enter)
+    case 0:                                         // Base layer has no exit keys (it's the destination layer)
       break;
-
-    case 1: // Numpad layer
-      // Layer 1 has two TT(1) keys for easy access from both sides
-      r_exit = 4; c_exit = 0;    // Left TT(1) -> Left thumb cluster [4][0]
-      r_exit2 = 10; c_exit2 = 2; // Right TT(1) -> Right thumb cluster [10][2]
+    case 1:                                         // Numpad layer: two TT(1) keys for access
+      r_exit = 4;  c_exit = 0;                      // Left TT(1) -> Left thumb cluster [4][0]
+      r_exit2 = 10; c_exit2 = 2;                    // Right TT(1) -> Right thumb cluster [10][2]
       break;
-
-    case 2: // Mouse layer
-      // Single TT(2) key on the left side
-      r_exit = 1; c_exit = 6;    // TT(2) -> Top right of left half [1][6]
+    case 2:                                         // Mouse layer: single TT(2) key
+      r_exit = 1;  c_exit = 6;                      // TT(2) -> Top right of left half [1][6]
       break;
-
-    case 3: // WordMon + Arrows layer
-      // Layer 3 has two TT(3) keys for ambidextrous access
-      r_exit = 4; c_exit = 4;    // Left TT(3) -> Left thumb cluster [4][4]
-      r_exit2 = 10; c_exit2 = 6; // Right TT(3) -> Right thumb cluster [10][6]
+    case 3:                                         // WordMon + Arrows layer: two TT(3) keys
+      r_exit = 4;  c_exit = 4;                      // Left TT(3) -> Left thumb cluster [4][4]
+      r_exit2 = 10; c_exit2 = 6;                    // Right TT(3) -> Right thumb cluster [10][6]
       break;
-
-    case 4: // Gaming layer
-      // Single TD_L4TG key (tap dance layer 4 toggle)
-      r_exit = 4; c_exit = 3;    // TD_L4TG -> Left thumb cluster [4][3]
+    case 4:                                         // Gaming layer: single TD_L4TG key
+      r_exit = 4;  c_exit = 3;                      // TD_L4TG -> Left thumb cluster [4][3]
       break;
-
-    case 5: // Kana layer
-      // Single TG(5) key (toggle layer 5)
-      r_exit = 11; c_exit = 4;   // TG(5) -> Right thumb cluster [11][4]
+    case 5:                                         // Kana layer: single TG(5) key
+      r_exit = 11; c_exit = 4;                      // TG(5) -> Right thumb cluster [11][4]
       break;
-
-    default:
-      // For any future layers not explicitly handled here
-      // The set_layer_color() function will still apply base colours
+    default:                                        // Future/unhandled layers still get base colours
       break;
     }
 
-    // PRIMARY EXIT KEY ANIMATION
-    // Apply rainbow animation to the main exit key for this layer
-    if (r_exit != 255 && c_exit != 255) // Check if this layer has a primary exit key
+    if (r_exit != 255 && c_exit != 255)             // PRIMARY EXIT KEY ANIMATION: Apply rainbow animation if primary exit key exists
     {
-      // Convert matrix coordinates to LED index using QMK's LED mapping
-      // g_led_config.matrix_co[row][col] returns the physical LED index
-      uint8_t led_index = g_led_config.matrix_co[r_exit][c_exit];
-
-      if (led_index != NO_LED) { // Check if there's actually an LED at this position
-        // Create HSV colour with current hue, full saturation, full brightness
-        // This ensures the animated key is always visible and colourful
-        HSV hsv = {.h = exit_key_hue, .s = 255, .v = 255};
-
-        // Convert HSV to RGB for the LED matrix
-        RGB rgb = hsv_to_rgb(hsv);
-
-        // Apply the animated colour to the specific LED
-        rgb_matrix_set_color(led_index, rgb.r, rgb.g, rgb.b);
-
-        // Mark that we animated something this cycle
-        animated_this_cycle = true;
+      uint8_t led_index = g_led_config.matrix_co[r_exit][c_exit]; // Convert matrix coords to LED index
+      if (led_index != NO_LED) {                    // Check if LED actually exists at this position
+        HSV hsv = {.h = exit_key_hue, .s = 255, .v = 255};        // Create HSV colour with current hue, full saturation, full brightness
+        RGB rgb = hsv_to_rgb(hsv);                               // Convert HSV to RGB for LED matrix
+        rgb_matrix_set_color(led_index, rgb.r, rgb.g, rgb.b);     // Apply animated colour to LED
+        animated_this_cycle = true;                              // Mark animation happened
       }
     }
 
-    // SECONDARY EXIT KEY ANIMATION (for layers with multiple entry points)
-    // Some layers (like Layer 1) have two ways to access them
-    // We animate both exit keys to show all possible ways back
-    if (r_exit2 != 255 && c_exit2 != 255) // Check if this layer has a secondary exit key
+    if (r_exit2 != 255 && c_exit2 != 255)           // SECONDARY EXIT KEY ANIMATION: Apply rainbow if secondary exit key exists
     {
-      // Same process as primary exit key
-      uint8_t led_index2 = g_led_config.matrix_co[r_exit2][c_exit2];
-
+      uint8_t led_index2 = g_led_config.matrix_co[r_exit2][c_exit2]; // Convert coords to LED index
       if (led_index2 != NO_LED) {
-        // Use the same hue value for both keys to keep them in sync
-        HSV hsv = {.h = exit_key_hue, .s = 255, .v = 255};
-        RGB rgb = hsv_to_rgb(hsv);
-        rgb_matrix_set_color(led_index2, rgb.r, rgb.g, rgb.b);
-
-        // Mark that we animated something this cycle
-        // Note: This is already true if primary animated, but setting it again is safe
-        animated_this_cycle = true;
+        HSV hsv = {.h = exit_key_hue, .s = 255, .v = 255};            // Use same hue as primary to keep animation synced
+        RGB rgb = hsv_to_rgb(hsv);                                   // Convert HSV to RGB
+        rgb_matrix_set_color(led_index2, rgb.r, rgb.g, rgb.b);       // Apply animated colour
+        animated_this_cycle = true;                                  // Mark animation happened
       }
     }
 
-    // ANIMATION TIMING AND PROGRESSION
-    // Only update the hue if we actually animated something this cycle
-    // This prevents unnecessary hue changes when no exit keys are visible
-    if (animated_this_cycle)
+    if (animated_this_cycle)                        // ANIMATION TIMING: Only update hue if we animated this cycle
     {
-      // Increment hue by 2 degrees for next frame
-      // At 60fps, this creates a smooth rainbow effect that cycles through
-      // the full colour spectrum in about 3 seconds (360 / 2 * 60fps)
-      exit_key_hue += 2;
+      exit_key_hue += 2;                            // Increment hue by 2 for next frame (~3 sec full cycle at 60fps)
     }
   }
 
-  // Return true to allow QMK's default RGB matrix effects to continue
-  // This enables additional effects like breathing, reactive typing, etc.
-  // while maintaining our custom layer and exit key system
-  return true;
+  return true;                                      // Allow QMK's default RGB matrix effects (breathing, reactive, etc.)
 }
 
 /**
@@ -392,38 +317,38 @@ bool rgb_matrix_indicators_user(void)
  */
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
 {
-  // First let the SOCD cleaner process the key
-  bool socd_handled = process_record_socd_cleaner(keycode, record);
-  if (!socd_handled)
+  bool socd_handled = process_record_socd_cleaner(keycode, record); // First let the SOCD cleaner process the key (handles opposite direction inputs)
+  if (!socd_handled)                                                // If SOCD cleaner blocked the input
   {
-    return false;
+    return false;                                                   // Stop processing this key event
   }
 
-  switch (keycode)
+  switch (keycode)                                                  // Handle specific keycodes
   {
-  case KC_CAPS:
-    if (record->event.pressed)
+  case KC_CAPS:                                                     // Caps Lock key pressed
+    if (record->event.pressed)                                      // Only trigger on press (not release)
     {
-      bool new_caps_state = !host_keyboard_led_state().caps_lock;
+      bool new_caps_state = !host_keyboard_led_state().caps_lock;   // Toggle Caps Lock state manually
 #ifdef AUDIO_ENABLE
-      if (new_caps_state)
+      if (new_caps_state)                                           // If Caps Lock just turned ON
       {
-        PLAY_SONG(caps_on_song);
+        PLAY_SONG(caps_on_song);                                    // Play "Caps On" sound for feedback
       }
-      else
+      else                                                          // Otherwise, Caps Lock turned OFF
       {
-        PLAY_SONG(caps_off_song);
+        PLAY_SONG(caps_off_song);                                   // Play "Caps Off" sound for feedback
       }
 #endif
     }
-    return true;
+    return true;                                                    // Allow further processing of Caps Lock key
 
-  case SOCDTOG:
-    // Just return true to allow default SOCDTOG handling
-    return true;
+  case SOCDTOG:                                                     // SOCD toggle key (toggles SOCD cleaning on/off)
+    return true;                                                    // Let QMK handle the default SOCDTOG behavior
   }
-  return true;
+
+  return true;                                                      // Default: process all other keycodes normally
 }
+
 
 /**
  * @brief Layer change event handler
@@ -433,20 +358,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
  */
 layer_state_t layer_state_set_user(layer_state_t state)
 {
-  // Check if audio is enabled
 #ifdef AUDIO_ENABLE
-  // Check if layer 4 is the highest active layer
-  if (biton32(state) == 4)
+  if (biton32(state) == 4)                          // Check if layer 4 is the highest active layer
   {
-    // Play the Overwatch theme song
-    PLAY_SONG(overwatch_song);
+    PLAY_SONG(overwatch_song);                      // Play the Overwatch theme song when entering layer 4
   }
 #endif
-  return state;
+  return state;                                     // Always return the updated layer state
 }
 
-#ifdef OTHER_KEYMAP_C
-#include OTHER_KEYMAP_C
-#endif // OTHER_KEYMAP_C
+#ifdef OTHER_KEYMAP_C                               // If OTHER_KEYMAP_C is defined, pull in that keymap file
+#include OTHER_KEYMAP_C                             // Include the alternate or extended keymap definition
+#endif                                              // End conditional inclusion of OTHER_KEYMAP_C
 
-#endif // MYKEYS_KEYMAP_C
+#endif                                              // End include guard for this file (MYKEYS_KEYMAP_C)

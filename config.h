@@ -16,22 +16,23 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#pragma once
+ #pragma once                                       // Compiler include guard (header only included once)
 
-#define ORYX_CONFIGURATOR
-#define USB_SUSPEND_WAKEUP_DELAY 0
-#define CAPS_LOCK_STATUS
-#define SERIAL_NUMBER "v9D0K/VqyORY"
-#define LAYER_STATE_8BIT
+ #define ORYX_CONFIGURATOR                          // Enable Oryx web configurator support
+ #define USB_SUSPEND_WAKEUP_DELAY 0                 // Delay (ms) after USB suspend before wakeup (0 = none)
+ #define CAPS_LOCK_STATUS                           // Track and expose Caps Lock state to firmware
+ #define SERIAL_NUMBER "v9D0K/VqyORY"               // Unique keyboard serial number identifier
+ #define LAYER_STATE_8BIT                           // Limit layer state tracking to 8 bits (saves memory)
 
-#define RGB_MATRIX_STARTUP_SPD 60
-#undef RGB_MATRIX_MAXIMUM_BRIGHTNESS
-#define RGB_MATRIX_MAXIMUM_BRIGHTNESS 255
+ #define RGB_MATRIX_STARTUP_SPD 60                  // Default RGB matrix startup animation speed
+ #undef RGB_MATRIX_MAXIMUM_BRIGHTNESS               // Remove default maximum brightness definition
+ #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 255          // Set max RGB brightness (0-255 scale)
 
-#ifdef AUDIO_ENABLE
-# define STARTUP_SONG SONG(CLOSE_ENCOUNTERS_5_NOTE)
-#endif
+ #ifdef AUDIO_ENABLE
+ # define STARTUP_SONG SONG(CLOSE_ENCOUNTERS_5_NOTE) // Play "Close Encounters" theme at startup
+ #endif
 
-#define TAPPING_TERM 200
-#define TAP_TOGGLE_LAYER_TERM 200
-#define TAPPING_TOGGLE 2
+ #define TAPPING_TERM 200                           // Time (ms) to distinguish tap vs hold
+ #define TAP_TOGGLE_LAYER_TERM 200                  // Time (ms) window for tap-toggling layers
+ #define TAPPING_TOGGLE 2                           // Number of taps required to toggle tap-toggle layers
+

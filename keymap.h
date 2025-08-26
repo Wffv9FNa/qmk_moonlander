@@ -10,8 +10,8 @@
 #define SELWBK   SELWBAK                  // Select Word Back
 #define SELWRD   SELWORD                  // Select Word
 #define SELINE   SELLINE                  // Select Line
-#define GC_Y     LGUI(LCTL(KC_Y))         // Gui+Ctrl+Y
-#define CS_X     LCTL(LSFT(KC_X))         // Ctrl+Shift+X
+#define GC_Y     LGUI(LCTL(KC_Y))         // Gui+Ctrl+Y (Move Window Previous)
+#define CS_X     LCTL(LSFT(KC_X))         // Ctrl+Shift+X (Move Window Next)
 #define L_CTRL   KC_LEFT_CTRL             // Left Control
 #define CT_Q     LCTL(KC_Q)               // Ctrl+Q
 #define CT_W     LCTL(KC_W)               // Ctrl+W

@@ -1,10 +1,10 @@
-#ifndef RGB_CONFIG_H
-#define RGB_CONFIG_H
+#ifndef RGB_CONFIG_H // Begin include guard for this file (RGB_CONFIG_H)
+#define RGB_CONFIG_H // Define symbol to prevent multiple inclusion of this file
 
-#include "quantum.h"
+#include "quantum.h" // Core QMK quantum functions (layers, keymaps, matrix, custom logic)
 
-// Function to set the RGB layer color based on the ledmap
-void set_layer_color(int layer);
+
+void set_layer_color(int layer); // Function to set the RGB layer color based on the ledmap
 
 // Macro to visually define LED colors based on physical layout (72 keys)
 // Maps the 72 visual arguments to the correct [MATRIX_ROWS(12)][MATRIX_COLS(7)] structure
@@ -31,4 +31,4 @@ void set_layer_color(int layer);
     /* ROW 11 */{ {0,0,0}, {0,0,0}, {0,0,0}, kb3, kb4, kb5, kb6 }  \
 }
 
-#endif // RGB_CONFIG_H
+#endif // End include guard for this file (RGB_CONFIG_H)
