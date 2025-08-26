@@ -1,4 +1,4 @@
-#pragma once
+#pragma once // Ensure this header is included only once during compilation (include guard)
 
 // Basic Colors
 #define CLR_OFF         {   0,   0,   0 } // Black / Off
