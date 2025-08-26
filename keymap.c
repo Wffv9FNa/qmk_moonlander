@@ -202,100 +202,185 @@ void keyboard_post_init_user(void)
 /**
  * @brief Handle RGB matrix indicators for different keyboard states
  *
- * Controls LED colors based on active layer and Caps Lock state.
- * Returns true to allow default RGB matrix effects to continue processing.
+ * This function:
+ * 1. Shows layer-specific colours for all keys using set_layer_color()
+ * 2. Animates exit keys (the keys that got you to the current layer)
+ * 3. Provides visual feedback for Caps Lock state
+ * 4. Integrates with the custom RGB configuration system
+ *
+ * The exit key animation system helps users understand how to navigate
+ * between layers by highlighting the "way back" keys with animated colours.
+ *
+ * COORDINATE SYSTEM:
+ * The Moonlander uses a 12x7 matrix layout where:
+ * - Rows 0-5: Left half of keyboard
+ * - Rows 6-11: Right half of keyboard
+ * - Columns 0-6: Keys from left to right on each half
+ * - Some positions are empty (NO_LED) due to the split design
+ *
+ * @return true to allow QMK default RGB matrix processing to continue
  */
 bool rgb_matrix_indicators_user(void)
 {
+  // FUNCTION STRUCTURE:
+  // 1. Check for external RGB control or disabled LEDs
+  // 2. Handle Caps Lock override (red all keys)
+  // 3. Apply base layer colours
+  // 4. Animate exit keys with rainbow effect
+  // 5. Update animation timing
+
+  // Check if external RGB control is active (e.g., from host software)
   if (rawhid_state.rgb_control)
   {
-    return false;
+    return false; // Let external control handle RGB
   }
+
+  // Check if layer LED indicators are disabled in keyboard config
   if (keyboard_config.disable_layer_led)
   {
-    return false;
+    return false; // Don't show layer colours
   }
 
+  // Get the currently active layer (highest priority layer)
   uint8_t current_layer = biton32(layer_state);
+
+  // Static variable to track animation progress across function calls
+  // This creates a continuous rainbow effect on exit keys
   static uint8_t exit_key_hue = 0; // Hue for animating layer exit keys
+
+  // Flag to track if we animated any exit keys this cycle
+  // Used to determine if we should update the hue for next frame
   bool animated_this_cycle = false;
 
-  // Check if Caps Lock is on
+  // CAPS LOCK VISUAL FEEDBACK
+  // When Caps Lock is active, override all other RGB effects with red
+  // This provides immediate visual feedback that caps are on
   if (host_keyboard_led_state().caps_lock)
   {
-    // Set all keys to red when Caps Lock is on
+    // Override all keys with bright red to clearly indicate Caps Lock state
+    // This takes priority over layer colours and exit key animations
     rgb_matrix_set_color_all(255, 0, 0);  // Full brightness red for Caps Lock
+    return true; // Exit early - no need for layer colours or animations
   }
   else
   {
-    // Set base static colors for the current layer first
+    // LAYER COLOUR SYSTEM
+    // First, apply the base colours for the current layer
+    // This sets the overall colour scheme for all keys on this layer
     set_layer_color(current_layer);
 
-    // Define exit key positions (row, col) for layers > 0
-    // These are the positions on the *target layer* that correspond to the
-    // TT(x) or TG(x) keys used to activate the layer from layer 0.
-    uint8_t r_exit = 255, c_exit = 255;   // Primary exit key
-    uint8_t r_exit2 = 255, c_exit2 = 255; // Secondary exit key (for Layer 1 which has two TT(1) keys)
+    // EXIT KEY ANIMATION SYSTEM
+    // Exit keys are the keys that got you to the current layer (TT(x) or TG(x))
+    // We animate these keys to help users understand how to navigate back
+    //
+    // Coordinate system: [row][col] in the 12x7 Moonlander matrix
+    // Magic number 255 is used as a "no exit key" marker since valid coordinates
+    // are 0-11 for rows and 0-6 for columns, so 255 is safely out of range
+    uint8_t r_exit = 255, c_exit = 255;   // Primary exit key position
+    uint8_t r_exit2 = 255, c_exit2 = 255; // Secondary exit key (for layers with multiple entry points)
 
+    // LAYER-SPECIFIC EXIT KEY MAPPING
+    // Each layer defines where its exit keys are located in the matrix
+    // These coordinates correspond to the physical positions of TT(x) or TG(x) keys
     switch (current_layer)
     {
     case 0:
-      // No specific exit key animation on the base layer
+      // Base layer has no exit keys (it's the destination, not a layer you enter)
       break;
+
     case 1: // Numpad layer
-      r_exit = 4; c_exit = 0;    // Left TT(1) -> Mapped to c40 position [4][0]
-      r_exit2 = 10; c_exit2 = 2; // Right TT(1) -> Mapped to ca2 position [10][2]
+      // Layer 1 has two TT(1) keys for easy access from both sides
+      r_exit = 4; c_exit = 0;    // Left TT(1) -> Left thumb cluster [4][0]
+      r_exit2 = 10; c_exit2 = 2; // Right TT(1) -> Right thumb cluster [10][2]
       break;
+
     case 2: // Mouse layer
-      r_exit = 1; c_exit = 6;    // TT(2) in top right of left side [1][6]
+      // Single TT(2) key on the left side
+      r_exit = 1; c_exit = 6;    // TT(2) -> Top right of left half [1][6]
       break;
+
     case 3: // WordMon + Arrows layer
-      r_exit = 4; c_exit = 4;    // Left TT(3) -> Mapped to c44 position [4][4]
-      r_exit2 = 10; c_exit2 = 6; // Right TT(3) -> Mapped to ca6 position [10][6]
+      // Layer 3 has two TT(3) keys for ambidextrous access
+      r_exit = 4; c_exit = 4;    // Left TT(3) -> Left thumb cluster [4][4]
+      r_exit2 = 10; c_exit2 = 6; // Right TT(3) -> Right thumb cluster [10][6]
       break;
+
     case 4: // Gaming layer
-      r_exit = 4; c_exit = 3;    // Left TD_L4TG -> Mapped [4][3]
+      // Single TD_L4TG key (tap dance layer 4 toggle)
+      r_exit = 4; c_exit = 3;    // TD_L4TG -> Left thumb cluster [4][3]
       break;
+
     case 5: // Kana layer
-      r_exit = 11; c_exit = 4;   // TG(5) on right thumb cluster -> Mapped to kb4 position [11][4]
+      // Single TG(5) key (toggle layer 5)
+      r_exit = 11; c_exit = 4;   // TG(5) -> Right thumb cluster [11][4]
       break;
+
     default:
-      // For any other layers not explicitly handled, rely on set_layer_color.
-      // If rgb_matrix_get_flags() == LED_FLAG_NONE was part of set_layer_color's
-      // handling for unknown layers, that will still apply.
+      // For any future layers not explicitly handled here
+      // The set_layer_color() function will still apply base colours
       break;
     }
 
-    // Apply animation to the primary exit key if defined for the current layer
-    if (r_exit != 255 && c_exit != 255) // r_exit, c_exit are MAPPED coordinates for g_led_config.matrix_co
+    // PRIMARY EXIT KEY ANIMATION
+    // Apply rainbow animation to the main exit key for this layer
+    if (r_exit != 255 && c_exit != 255) // Check if this layer has a primary exit key
     {
+      // Convert matrix coordinates to LED index using QMK's LED mapping
+      // g_led_config.matrix_co[row][col] returns the physical LED index
       uint8_t led_index = g_led_config.matrix_co[r_exit][c_exit];
-      if (led_index != NO_LED) {
-        HSV hsv = {.h = exit_key_hue, .s = 255, .v = 255};  // Force maximum brightness
+
+      if (led_index != NO_LED) { // Check if there's actually an LED at this position
+        // Create HSV colour with current hue, full saturation, full brightness
+        // This ensures the animated key is always visible and colourful
+        HSV hsv = {.h = exit_key_hue, .s = 255, .v = 255};
+
+        // Convert HSV to RGB for the LED matrix
         RGB rgb = hsv_to_rgb(hsv);
+
+        // Apply the animated colour to the specific LED
         rgb_matrix_set_color(led_index, rgb.r, rgb.g, rgb.b);
+
+        // Mark that we animated something this cycle
         animated_this_cycle = true;
       }
     }
 
-    // Apply animation to the secondary exit key if defined (for Layer 1)
-    if (r_exit2 != 255 && c_exit2 != 255) // r_exit2, c_exit2 are MAPPED coordinates
+    // SECONDARY EXIT KEY ANIMATION (for layers with multiple entry points)
+    // Some layers (like Layer 1) have two ways to access them
+    // We animate both exit keys to show all possible ways back
+    if (r_exit2 != 255 && c_exit2 != 255) // Check if this layer has a secondary exit key
     {
+      // Same process as primary exit key
       uint8_t led_index2 = g_led_config.matrix_co[r_exit2][c_exit2];
+
       if (led_index2 != NO_LED) {
-        HSV hsv = {.h = exit_key_hue, .s = 255, .v = 255};  // Force maximum brightness
+        // Use the same hue value for both keys to keep them in sync
+        HSV hsv = {.h = exit_key_hue, .s = 255, .v = 255};
         RGB rgb = hsv_to_rgb(hsv);
         rgb_matrix_set_color(led_index2, rgb.r, rgb.g, rgb.b);
-        animated_this_cycle = true; // Already true if primary animated, but safe
+
+        // Mark that we animated something this cycle
+        // Note: This is already true if primary animated, but setting it again is safe
+        animated_this_cycle = true;
       }
     }
 
+    // ANIMATION TIMING AND PROGRESSION
+    // Only update the hue if we actually animated something this cycle
+    // This prevents unnecessary hue changes when no exit keys are visible
     if (animated_this_cycle)
     {
-      exit_key_hue += 2; // Increment hue for next frame, speed factor of 2
+      // Increment hue by 2 degrees for next frame
+      // At 60fps, this creates a smooth rainbow effect that cycles through
+      // the full colour spectrum in about 3 seconds (360 / 2 * 60fps)
+      exit_key_hue += 2;
     }
   }
-  return true; // Allow QMK default RGB matrix processing to continue if needed
+
+  // Return true to allow QMK's default RGB matrix effects to continue
+  // This enables additional effects like breathing, reactive typing, etc.
+  // while maintaining our custom layer and exit key system
+  return true;
 }
 
 /**

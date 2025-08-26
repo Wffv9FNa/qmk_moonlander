@@ -1,3 +1,5 @@
+// UK layout preservation for Layer 5 (Japanese input)
+// Maintains UK symbols when using Google JP IME
 #define UK_ASTR S(KC_8)
 #define UK_PLUS S(KC_EQL)
 #define UK_SLSH KC_SLSH
