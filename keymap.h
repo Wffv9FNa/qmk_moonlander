@@ -41,3 +41,4 @@
 #define IME_TOG LGUI(KC_SPC)              // Windows + Spacebar
 #define MINWIN   LGUI(KC_DOWN)            // Minimise Window
 #define MAXWIN   LGUI(KC_UP)              // Maximise Window
+#define TD_BSTK  TD(TD_BSLTIK)            // Tap Dance: Backslash/Backtick
