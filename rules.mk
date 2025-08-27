@@ -12,3 +12,4 @@ SRC += rgb_config/rgb_config.c                    # Include RGB configuration so
 
 MOUSEKEY_ENABLE = yes                             # Enable mouse key emulation
 DEFERRED_EXEC_ENABLE = yes                        # Enable deferred execution (needed for Turbo Click)
+KEY_OVERRIDE_ENABLE = yes                         # Enable key override functionality
