@@ -54,12 +54,20 @@ enum custom_keycodes
 // +--------------------+
 // | TAP DANCE ACTIONS  |
 // +--------------------+
+// Forward declare the tap dance functions
+void td_bsltik_finished(tap_dance_state_t *state, void *user_data);
+void td_bsltik_reset(tap_dance_state_t *state, void *user_data);
+
 tap_dance_action_t tap_dance_actions[] = {
   [TD_TGLL_4] = ACTION_TAP_DANCE_FN_ADVANCED(       // Tap-dance index for layer 4 toggle
       NULL,                                         // No on-each-tap handler
       td_tgll_4_finished,                           // On-finished handler toggles layer 4
       NULL),                                        // No reset handler
-  // Add the new tap dance action
+  [TD_BSLTIK] = ACTION_TAP_DANCE_FN_ADVANCED(       // Tap-dance for backslash/backtick
+      NULL,                                         // No on-each-tap handler
+      td_bsltik_finished,                           // On-finished handler
+      td_bsltik_reset                               // Reset handler
+  ),
 };
 
 // +--------------------+
@@ -85,7 +93,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
         KC_EQL ,    KC_1   ,    KC_2   ,    KC_3   ,    KC_4   ,    KC_5   ,    KC_NO  ,            KC_NO  ,    KC_6   ,    KC_7   ,    KC_8   ,    KC_9   ,    KC_0   ,    KC_MINS ,
         KC_DEL ,    KC_Q   ,    KC_W   ,    KC_E   ,    KC_R   ,    KC_T   ,    TT(2)  ,            KC_NO  ,    KC_Y   ,    KC_U   ,    KC_I   ,    KC_O   ,    KC_P   ,    KC_BSLS ,
-        KC_BSPC,    KC_A   ,    KC_S   ,    KC_D   ,    KC_F   ,    KC_G   ,    KC_NUBS,            KC_MEH ,    KC_H   ,    KC_J   ,    KC_K   ,    KC_L   ,    KC_SCLN,    KC_QUOTE,
+        KC_BSPC,    KC_A   ,    KC_S   ,    KC_D   ,    KC_F   ,    KC_G   ,    TD_BSTK,            KC_MEH ,    KC_H   ,    KC_J   ,    KC_K   ,    KC_L   ,    KC_SCLN,    KC_QUOTE,
         L_SHFT ,    MT_CZ  ,    KC_X   ,    KC_C   ,    KC_V   ,    KC_B   ,                                    KC_N   ,    KC_M   ,    KC_COMM,    KC_DOT ,    KC_SLSH,    R_SHFT  ,
         TT(1)  ,    L_GUI  ,    CW_TOGG,    TD_L4TG,    TT(3)  ,                KC_ESC ,            KC_CAPS,                TT(1)  ,    KC_HYPR,    KC_LBRC,    KC_RBRC,    TT(3)   ,
                                                         KC_SPC ,    L_ALT  ,    KC_F13 ,            TG(5)  ,    KC_TAB ,    KC_ENT
@@ -102,7 +110,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_DEL ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_HOME,    KC_7   ,    KC_8   ,    KC_9   ,    KC_PAST,    KC_F12 ,
         KC_BSPC,    KC_NO  ,    CT_S   ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NUBS,            KC_MEH ,    KC_END ,    KC_4   ,    KC_5   ,    KC_6   ,    KC_PPLS,    KC_NO  ,
         L_SHFT ,    CT_Z   ,    KC_NO  ,    CT_C   ,    CT_V   ,    KC_NO  ,    /*XXXX*/            /*XXXX*/    KC_PSLS,    KC_1   ,    KC_2   ,    KC_3   ,    KC_PMNS,    R_SHFT ,
-        TT(1)  ,    L_GUI  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    /*XXXX*/    KC_NO  ,            KC_TRNS,    /*XXXX*/    TT(1)  ,    KC_0   ,    KC_PDOT,    KC_PEQL,    KC_NO  ,
+        TT(1)  ,    L_GUI  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    /*XXXX*/    KC_NO  ,            KC_TRNS,    /*XXXX*/    TT(1)  ,    KC_0   ,    KC_DOT ,    KC_EQL ,    KC_NO  ,
         /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_SPC ,    L_ALT  ,    KC_NO  ,            KC_NO  ,    KC_TAB ,    KC_ENT      /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
     ),
 /*  _                            ____       __  __                       */
