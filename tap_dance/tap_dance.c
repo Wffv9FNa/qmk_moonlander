@@ -62,3 +62,41 @@ void td_tgll_4_finished(tap_dance_state_t *state, void *user_data) {
             break;
     }
 }
+
+// Track the tap dance state for backslash/backtick key
+static tap bsltik_tap_state = {
+    .is_press_action = true,
+    .state = 0
+};
+
+// Handle tap dance finished state for backslash/backtick
+void td_bsltik_finished(tap_dance_state_t *state, void *user_data) {
+    bsltik_tap_state.state = cur_dance(state);
+    switch (bsltik_tap_state.state) {
+        case SINGLE_TAP:
+            register_code(KC_NUBS);
+            unregister_code(KC_NUBS);
+            break;
+        case SINGLE_HOLD:
+            register_code(KC_GRV);
+            unregister_code(KC_GRV);
+            break;
+        case DOUBLE_TAP:
+            register_code(KC_NUBS);
+            unregister_code(KC_NUBS);
+            register_code(KC_NUBS);
+            unregister_code(KC_NUBS);
+            break;
+        case DOUBLE_SINGLE_TAP:
+            register_code(KC_NUBS);
+            unregister_code(KC_NUBS);
+            register_code(KC_NUBS);
+            unregister_code(KC_NUBS);
+            break;
+    }
+}
+
+// Reset the tap dance state for backslash/backtick
+void td_bsltik_reset(tap_dance_state_t *state, void *user_data) {
+    bsltik_tap_state.state = 0;
+}

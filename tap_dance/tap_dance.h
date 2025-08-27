@@ -9,6 +9,7 @@
  */
 enum tap_dance_keycodes {
     TD_TGLL_4,                                       // Tap-dance key for toggling layer 4
+    TD_BSLTIK,                                       // Tap-dance for backslash/backtick
 };
 
 /**
