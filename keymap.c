@@ -204,6 +204,26 @@ void keyboard_post_init_user(void)
   rgb_matrix_enable();  // Enable RGB matrix lighting after keyboard initialization
 }
 
+// Handle LED indicators
+bool led_update_user(led_t led_state) {
+    // Get the current keyboard LED states
+    bool num_lock = led_state.num_lock;
+    bool caps_lock = led_state.caps_lock;
+    bool scroll_lock = led_state.scroll_lock;
+    bool compose = led_state.compose;
+    bool kana = led_state.kana;
+
+    // Update the physical LEDs
+    ML_LED_1(num_lock);      // Leftmost LED on left side
+    ML_LED_2(caps_lock);     // Middle LED on left side
+    ML_LED_3(scroll_lock);   // Rightmost LED on left side
+    ML_LED_4(compose);       // Leftmost LED on right side
+    ML_LED_5(kana);         // Middle LED on right side
+    ML_LED_6(false);        // Rightmost LED on right side (unused)
+
+    return true;  // Let the default handler run as well
+}
+
 /**
  * @brief Handle RGB matrix indicators for different keyboard states
  *

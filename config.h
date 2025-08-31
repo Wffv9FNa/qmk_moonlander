@@ -36,3 +36,6 @@
  #define TAP_TOGGLE_LAYER_TERM 200                  // Time (ms) window for tap-toggling layers
  #define TAPPING_TOGGLE 2                           // Number of taps required to toggle tap-toggle layers
 
+#define MOONLANDER_USER_LEDS                      // Enable custom LED control
+#define DISABLE_LED_LAYOUT_INDICATION             // Disable default layer state LED behavior
+
