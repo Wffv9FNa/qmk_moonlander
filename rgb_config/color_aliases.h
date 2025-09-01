@@ -12,7 +12,7 @@
 #define CLR_PSPYR       { 206, 198, 176 } // Pink Spyro (RGB ~156,39,176)
 #define CLR_SALMN       {   2, 198, 244 } // Salmon Pink (RGB ~244,157,162)
 #define CLR_PURPLE      { 200, 255, 255 } // Purple (RGB 255,0,255)
-#define CLR_ORANGE      {  20, 255, 255 } // Orange (RGB 255,165,0)
+#define CLR_ORANGE      {  14, 255, 255 } // Orange (RGB 255,165,0)
 #define CLR_VERMLN      {   7, 255, 255 } // Vermilion
 #define CLR_ORNGRED     {  11, 255, 255 } // Orange-Red
 
@@ -32,12 +32,12 @@
 #define CLR_BLUE        { 170, 255, 255 } // Blue (RGB 0,0,255)
 #define CLR_CYAN        { 128, 255, 255 } // Cyan (RGB 0,255,255)
 #define CLR_CYPRO       { 131, 255, 255 } // Cyan Process (RGB ~0,183,235)
+#define CLR_CYGRN       {  96, 255, 255 } // Cyan-Green
 #define CLR_PRBLU       { 148, 220, 243 } // Persian Blue (RGB ~45,96,243)
 #define CLR_WHTBLU      { 170, 100, 255 } // White Blue (RGB ~170,100,255)
 
 // 72 bright HSV hues (S=255, V=255), unique names and no conflicts
 #define CLR_H004   {   4, 255, 255 } // Red-Orange
-#define CLR_H014   {  14, 255, 255 } // Orange
 #define CLR_H018   {  18, 255, 255 } // Dark Orange
 #define CLR_H021   {  21, 255, 255 } // Pumpkin
 #define CLR_H025   {  25, 255, 255 } // Tangerine
