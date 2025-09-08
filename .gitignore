@@ -4,3 +4,4 @@
 /builds/
 /.cursor/
 /memory-bank/
+macros_private.c
