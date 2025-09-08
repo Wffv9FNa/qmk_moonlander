@@ -1,3 +1,8 @@
+#ifndef MYKEYS_KEYMAP_H                              // Header guard to prevent multiple inclusion
+#define MYKEYS_KEYMAP_H                              // Define the header guard symbol
+
+#include "macros_private.h"                          // Include private macro definitions
+
 // Custom Keycode Aliases (7 characters or less)
 // +--------------+
 // | NORMAL KEYS  |
@@ -65,3 +70,5 @@
 #define TD_9F9   TD(TD_9_F9)              // Tap: 9, Double: F9
 #define TD_0F10  TD(TD_0_F10)             // Tap: 0, Double: F10
 #define TD_BSTK  TD(TD_BSLTIK)            // Tap Dance: Backslash/Backtick
+
+#endif // MYKEYS_KEYMAP_H

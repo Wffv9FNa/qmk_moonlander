@@ -5,18 +5,19 @@
 // | INCLUDES |
 // +----------+
 #include QMK_KEYBOARD_H                               // Core QMK headers
-#include "i18n.h"                                     // Localization helpers
 #include "audio.h"                                    // Audio feature interface
 #include "user_song_list.h"                           // User-defined song data
 #include "tap_dance/tap_dance.h"                      // Tap dance actions
 #include "rgb_config/rgb_config.h"                    // RGB configuration helpers
 #include "keymap_japanese.h"                          // JP keymap definitions
+#include "sendstring_uk.h"                            // Sendstring LUT Header
+#include "macros_private.h"                           // Private macros not in GIT
 
 // +---------+
 // | DEFINES |
 // +---------+
 #define MOON_LED_LEVEL LED_LEVEL                      // Alias board LED level control
-#define ML_SAFE_RANGE SAFE_RANGE                      // Base for custom keycodes
+#define ML_SAFE_RANGE PRIVATE_SAFE_RANGE              // Public keycodes start after private ones
 
 // +--------------------------+
 // | GLOBAL STATE & VARIABLES |
@@ -80,11 +81,12 @@ socd_cleaner_t socd_opposing_pairs[] = {
 // +---------------+
 // | KEY OVERRIDES |
 // +---------------+
+// Change what a key sends when used with a modifier
 const key_override_t nubs_key_override = ko_make_basic(MOD_MASK_CTRL, KC_NUBS, KC_GRV);  // Ctrl + NUBS = `
 
 const key_override_t *key_overrides[] = {
-    &nubs_key_override,                                                                  // Register Alt+NUBS override
-};
+    &nubs_key_override,                                                                  // Register Ctrl+NUBS override. This is a QMK array
+};                                                                                       // array where we list all of our overrides.
 
 // +---------+
 // | KEYMAPS |
@@ -130,7 +132,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [2] = LAYOUT( // WordMon + Arrows
   /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
       QK_BOOT,    KC_F1  ,    KC_F2  ,    KC_F3  ,    KC_F4  ,    KC_F5  ,    KC_NO  ,            KC_NO  ,    KC_F6  ,    KC_F7  ,    KC_F8  ,    KC_F9  ,    KC_F10 ,    KC_F11 ,
-      KC_NO  ,    KC_NO  ,    SELWBK ,    CS_X   ,    SELWRD ,    KC_NO  ,    KC_NO  ,            KC_PGUP,    KC_HOME,    MINWIN ,    KC_UP  ,    MAXWIN ,    KC_NO  ,    KC_F12 ,
+      KC_NO  ,    P_CITRIX,    SELWBK ,    CS_X   ,    SELWRD ,    KC_NO  ,    KC_NO  ,            KC_PGUP,    KC_HOME,    MINWIN ,    KC_UP  ,    MAXWIN ,    KC_NO  ,    KC_F12 ,
       CT_BSPC,    KC_NO  ,    S_LEFT ,    GC_Y   ,    S_RGHT ,    KC_NO  ,    KC_NO  ,            KC_PGDN,    KC_END ,    KC_LEFT,    KC_DOWN,    KC_RGHT,    KC_NO  ,    KC_NO  ,
       L_SHFT ,    KC_NO  ,    CT_LEFT,    SELINE ,    CT_RGHT,    KC_NO  ,    /*XXXX*/            /*XXXX*/    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    R_SHFT ,
       KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    TT(2)  ,    /*XXXX*/    KC_NO  ,            KC_NO  ,    /*XXXX*/    KC_TRNS,    SOCDTG ,    KC_NO  ,    KC_NO  ,    TT(2)  ,
@@ -236,8 +238,8 @@ void init_td_num_user_data(void) { // Initialize tap dance user data
 
 void keyboard_post_init_user(void) // Keyboard post initialization handler
 {
-    rgb_matrix_enable();  // Enable RGB matrix lighting after keyboard initialization
-    init_td_num_user_data(); // Initialize tap dance user data
+    rgb_matrix_enable();           // Enable RGB matrix lighting after keyboard initialization
+    init_td_num_user_data();       // Initialize tap dance user data
 }
 
 bool rgb_matrix_indicators_user(void) // RGB matrix indicators handler
@@ -348,6 +350,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
   if (!socd_handled)                                                // If SOCD cleaner blocked the input
   {
     return false;                                                   // Stop processing this key event
+  }
+
+  if (!process_record_secrets(keycode, record)) {  // Process private macros
+    return false;
   }
 
   switch (keycode)                                                  // Handle specific keycodes

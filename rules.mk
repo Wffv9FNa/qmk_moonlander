@@ -9,6 +9,7 @@ TAP_DANCE_ENABLE = yes                            # Enable tap dance functionali
 
 SRC += tap_dance/tap_dance.c                      # Include tap dance source file
 SRC += rgb_config/rgb_config.c                    # Include RGB configuration source file
+SRC += macros_private.c                           # Include private macro source file
 
 MOUSEKEY_ENABLE = yes                             # Enable mouse key emulation
 DEFERRED_EXEC_ENABLE = yes                        # Enable deferred execution (needed for Turbo Click)
