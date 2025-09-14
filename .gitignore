@@ -3,3 +3,4 @@
 .vscode/settings.json
 /builds/
 macros_private.c
+/scratch/

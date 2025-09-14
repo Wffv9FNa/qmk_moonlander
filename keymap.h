@@ -59,6 +59,7 @@
 // | TAP DANCE KEYCODES  |
 // +----------------------+
 #define TD_L4TG  TD(TD_TGLL_4)            // TapDance Layer 4 Toggle
+#define TD_PONE  TD(TD_PMONE)             // TapDance private macro one
 #define TD_1F1   TD(TD_1_F1)              // Tap: 1, Double: F1
 #define TD_2F2   TD(TD_2_F2)              // Tap: 2, Double: F2
 #define TD_3F3   TD(TD_3_F3)              // Tap: 3, Double: F3

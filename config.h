@@ -27,6 +27,7 @@
  #define RGB_MATRIX_STARTUP_SPD 60                  // Default RGB matrix startup animation speed
  #undef RGB_MATRIX_MAXIMUM_BRIGHTNESS               // Remove default maximum brightness definition
  #define RGB_MATRIX_MAXIMUM_BRIGHTNESS 255          // Set max RGB brightness (0-255 scale)
+ #define RGB_MATRIX_DEFAULT_VAL RGB_MATRIX_MAXIMUM_BRIGHTNESS // Set default RGB brightness to maximum
 
  #ifdef AUDIO_ENABLE
  # define STARTUP_SONG SONG(CLOSE_ENCOUNTERS_5_NOTE) // Play "Close Encounters" theme at startup

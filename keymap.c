@@ -52,11 +52,15 @@ enum custom_keycodes
 #include "keymap.h"                                   // Optional per-user/per-layout overrides
 #endif
 
+// Forward declaration for the new tap dance function
+void td_pmone_finished(tap_dance_state_t *state, void *user_data);
+
 // +--------------------+
 // | TAP DANCE ACTIONS  |
 // +--------------------+
 tap_dance_action_t tap_dance_actions[] = {
   [TD_TGLL_4] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_tgll_4_finished  , NULL), // Tap-dance index for layer 4 toggle
+  [TD_PMONE ] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_pmone_finished   , NULL), // Tap-dance for private macro one
   [TD_1_F1  ] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_num_fkey_finished, NULL), // Tap-dance index for 1 -> F1
   [TD_2_F2  ] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_num_fkey_finished, NULL), // Tap-dance index for 2 -> F2
   [TD_3_F3  ] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_num_fkey_finished, NULL), // Tap-dance index for 3 -> F3
@@ -132,7 +136,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [2] = LAYOUT( // WordMon + Arrows
   /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
       QK_BOOT,    KC_F1  ,    KC_F2  ,    KC_F3  ,    KC_F4  ,    KC_F5  ,    KC_NO  ,            KC_NO  ,    KC_F6  ,    KC_F7  ,    KC_F8  ,    KC_F9  ,    KC_F10 ,    KC_F11 ,
-      KC_NO  ,    P_CITRIX,    SELWBK ,    CS_X   ,    SELWRD ,    KC_NO  ,    KC_NO  ,            KC_PGUP,    KC_HOME,    MINWIN ,    KC_UP  ,    MAXWIN ,    KC_NO  ,    KC_F12 ,
+      KC_NO  ,    TD_PONE,    SELWBK ,    CS_X   ,    SELWRD ,    KC_NO  ,    KC_NO  ,            KC_PGUP,    KC_HOME,    MINWIN ,    KC_UP  ,    MAXWIN ,    KC_NO  ,    KC_F12 ,
       CT_BSPC,    KC_NO  ,    S_LEFT ,    GC_Y   ,    S_RGHT ,    KC_NO  ,    KC_NO  ,            KC_PGDN,    KC_END ,    KC_LEFT,    KC_DOWN,    KC_RGHT,    KC_NO  ,    KC_NO  ,
       L_SHFT ,    KC_NO  ,    CT_LEFT,    SELINE ,    CT_RGHT,    KC_NO  ,    /*XXXX*/            /*XXXX*/    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    R_SHFT ,
       KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    TT(2)  ,    /*XXXX*/    KC_NO  ,            KC_NO  ,    /*XXXX*/    KC_TRNS,    SOCDTG ,    KC_NO  ,    KC_NO  ,    TT(2)  ,
@@ -223,6 +227,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // +----------------+
 // | USER FUNCTIONS |
 // +----------------+
+
+// Tap dance handler for private macro one
+void td_pmone_finished(tap_dance_state_t *state, void *user_data) {
+    if (state->count == 2 && !state->pressed) { // Double tap
+        private_macro_one();
+    }
+}
+
 void init_td_num_user_data(void) { // Initialize tap dance user data
     tap_dance_actions[TD_1_F1 ].user_data = (void *)&TD_NUM_MAP[0]; // "1" / F1
     tap_dance_actions[TD_2_F2 ].user_data = (void *)&TD_NUM_MAP[1]; // "2" / F2

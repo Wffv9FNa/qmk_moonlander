@@ -36,6 +36,7 @@ enum tap_dance_keycodes {
     TD_8_F8,                                         // Index 7 -> uses TD_NUM_MAP[7]
     TD_9_F9,                                         // Index 8 -> uses TD_NUM_MAP[8]
     TD_0_F10,                                        // Index 9 -> uses TD_NUM_MAP[9]
+    TD_PMONE,                                        // Tap-dance for private macro one
 };
 
 /**
