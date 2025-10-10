@@ -93,19 +93,19 @@ static const uint8_t PROGMEM ledmap_layout[][MATRIX_ROWS][MATRIX_COLS][3] = {
     [5] = COLOR_LAYOUT( //Kana Layer
     /*  =               1               2               3               4               5               ---                 ---             6               7               8               9               0               --- */
         CLR_ORANGE ,    CLR_RED    ,    CLR_RED    ,    CLR_RED    ,    CLR_RED    ,    CLR_RED    ,    CLR_OFF    ,        CLR_OFF    ,    CLR_RED    ,    CLR_RED    ,    CLR_RED    ,    CLR_RED    ,    CLR_RED    ,    CLR_ORANGE ,
-        CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_MAGENTA,        CLR_PURPLE    ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_ORANGE ,
+        CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_MAGENTA,        CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_ORANGE ,
         CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_MAGENTA,        CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_ORANGE ,    CLR_ORANGE ,
         CLR_CYAN   ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    /*XXXXXXXX*/        /*XXXXXXXX*/    CLR_PURPLE ,    CLR_PURPLE ,    CLR_ORANGE ,    CLR_ORANGE ,    CLR_ORANGE ,    CLR_CYAN   ,
         CLR_OFF    ,    CLR_CYAN   ,    CLR_PURPLE ,    CLR_OFF    ,    CLR_PSPYR  ,    /*XXXXXXXX*/    CLR_RED    ,        CLR_CYAN   ,    /*XXXXXXXX*/    CLR_OFF    ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_ORANGE ,    CLR_OFF    ,
         /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    CLR_PURPLE ,    CLR_CYAN   ,    CLR_WHTBLU ,        CLR_OFF    ,    CLR_PURPLE ,    CLR_PURPLE      /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/
 ),
 
-/*  _                            __           ____   ____ ____  */
-/* | |    __ _ _   _  ___ _ __  / /_         / ___|/ ___|  _ \ */
-/* | |   / _` | | | |/ _ \ '__| | '_ \       | |  _| |   | |_) | */
-/* | |__| (_| | |_| |  __/ |    | (_) |      | |_| | |___| |_) | */
-/* |_____\__,_|\__, |\___|_|     \___/        \____|\____|____/ */
-/*             |___/                                           */
+/*  _                             __     ____   ____ ____   */
+/* | |    __ _ _   _  ___ _ __   / /_   |  _ \ / ___| __ )  */
+/* | |   / _` | | | |/ _ \ '__| | '_ \  | |_) | |  _|  _ \  */
+/* | |__| (_| | |_| |  __/ |    | (_) | |  _ <| |_| | |_) | */
+/* |_____\__,_|\__, |\___|_|     \___/  |_| \_\\____|____/  */
+/*             |___/                                        */
     [6] = COLOR_LAYOUT( // HSV Color Display Layer - All 72 colors
     /*  =               1               2               3               4               5               ---                 ---             6               7               8               9               0               --- */
         CLR_RED    ,    CLR_H004   ,    CLR_VERMLN ,    CLR_ORNGRED,    CLR_ORANGE ,    CLR_H018   ,    CLR_H021   ,        CLR_H025   ,    CLR_H028   ,    CLR_H032   ,    CLR_H036   ,    CLR_H039   ,    CLR_H043   ,    CLR_H046   ,
@@ -116,7 +116,39 @@ static const uint8_t PROGMEM ledmap_layout[][MATRIX_ROWS][MATRIX_COLS][3] = {
         /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    CLR_H236   ,    CLR_H239   ,    CLR_H243   ,        CLR_H246   ,    CLR_H250   ,    CLR_H252        /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/
     ),
 
+/*  _                            _____   _____                 _   _              */
+/* | |    __ _ _   _  ___ _ __  |___  | |  ___|   _ _ __   ___| |_(_) ___  _ __   */
+/* | |   / _` | | | |/ _ \ '__|    / /  | |_ | | | | '_ \ / __| __| |/ _ \| '_ \  */
+/* | |__| (_| | |_| |  __/ |      / /   |  _|| |_| | | | | (__| |_| | (_) | | | | */
+/* |_____\__,_|\__, |\___|_|     /_/    |_|   \__,_|_| |_|\___|\__|_|\___/|_| |_| */
+/*             |___/                                                              */
+    [7] = COLOR_LAYOUT( // Function Keys Layer
+        CLR_CYAN   ,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_OFF    ,        CLR_OFF    ,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,
+        CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,        CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_MAGENTA,
+        CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,        CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,
+        CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,   /*XXXXXXXXX*/       /*XXXXXXXXX*/    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,
+        CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,   /*XXXXXXXXX*/    CLR_OFF    ,        CLR_OFF    ,   /*XXXXXXXXX*/    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,
+       /*XXXXXXXXX*/   /*XXXXXXXXX*/   /*XXXXXXXXX*/   /*XXXXXXXXX*/    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,        CLR_OFF    ,    CLR_OFF    ,    CLR_OFF        /*XXXXXXXXX*/   /*XXXXXXXXX*/   /*XXXXXXXXX*/   /*XXXXXXXXX*/
+    )
+
 };
+
+/*  _____                    _       _        */
+/* |_   _|__ _ __ ___  _ __ | | __ _| |_ ___  */
+/*   | |/ _ \ '_ ` _ \| '_ \| |/ _` | __/ _ \ */
+/*   | |  __/ | | | | | |_) | | (_| | ||  __/ */
+/*   |_|\___|_| |_| |_| .__/|_|\__,_|\__\___| */
+/*                    |_|                     */
+/*
+    [X]=COLOR_LAYOUT(
+        CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,        CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,
+        CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,        CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,
+        CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,        CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,
+        CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,   -------------       -------------    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,
+        CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,   -------------    CLR_OFF    ,        CLR_OFF    ,   -------------    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,
+       -------------   -------------   -------------   -------------    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,        CLR_OFF    ,    CLR_OFF    ,    CLR_OFF        -------------   -------------   -------------   -------------
+    ),
+*/
 //clang-format on
 // Updated function to use the layout-based map and LED index mapping (now expecting HSV)
 void set_layer_color(int layer)
