@@ -8,4 +8,4 @@ enum custom_private_keycodes        // Custom keycodes for private macros
 };
 
 bool process_record_secrets(uint16_t keycode, keyrecord_t *record); // Function declaration for processing private macros
-void private_macro_one(void); // Function to send the private macro one
+void private_macro_one(void); // Function declaration for private macro one (defined in macros_private.c)
