@@ -61,16 +61,6 @@ void td_pmone_finished(tap_dance_state_t *state, void *user_data);
 tap_dance_action_t tap_dance_actions[] = {
   [TD_TGLL_4] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_tgll_4_finished  , NULL), // Tap-dance index for layer 4 toggle
   [TD_PMONE ] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_pmone_finished   , NULL), // Tap-dance for private macro one
-  [TD_1_F1  ] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_num_fkey_finished, NULL), // Tap-dance index for 1 -> F1
-  [TD_2_F2  ] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_num_fkey_finished, NULL), // Tap-dance index for 2 -> F2
-  [TD_3_F3  ] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_num_fkey_finished, NULL), // Tap-dance index for 3 -> F3
-  [TD_4_F4  ] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_num_fkey_finished, NULL), // Tap-dance index for 4 -> F4
-  [TD_5_F5  ] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_num_fkey_finished, NULL), // Tap-dance index for 5 -> F5
-  [TD_6_F6  ] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_num_fkey_finished, NULL), // Tap-dance index for 6 -> F6
-  [TD_7_F7  ] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_num_fkey_finished, NULL), // Tap-dance index for 7 -> F7
-  [TD_8_F8  ] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_num_fkey_finished, NULL), // Tap-dance index for 8 -> F8
-  [TD_9_F9  ] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_num_fkey_finished, NULL), // Tap-dance index for 9 -> F9
-  [TD_0_F10 ] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, td_num_fkey_finished, NULL), // Tap-dance index for 0 -> F10
 };
 
 // +--------------------+
@@ -105,12 +95,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*             |___/                                                    */
 [0] = LAYOUT( //Home
   /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
-      KC_EQL ,    KC_1   ,    KC_2   ,    KC_3   ,    KC_4   ,    KC_5   ,    TT(6)  ,            KC_NO  ,    KC_6   ,    KC_7   ,    KC_8   ,    KC_9   ,    KC_0   ,    KC_MINS ,
-      KC_DEL ,    KC_Q   ,    KC_W   ,    KC_E   ,    KC_R   ,    KC_T   ,    TT(3)  ,            KC_NO  ,    KC_Y   ,    KC_U   ,    KC_I   ,    KC_O   ,    KC_P   ,    KC_BSLS ,
+      KC_EQL ,    KC_1   ,    KC_2   ,    KC_3   ,    KC_4   ,    KC_5   ,    TT(6)  ,            TD_L4TG,    KC_6   ,    KC_7   ,    KC_8   ,    KC_9   ,    KC_0   ,    KC_MINS ,
+      KC_DEL ,    KC_Q   ,    KC_W   ,    KC_E   ,    KC_R   ,    KC_T   ,    TT(3)  ,            TG(5)  ,    KC_Y   ,    KC_U   ,    KC_I   ,    KC_O   ,    KC_P   ,    KC_BSLS ,
       KC_BSPC,    KC_A   ,    KC_S   ,    KC_D   ,    KC_F   ,    KC_G   ,    KC_NUBS,            KC_MEH ,    KC_H   ,    KC_J   ,    KC_K   ,    KC_L   ,    KC_SCLN,    KC_QUOTE,
       L_SHFT ,    MT_CZ  ,    KC_X   ,    KC_C   ,    KC_V   ,    KC_B   ,    /*XXXX*/            /*XXXX*/    KC_N   ,    KC_M   ,    KC_COMM,    KC_DOT ,    KC_SLSH,    R_SHFT  ,
-      TT(1)  ,    L_GUI  ,    CW_TOGG,    TD_L4TG,    TT(2)  ,    /*XXXX*/    KC_ESC ,            KC_CAPS,    /*XXXX*/    TT(1)  ,    KC_HYPR,    KC_LBRC,    KC_RBRC,    TT(2)   ,
-      /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_SPC ,    L_ALT  ,    KC_F13 ,            TG(5)  ,    KC_TAB ,    KC_ENT      /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
+      TT(1)  ,    L_GUI  ,    CW_TOGG,    KC_NO  ,    TT(2)  ,    /*XXXX*/    KC_ESC ,            KC_CAPS,    /*XXXX*/    TT(1)  ,    KC_HYPR,    KC_LBRC,    KC_RBRC,    TT(2)   ,
+      /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_SPC ,    L_ALT  ,    KC_NO  ,            KC_NO  ,    KC_TAB ,    KC_ENT      /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
   ),
 /*  _                            _      _   _                                 _  */
 /* | |    __ _ _   _  ___ _ __  / |    | \ | |_   _ _ __ ___  _ __   __ _  __| | */
@@ -122,8 +112,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
       KC_GRV ,    KC_F1  ,    KC_F2  ,    KC_F3  ,    KC_F4  ,    KC_F5  ,    KC_NO  ,            KC_NO  ,    KC_F6  ,    KC_F7  ,    KC_F8  ,    KC_F9  ,    KC_F10 ,    KC_F11 ,
       KC_DEL ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_HOME,    KC_7   ,    KC_8   ,    KC_9   ,    KC_PAST,    KC_F12 ,
-      KC_BSPC,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NUBS,            KC_MEH ,    KC_END ,    KC_4   ,    KC_5   ,    KC_6   ,    KC_PPLS,    KC_NO  ,
-      L_SHFT ,    CT_Z   ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    /*XXXX*/            /*XXXX*/    KC_PSLS,    KC_1   ,    KC_2   ,    KC_3   ,    KC_PMNS,    R_SHFT ,
+      KC_BSPC,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,            KC_MEH ,    KC_END ,    KC_4   ,    KC_5   ,    KC_6   ,    KC_PPLS,    KC_NO  ,
+      L_SHFT ,    CT_Z   ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_B   ,    /*XXXX*/            /*XXXX*/    KC_PSLS,    KC_1   ,    KC_2   ,    KC_3   ,    KC_PMNS,    R_SHFT ,
       TT(1)  ,    L_GUI  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    /*XXXX*/    KC_NO  ,            KC_TRNS,    /*XXXX*/    TT(1)  ,    KC_0   ,    KC_DOT ,    KC_EQL ,    KC_NO  ,
       /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_SPC ,    L_ALT  ,    KC_NO  ,            KC_NO  ,    KC_TAB ,    KC_ENT      /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
   ),
@@ -139,7 +129,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_NO  ,    TD_PONE,    SELWBK ,    CS_X   ,    SELWRD ,    KC_NO  ,    KC_NO  ,            KC_PGUP,    KC_HOME,    MINWIN ,    KC_UP  ,    MAXWIN ,    KC_NO  ,    KC_F12 ,
       CT_BSPC,    KC_NO  ,    S_LEFT ,    GC_Y   ,    S_RGHT ,    KC_NO  ,    KC_NO  ,            KC_PGDN,    KC_END ,    KC_LEFT,    KC_DOWN,    KC_RGHT,    KC_NO  ,    KC_NO  ,
       L_SHFT ,    KC_NO  ,    CT_LEFT,    SELINE ,    CT_RGHT,    KC_NO  ,    /*XXXX*/            /*XXXX*/    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    R_SHFT ,
-      KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    TT(2)  ,    /*XXXX*/    KC_NO  ,            KC_NO  ,    /*XXXX*/    KC_TRNS,    SOCDTG ,    KC_NO  ,    KC_NO  ,    TT(2)  ,
+      KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    TT(2)  ,    /*XXXX*/    KC_NO  ,            KC_NO  ,    /*XXXX*/    KC_TRNS,    KC_NO  ,    KC_NO  ,    KC_NO  ,    TT(2)  ,
       /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_NO  ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_NO  ,    KC_NO       /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
 ),
 /*  _                            _____      __  __                       */
@@ -165,11 +155,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /*             |___/                                                          */
       [4] = LAYOUT( // Gaming Layer
     /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
-      KC_EQL ,    TD_1F1 ,    TD_2F2 ,    TD_3F3 ,    TD_4F4 ,    TD_5F5 ,    KC_NO  ,            SOCDTG ,    TD_6F6 ,    TD_7F7 ,    TD_8F8 ,    TD_9F9 ,    TD_0F10,    KC_F11  ,
-      KC_NO  ,    KC_Q   ,    KC_W   ,    KC_E   ,    KC_R   ,    KC_T   ,    KC_NO  ,            KC_HOME,    KC_Y   ,    KC_U   ,    KC_I   ,    KC_O   ,    KC_P   ,    KC_F12  ,
+      KC_EQL ,    KC_1   ,    KC_2   ,    KC_3   ,    KC_4   ,    KC_5   ,    SOCDTG ,            TD_L4TG,    KC_6   ,    KC_7   ,    KC_8   ,    KC_9   ,    KC_0   ,    KC_F11  ,
+      KC_F5  ,    KC_Q   ,    KC_W   ,    KC_E   ,    KC_R   ,    KC_T   ,    CS_MUTE,            KC_HOME,    KC_Y   ,    KC_U   ,    KC_I   ,    KC_O   ,    KC_P   ,    KC_F12  ,
       KC_ESC ,    KC_A   ,    KC_S   ,    KC_D   ,    KC_F   ,    KC_G   ,    KC_NO  ,            KC_END ,    KC_H   ,    KC_J   ,    KC_K   ,    KC_L   ,    KC_SCLN,    KC_QUOTE,
-      L_SHFT ,    KC_Z   ,    KC_X   ,    KC_C   ,    KC_V   ,    KC_B   ,    /*XXXX*/            /*XXXX*/    KC_N   ,    KC_M   ,    KC_COMM,    KC_DOT ,    KC_SLSH,    R_SHFT  ,
-      L_CTRL ,    KC_NO  ,    KC_NO  ,    TD_L4TG,    TURBO  ,    /*XXXX*/    KC_ESC ,            KC_CAPS,    /*XXXX*/    KC_HYPR,    KC_NO  ,    KC_LBRC,    KC_RBRC,    KC_NO   ,
+      L_SHFT ,    KC_Z   ,    KC_X   ,    KC_C   ,    KC_V   ,    KC_B   ,    /*XXXX*/            /*XXXX*/    KC_N   ,    KC_M   ,    KC_COMM,    KC_DOT ,    KC_UP  ,    R_SHFT  ,
+      L_CTRL ,    KC_NO  ,    KC_I   ,    KC_M   ,    TURBO  ,    /*XXXX*/    KC_ESC ,            KC_CAPS,    /*XXXX*/    KC_HYPR,    KC_NO  ,    KC_LEFT,    KC_DOWN,    KC_RGHT ,
       /*XXXXX*/   /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_SPC ,    KC_TAB ,    L_ALT  ,            L_GUI  ,    KC_NO  ,    KC_ENT      /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
   ),
 
@@ -182,19 +172,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [5] = LAYOUT( //Kana Layer
   /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
       KC_EQL ,    KC_1   ,    KC_2   ,    KC_3   ,    KC_4   ,    KC_5   ,    KC_NO  ,            KC_NO  ,    KC_6   ,    KC_7   ,    KC_8   ,    KC_9   ,    KC_0   ,    KC_MINS ,
-      KC_DEL ,    KC_Q   ,    KC_W   ,    KC_E   ,    KC_R   ,    KC_T   ,    HIRAG  ,            KC_NO  ,    KC_Y   ,    KC_U   ,    KC_I   ,    KC_O   ,    KC_P   ,    KC_BSLS ,
+      KC_DEL ,    KC_Q   ,    KC_W   ,    KC_E   ,    KC_R   ,    KC_T   ,    HIRAG  ,            TG(5)  ,    KC_Y   ,    KC_U   ,    KC_I   ,    KC_O   ,    KC_P   ,    KC_BSLS ,
       KC_BSPC,    KC_A   ,    KC_S   ,    KC_D   ,    KC_F   ,    KC_G   ,    KATAK  ,            KC_MEH ,    KC_H   ,    KC_J   ,    KC_K   ,    KC_L   ,    KC_SCLN,    KC_QUOTE,
       L_SHFT ,    MT_CZ  ,    KC_X   ,    KC_C   ,    KC_V   ,    KC_B   ,    /*XXXX*/            /*XXXX*/    KC_N   ,    KC_M   ,    KC_COMM,    KC_DOT ,    KC_SLSH,    R_SHFT  ,
       KC_NO  ,    L_GUI  ,    CW_TOGG,    KC_NO  ,    IME_TOG,    /*XXXX*/    KC_ESC,             KC_CAPS,    /*XXXX*/    KC_NO  ,    KC_HYPR,    KC_LBRC,    KC_RBRC,    KC_NO   ,
-      /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_SPC ,    L_ALT  ,    KC_F13 ,            TG(5)  ,    KC_TAB ,    KC_ENT     /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
+      /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_SPC ,    L_ALT  ,    KC_F13 ,            KC_NO  ,    KC_TAB ,    KC_ENT     /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
 ),
 
-/*  _                            __           ____   ____ ____  */
-/* | |    __ _ _   _  ___ _ __  / /_         / ___|/ ___|  _ \ */
+/*  _                            __           ____   ____ ____   */
+/* | |    __ _ _   _  ___ _ __  / /_         / ___|/ ___|  _ \   */
 /* | |   / _` | | | |/ _ \ '__| | '_ \       | |  _| |   | |_) | */
 /* | |__| (_| | |_| |  __/ |    | (_) |      | |_| | |___| |_) | */
-/* |_____\__,_|\__, |\___|_|     \___/        \____|\____|____/ */
-/*             |___/                                           */
+/* |_____\__,_|\__, |\___|_|     \___/        \____|\____|____/  */
+/*             |___/                                             */
   [6] = LAYOUT( // HSV Color Display Layer
   /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
       KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    TT(6)  ,            KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
@@ -235,23 +225,9 @@ void td_pmone_finished(tap_dance_state_t *state, void *user_data) {
     }
 }
 
-void init_td_num_user_data(void) { // Initialize tap dance user data
-    tap_dance_actions[TD_1_F1 ].user_data = (void *)&TD_NUM_MAP[0]; // "1" / F1
-    tap_dance_actions[TD_2_F2 ].user_data = (void *)&TD_NUM_MAP[1]; // "2" / F2
-    tap_dance_actions[TD_3_F3 ].user_data = (void *)&TD_NUM_MAP[2]; // "3" / F3
-    tap_dance_actions[TD_4_F4 ].user_data = (void *)&TD_NUM_MAP[3]; // "4" / F4
-    tap_dance_actions[TD_5_F5 ].user_data = (void *)&TD_NUM_MAP[4]; // "5" / F5
-    tap_dance_actions[TD_6_F6 ].user_data = (void *)&TD_NUM_MAP[5]; // "6" / F6
-    tap_dance_actions[TD_7_F7 ].user_data = (void *)&TD_NUM_MAP[6]; // "7" / F7
-    tap_dance_actions[TD_8_F8 ].user_data = (void *)&TD_NUM_MAP[7]; // "8" / F8
-    tap_dance_actions[TD_9_F9 ].user_data = (void *)&TD_NUM_MAP[8]; // "9" / F9
-    tap_dance_actions[TD_0_F10].user_data = (void *)&TD_NUM_MAP[9]; // "0" / F10
-}
-
 void keyboard_post_init_user(void) // Keyboard post initialization handler
 {
     rgb_matrix_enable();           // Enable RGB matrix lighting after keyboard initialization
-    init_td_num_user_data();       // Initialize tap dance user data
 }
 
 bool rgb_matrix_indicators_user(void) // RGB matrix indicators handler
@@ -313,7 +289,7 @@ bool rgb_matrix_indicators_user(void) // RGB matrix indicators handler
       r_exit = 1;  c_exit = 6;                      // TT(2) -> Top right of left half [1][6]
       break;
     case 4:                                         // Gaming layer: single TD_L4TG key
-      r_exit = 4;  c_exit = 3;                      // TD_L4TG -> Left thumb cluster [4][3]
+      r_exit = 6;  c_exit = 0;                      // TD_L4TG -> Left thumb cluster [4][3]
       break;
     case 5:                                         // Kana layer: single TG(5) key
       r_exit = 11; c_exit = 4;                      // TG(5) -> Right thumb cluster [11][4]
