@@ -60,16 +60,5 @@
 // +----------------------+
 #define TD_L4TG  TD(TD_TGLL_4)            // TapDance Layer 4 Toggle
 #define TD_PONE  TD(TD_PMONE)             // TapDance private macro one
-#define TD_1F1   TD(TD_1_F1)              // Tap: 1, Double: F1
-#define TD_2F2   TD(TD_2_F2)              // Tap: 2, Double: F2
-#define TD_3F3   TD(TD_3_F3)              // Tap: 3, Double: F3
-#define TD_4F4   TD(TD_4_F4)              // Tap: 4, Double: F4
-#define TD_5F5   TD(TD_5_F5)              // Tap: 5, Double: F5
-#define TD_6F6   TD(TD_6_F6)              // Tap: 6, Double: F6
-#define TD_7F7   TD(TD_7_F7)              // Tap: 7, Double: F7
-#define TD_8F8   TD(TD_8_F8)              // Tap: 8, Double: F8
-#define TD_9F9   TD(TD_9_F9)              // Tap: 9, Double: F9
-#define TD_0F10  TD(TD_0_F10)             // Tap: 0, Double: F10
-#define TD_BSTK  TD(TD_BSLTIK)            // Tap Dance: Backslash/Backtick
 
 #endif // MYKEYS_KEYMAP_H
