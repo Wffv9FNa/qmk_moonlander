@@ -157,7 +157,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
       KC_EQL ,    KC_1   ,    KC_2   ,    KC_3   ,    KC_4   ,    KC_5   ,    SOCDTG ,            TD_L4TG,    KC_6   ,    KC_7   ,    KC_8   ,    KC_9   ,    KC_0   ,    KC_F11  ,
       KC_F5  ,    KC_Q   ,    KC_W   ,    KC_E   ,    KC_R   ,    KC_T   ,    KC_MEH ,            KC_HOME,    KC_Y   ,    KC_U   ,    KC_I   ,    KC_O   ,    KC_P   ,    KC_F12  ,
-      KC_ESC ,    KC_A   ,    KC_S   ,    KC_D   ,    KC_F   ,    KC_G   ,    KC_NO  ,            KC_END ,    KC_H   ,    KC_J   ,    KC_K   ,    KC_L   ,    KC_SCLN,    KC_QUOTE,
+      KC_ESC ,    KC_A   ,    KC_S   ,    KC_D   ,    KC_F   ,    KC_G   ,    TT(7)  ,            KC_END ,    KC_H   ,    KC_J   ,    KC_K   ,    KC_L   ,    KC_SCLN,    KC_QUOTE,
       L_SHFT ,    KC_Z   ,    KC_X   ,    KC_C   ,    KC_V   ,    KC_B   ,    /*XXXX*/            /*XXXX*/    KC_N   ,    KC_M   ,    KC_COMM,    KC_DOT ,    KC_UP  ,    R_SHFT  ,
       L_CTRL ,    KC_NO  ,    KC_I   ,    KC_M   ,    TURBO  ,    /*XXXX*/    KC_ESC ,            KC_CAPS,    /*XXXX*/    KC_HYPR,    KC_NO  ,    KC_LEFT,    KC_DOWN,    KC_RGHT ,
       /*XXXXX*/   /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_SPC ,    KC_TAB ,    L_ALT  ,            L_GUI  ,    KC_NO  ,    KC_ENT      /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
@@ -179,12 +179,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_SPC ,    L_ALT  ,    KC_F13 ,            KC_NO  ,    KC_TAB ,    KC_ENT     /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
 ),
 
-/*  _                            __           ____   ____ ____   */
-/* | |    __ _ _   _  ___ _ __  / /_         / ___|/ ___|  _ \   */
-/* | |   / _` | | | |/ _ \ '__| | '_ \       | |  _| |   | |_) | */
-/* | |__| (_| | |_| |  __/ |    | (_) |      | |_| | |___| |_) | */
-/* |_____\__,_|\__, |\___|_|     \___/        \____|\____|____/  */
-/*             |___/                                             */
+/*  _                             __     ____   ____ ____   */
+/* | |    __ _ _   _  ___ _ __   / /_   |  _ \ / ___| __ )  */
+/* | |   / _` | | | |/ _ \ '__| | '_ \  | |_) | |  _|  _ \  */
+/* | |__| (_| | |_| |  __/ |    | (_) | |  _ <| |_| | |_) | */
+/* |_____\__,_|\__, |\___|_|     \___/  |_| \_\\____|____/  */
+/*             |___/                                        */
   [6] = LAYOUT( // HSV Color Display Layer
   /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
       KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    TT(6)  ,            KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
@@ -194,6 +194,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,                KC_NO  ,            KC_NO  ,                KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
                                                       KC_NO  ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_NO  ,    KC_NO
   ),
+
+/*  _                            _____   _____                 _   _              */
+/* | |    __ _ _   _  ___ _ __  |___  | |  ___|   _ _ __   ___| |_(_) ___  _ __   */
+/* | |   / _` | | | |/ _ \ '__|    / /  | |_ | | | | '_ \ / __| __| |/ _ \| '_ \  */
+/* | |__| (_| | |_| |  __/ |      / /   |  _|| |_| | | | | (__| |_| | (_) | | | | */
+/* |_____\__,_|\__, |\___|_|     /_/    |_|   \__,_|_| |_|\___|\__|_|\___/|_| |_| */
+/*             |___/                                                              */
+  [7]=LAYOUT( // Function Keys Layer
+  /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
+    KC_GRV ,    KC_F1  ,    KC_F2  ,    KC_F3  ,    KC_F4  ,    KC_F5  ,    KC_TRNS,            KC_TRNS,    KC_F6  ,    KC_F7  ,    KC_F8  ,    KC_F9  ,    KC_F10 ,    KC_F11 ,
+    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,            KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_F12 ,
+    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    TT(7)  ,            KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
+    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,                                    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
+    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,                KC_TRNS,            KC_TRNS,                KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
+                                                    KC_TRNS,    KC_TRNS,    KC_TRNS,            KC_TRNS,    KC_TRNS,    KC_TRNS
+),
 
 };
 /*  _____                    _       _        */
@@ -296,6 +312,9 @@ bool rgb_matrix_indicators_user(void) // RGB matrix indicators handler
       break;
         case 6:                                     // HSV Color Display layer: single TT(6) key
       r_exit = 0; c_exit = 6;                       // TT(6) -> Top row [0][6]
+      break;
+      case 7:                                       // HSV Color Display layer: single TT(6) key
+      r_exit = 2; c_exit = 6;                       // TT(7) -> Third row [2][6]
       break;
     default:                                        // Future/unhandled layers still get base colours
       break;
