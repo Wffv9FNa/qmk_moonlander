@@ -50,10 +50,15 @@ int cur_dance(tap_dance_state_t *state) {
 // +-------------------+
 // | TD_TGLL_4 Handler |
 // +-------------------+
+// External flag to signal tap dance layer 4 activation
+// Added for Overwatch theme song to play when layer 4 is activated via tap dance
+extern bool td_layer4_activated;
+
 void td_tgll_4_finished(tap_dance_state_t *state, void *user_data) {
     int dance_state = cur_dance(state);              // Evaluate tap dance result
     switch (dance_state) {
         case DOUBLE_TAP:
+            td_layer4_activated = true;              // Set flag before toggling
             layer_invert(4);                         // Toggle layer 4 on double tap
             break;
 

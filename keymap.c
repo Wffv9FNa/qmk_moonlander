@@ -23,6 +23,7 @@
 // | GLOBAL STATE & VARIABLES |
 // +--------------------------+
 extern bool socd_cleaner_enabled;                     // Access global SOCD enable state
+bool td_layer4_activated = false;                     // Flag to track tap dance layer 4 activation
 
 #ifdef AUDIO_ENABLE
 float caps_on_song[][2] = SONG(CAPS_ON_SOUND);        // Audio pattern when Caps Lock turns on
@@ -392,9 +393,10 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 layer_state_t layer_state_set_user(layer_state_t state) // Layer change event handler
 {
 #ifdef AUDIO_ENABLE
-  if (biton32(state) == 4)                          // Check if layer 4 is the highest active layer
+  if (biton32(state) == 4 && td_layer4_activated)   // Check if layer 4 is active AND tap dance triggered it
   {
-    PLAY_SONG(overwatch_song);                      // Play the Overwatch theme song when entering layer 4
+    PLAY_SONG(overwatch_song);                      // Play the Overwatch theme song when entering layer 4 via tap dance
+    td_layer4_activated = false;                    // Reset flag after playing song
   }
 #endif
   return state;                                     // Always return the updated layer state
