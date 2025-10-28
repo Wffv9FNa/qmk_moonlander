@@ -157,10 +157,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       [4] = LAYOUT( // Gaming Layer
     /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
       KC_EQL ,    KC_1   ,    KC_2   ,    KC_3   ,    KC_4   ,    KC_5   ,    SOCDTG ,            TD_L4TG,    KC_6   ,    KC_7   ,    KC_8   ,    KC_9   ,    KC_0   ,    KC_MINS ,
-      KC_F5  ,    KC_Q   ,    KC_W   ,    KC_E   ,    KC_R   ,    KC_T   ,    KC_MEH ,            KC_HOME,    KC_Y   ,    KC_U   ,    KC_I   ,    KC_O   ,    KC_P   ,    KC_BSLS ,
-      KC_ESC ,    KC_A   ,    KC_S   ,    KC_D   ,    KC_F   ,    KC_G   ,    TT(7)  ,            KC_END ,    KC_H   ,    KC_J   ,    KC_K   ,    KC_L   ,    KC_SCLN,    KC_QUOTE,
+      KC_ESC ,    KC_Q   ,    KC_W   ,    KC_E   ,    KC_R   ,    KC_T   ,    KC_MEH ,            KC_HOME,    KC_Y   ,    KC_U   ,    KC_I   ,    KC_O   ,    KC_P   ,    KC_BSLS ,
+      KC_BSPC,    KC_A   ,    KC_S   ,    KC_D   ,    KC_F   ,    KC_G   ,    TT(7)  ,            KC_END ,    KC_H   ,    KC_J   ,    KC_K   ,    KC_L   ,    KC_SCLN,    KC_QUOTE,
       L_SHFT ,    KC_Z   ,    KC_X   ,    KC_C   ,    KC_V   ,    KC_B   ,    /*XXXX*/            /*XXXX*/    KC_N   ,    KC_M   ,    KC_COMM,    KC_DOT ,    KC_UP  ,    R_SHFT  ,
-      L_CTRL ,    KC_NO  ,    KC_I   ,    KC_M   ,    TURBO  ,    /*XXXX*/    KC_ESC ,            KC_CAPS,    /*XXXX*/    KC_HYPR,    KC_NO  ,    KC_LEFT,    KC_DOWN,    KC_RGHT ,
+      L_CTRL ,    KC_F5  ,    KC_I   ,    KC_M   ,    TURBO  ,    /*XXXX*/    KC_ESC ,            KC_CAPS,    /*XXXX*/    KC_HYPR,    KC_NO  ,    KC_LEFT,    KC_DOWN,    KC_RGHT ,
       /*XXXXX*/   /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_SPC ,    KC_TAB ,    L_ALT  ,            L_GUI  ,    KC_BSPC,    KC_ENT      /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
   ),
 
@@ -295,27 +295,27 @@ bool rgb_matrix_indicators_user(void) // RGB matrix indicators handler
     case 0:                                         // Base layer has no exit keys (it's the destination layer)
       break;
     case 1:                                         // Numpad layer: two TT(1) keys for access
-      r_exit = 4;  c_exit = 0;                      // Left TT(1) -> Left thumb cluster [4][0]
-      r_exit2 = 10; c_exit2 = 2;                    // Right TT(1) -> Right thumb cluster [10][2]
+      r_exit = 4;  c_exit = 0;                      // Left TT(1)
+      r_exit2 = 10; c_exit2 = 2;                    // Right TT(1)
       break;
     case 2:                                         // WordMon + Arrows layer: two TT(3) keys
-      r_exit = 4;  c_exit = 4;                      // Left TT(3) -> Left thumb cluster [4][4]
-      r_exit2 = 10; c_exit2 = 6;                    // Right TT(3) -> Right thumb cluster [10][6]
+      r_exit = 4;  c_exit = 4;                      // Left TT(3)
+      r_exit2 = 10; c_exit2 = 6;                    // Right TT(3)
       break;
     case 3:                                         // Mouse layer: single TT(2) key
-      r_exit = 1;  c_exit = 6;                      // TT(2) -> Top right of left half [1][6]
+      r_exit = 1;  c_exit = 6;                      // TT(2)
       break;
     case 4:                                         // Gaming layer: single TD_L4TG key
-      r_exit = 6;  c_exit = 0;                      // TD_L4TG -> Left thumb cluster [4][3]
+      r_exit = 6;  c_exit = 0;                      // TD_L4TG
       break;
     case 5:                                         // Kana layer: single TG(5) key
-      r_exit = 11; c_exit = 4;                      // TG(5) -> Right thumb cluster [11][4]
+      r_exit = 7; c_exit = 0;                      // TG(5)
       break;
         case 6:                                     // HSV Color Display layer: single TT(6) key
-      r_exit = 0; c_exit = 6;                       // TT(6) -> Top row [0][6]
+      r_exit = 0; c_exit = 6;                       // TT(6)
       break;
-      case 7:                                       // HSV Color Display layer: single TT(6) key
-      r_exit = 2; c_exit = 6;                       // TT(7) -> Third row [2][6]
+      case 7:                                       // Function Keys layer: single TT(7) key
+      r_exit = 2; c_exit = 6;                       // TT(7)
       break;
     default:                                        // Future/unhandled layers still get base colours
       break;
