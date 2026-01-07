@@ -91,13 +91,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* | |__| (_| | |_| |  __/ |    | |_| |    |  _  | (_) | | | | | |  __/ */
 /* |_____\__,_|\__, |\___|_|     \___/     |_| |_|\___/|_| |_| |_|\___| */
 /*             |___/                                                    */
-[0] = LAYOUT( //Home
+[_HM] = LAYOUT( //Home
   /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
-      KC_EQL ,    KC_1   ,    KC_2   ,    KC_3   ,    KC_4   ,    KC_5   ,    TT(6)  ,            TD_L4TG,    KC_6   ,    KC_7   ,    KC_8   ,    KC_9   ,    KC_0   ,    KC_MINS ,
-      KC_DEL ,    KC_Q   ,    KC_W   ,    KC_E   ,    KC_R   ,    KC_T   ,    TT(3)  ,            TG(5)  ,    KC_Y   ,    KC_U   ,    KC_I   ,    KC_O   ,    KC_P   ,    KC_BSLS ,
+      KC_EQL ,    KC_1   ,    KC_2   ,    KC_3   ,    KC_4   ,    KC_5   ,    TT(_HV),            TD_L4TG,    KC_6   ,    KC_7   ,    KC_8   ,    KC_9   ,    KC_0   ,    KC_MINS ,
+      KC_DEL ,    KC_Q   ,    KC_W   ,    KC_E   ,    KC_R   ,    KC_T   ,    TT(_MS),            TG(_KN),    KC_Y   ,    KC_U   ,    KC_I   ,    KC_O   ,    KC_P   ,    KC_BSLS ,
       KC_BSPC,    KC_A   ,    KC_S   ,    KC_D   ,    KC_F   ,    KC_G   ,    KC_NUBS,            KC_MEH ,    KC_H   ,    KC_J   ,    KC_K   ,    KC_L   ,    KC_SCLN,    KC_QUOTE,
       L_SHFT ,    MT_CZ  ,    KC_X   ,    KC_C   ,    KC_V   ,    KC_B   ,    /*XXXX*/            /*XXXX*/    KC_N   ,    KC_M   ,    KC_COMM,    KC_DOT ,    KC_SLSH,    R_SHFT  ,
-      TT(1)  ,    L_GUI  ,    CW_TOGG,    KC_NO  ,    TT(2)  ,    /*XXXX*/    KC_ESC ,            KC_CAPS,    /*XXXX*/    TT(1)  ,    KC_HYPR,    KC_LBRC,    KC_RBRC,    TT(2)   ,
+      TT(_NM),    L_GUI  ,    CW_TOGG,    KC_NO  ,    TT(_WM),    /*XXXX*/    KC_ESC ,            KC_CAPS,    /*XXXX*/    TT(_NM),    KC_HYPR,    KC_LBRC,    KC_RBRC,    TT(_WM) ,
       /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_SPC ,    L_ALT  ,    KC_TAB ,            KC_NO  ,    KC_TAB ,    KC_ENT      /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
   ),
 /*  _                            _      _   _                                 _  */
@@ -106,13 +106,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* | |__| (_| | |_| |  __/ |    | |    | |\  | |_| | | | | | | |_) | (_| | (_| | */
 /* |_____\__,_|\__, |\___|_|    |_|    |_| \_|\__,_|_| |_| |_| .__/ \__,_|\__,_| */
 /*             |___/                                         |_|                 */
-  [1] = LAYOUT( //Numpad
+  [_NM] = LAYOUT( //Numpad
   /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
       KC_GRV ,    KC_F1  ,    KC_F2  ,    KC_F3  ,    KC_F4  ,    KC_F5  ,    KC_NO  ,            KC_NO  ,    KC_F6  ,    KC_F7  ,    KC_F8  ,    KC_F9  ,    KC_F10 ,    KC_F11 ,
       KC_DEL ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_HOME,    KC_7   ,    KC_8   ,    KC_9   ,    KC_PAST,    KC_F12 ,
       KC_BSPC,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,            KC_MEH ,    KC_END ,    KC_4   ,    KC_5   ,    KC_6   ,    KC_PPLS,    KC_NO  ,
       L_SHFT ,    CT_Z   ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_B   ,    /*XXXX*/            /*XXXX*/    KC_PSLS,    KC_1   ,    KC_2   ,    KC_3   ,    KC_PMNS,    R_SHFT ,
-      TT(1)  ,    L_GUI  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    /*XXXX*/    KC_NO  ,            KC_TRNS,    /*XXXX*/    TT(1)  ,    KC_0   ,    KC_DOT ,    KC_EQL ,    KC_NO  ,
+      TT(_NM),    L_GUI  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    /*XXXX*/    KC_NO  ,            KC_TRNS,    /*XXXX*/    TT(_NM),    KC_0   ,    KC_DOT ,    KC_EQL ,    KC_NO  ,
       /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_SPC ,    L_ALT  ,    KC_NO  ,            KC_NO  ,    KC_TAB ,    KC_ENT      /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
   ),
 /*  _                            ____          _                                */
@@ -121,13 +121,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* | |__| (_| | |_| |  __/ |     / __/      / ___ \| |  | | | (_) \ V  V /\__ \ */
 /* |_____\__,_|\__, |\___|_|    |_____|    /_/   \_\_|  |_|  \___/ \_/\_/ |___/ */
 /*             |___/                                                            */
-  [2] = LAYOUT( // WordMon + Arrows
+  [_WM] = LAYOUT( // WordMon + Arrows
   /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
       QK_BOOT,    KC_F1  ,    KC_F2  ,    KC_F3  ,    KC_F4  ,    KC_F5  ,    KC_NO  ,            KC_NO  ,    KC_F6  ,    KC_F7  ,    KC_F8  ,    KC_F9  ,    KC_F10 ,    KC_F11 ,
       KC_NO  ,    TD_PONE,    SELWBK ,    CS_X   ,    SELWRD ,    KC_NO  ,    KC_NO  ,            KC_PGUP,    KC_HOME,    MINWIN ,    KC_UP  ,    MAXWIN ,    KC_NO  ,    KC_F12 ,
       CT_BSPC,    KC_NO  ,    S_LEFT ,    GC_Y   ,    S_RGHT ,    KC_NO  ,    KC_NO  ,            KC_PGDN,    KC_END ,    KC_LEFT,    KC_DOWN,    KC_RGHT,    KC_NO  ,    KC_NO  ,
       L_SHFT ,    KC_NO  ,    CT_LEFT,    SELINE ,    CT_RGHT,    KC_NO  ,    /*XXXX*/            /*XXXX*/    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    R_SHFT ,
-      KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    TT(2)  ,    /*XXXX*/    KC_NO  ,            KC_NO  ,    /*XXXX*/    KC_TRNS,    KC_NO  ,    KC_NO  ,    KC_NO  ,    TT(2)  ,
+      KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    TT(_WM),    /*XXXX*/    KC_NO  ,            KC_NO  ,    /*XXXX*/    KC_TRNS,    KC_NO  ,    KC_NO  ,    KC_NO  ,    TT(_WM),
       /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_NO  ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_NO  ,    KC_NO       /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
 ),
 /*  _                            _____      __  __                       */
@@ -136,10 +136,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* | |__| (_| | |_| |  __/ |     ___) |    | |  | | (_) | |_| \__ \  __/ */
 /* |_____\__,_|\__, |\___|_|    |____/     |_|  |_|\___/ \__,_|___/\___| */
 /*             |___/                                                     */
-  [3] = LAYOUT( //Mouse
+  [_MS] = LAYOUT( //Mouse
   /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
       KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
-      KC_DEL ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    TT(3)  ,            KC_NO  ,    OM_W_U ,    OM_BTNS,    OM_U   ,    OM_DBLS,    KC_NO  ,    KC_NO  ,
+      KC_DEL ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    TT(_MS),            KC_NO  ,    OM_W_U ,    OM_BTNS,    OM_U   ,    OM_DBLS,    KC_NO  ,    KC_NO  ,
       KC_BSPC,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    OM_W_D ,    OM_L   ,    OM_D   ,    OM_R   ,    OM_SLOW,    KC_NO  ,
       L_SHFT ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    /*XXXX*/            /*XXXX*/    OM_RELS,    OM_HLDS,    OM_SEL1,    OM_SEL2,    OM_SEL3,    R_SHFT ,
       KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    /*XXXX*/    KC_ESC ,            KC_CAPS,    /*XXXX*/    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
@@ -151,11 +151,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* | |__| (_| | |_| |  __/ |    |__   _|    | |_| | (_| | | | | | |  __/\__ \ */
 /* |_____\__,_|\__, |\___|_|       |_|       \____|\__,_|_| |_| |_|\___||___/ */
 /*             |___/                                                          */
-      [4] = LAYOUT( // Gaming Layer
+      [_GM] = LAYOUT( // Gaming Layer
     /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
       KC_EQL ,    KC_1   ,    KC_2   ,    KC_3   ,    KC_4   ,    KC_5   ,    SOCDTG ,            TD_L4TG,    KC_6   ,    KC_7   ,    KC_8   ,    KC_9   ,    KC_0   ,    KC_MINS ,
       KC_ESC ,    KC_Q   ,    KC_W   ,    KC_E   ,    KC_R   ,    KC_T   ,    KC_MEH ,            KC_HOME,    KC_Y   ,    KC_U   ,    KC_I   ,    KC_O   ,    KC_P   ,    KC_BSLS ,
-      KC_BSPC,    KC_A   ,    KC_S   ,    KC_D   ,    KC_F   ,    KC_G   ,    TT(7)  ,            KC_END ,    KC_H   ,    KC_J   ,    KC_K   ,    KC_L   ,    KC_SCLN,    KC_QUOTE,
+      KC_BSPC,    KC_A   ,    KC_S   ,    KC_D   ,    KC_F   ,    KC_G   ,    TT(_FN),            KC_END ,    KC_H   ,    KC_J   ,    KC_K   ,    KC_L   ,    KC_SCLN,    KC_QUOTE,
       L_SHFT ,    KC_Z   ,    KC_X   ,    KC_C   ,    KC_V   ,    KC_B   ,    /*XXXX*/            /*XXXX*/    KC_N   ,    KC_M   ,    KC_COMM,    KC_DOT ,    KC_UP  ,    R_SHFT  ,
       L_CTRL ,    KC_F5  ,    KC_I   ,    KC_M   ,    TURBO  ,    /*XXXX*/    KC_ESC ,            KC_CAPS,    /*XXXX*/    KC_HYPR,    KC_NO  ,    KC_LEFT,    KC_DOWN,    KC_RGHT ,
       /*XXXXX*/   /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_SPC ,    KC_TAB ,    L_ALT  ,            L_GUI  ,    KC_BSPC,    KC_ENT      /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
@@ -167,13 +167,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* | |__| (_| | |_| |  __/ |     ___) |    | . \ (_| | | | | (_| | */
 /* |_____\__,_|\__, |\___|_|    |____/     |_|\_\__,_|_| |_|\__,_| */
 /*             |___/                                               */
-  [5] = LAYOUT( //Kana Layer
+  [_KN] = LAYOUT( //Kana Layer
   /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
       KC_EQL ,    KC_1   ,    KC_2   ,    KC_3   ,    KC_4   ,    KC_5   ,    KC_NO  ,            KC_NO  ,    KC_6   ,    KC_7   ,    KC_8   ,    KC_9   ,    KC_0   ,    KC_MINS ,
-      KC_DEL ,    KC_Q   ,    KC_W   ,    KC_E   ,    KC_R   ,    KC_T   ,    HIRAG  ,            TG(5)  ,    KC_Y   ,    KC_U   ,    KC_I   ,    KC_O   ,    KC_P   ,    KC_BSLS ,
+      KC_DEL ,    KC_Q   ,    KC_W   ,    KC_E   ,    KC_R   ,    KC_T   ,    HIRAG  ,            TG(_KN),    KC_Y   ,    KC_U   ,    KC_I   ,    KC_O   ,    KC_P   ,    KC_BSLS ,
       KC_BSPC,    KC_A   ,    KC_S   ,    KC_D   ,    KC_F   ,    KC_G   ,    KATAK  ,            KC_MEH ,    KC_H   ,    KC_J   ,    KC_K   ,    KC_L   ,    KC_SCLN,    KC_QUOTE,
       L_SHFT ,    MT_CZ  ,    KC_X   ,    KC_C   ,    KC_V   ,    KC_B   ,    /*XXXX*/            /*XXXX*/    KC_N   ,    KC_M   ,    KC_COMM,    KC_DOT ,    KC_SLSH,    R_SHFT  ,
-      KC_NO  ,    L_GUI  ,    CW_TOGG,    KC_NO  ,    IME_TOG,    /*XXXX*/    KC_ESC,             KC_CAPS,    /*XXXX*/    KC_NO  ,    KC_HYPR,    KC_LBRC,    KC_RBRC,    KC_NO   ,
+      TT(_NM),    L_GUI  ,    IME_TOG,    KC_NO  ,    TT(_WM),    /*XXXX*/    KC_ESC,             KC_CAPS,    /*XXXX*/    TT(_NM),    KC_HYPR,    KC_LBRC,    KC_RBRC,    TT(_WM) ,
       /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_SPC ,    L_ALT  ,    KC_F13 ,            KC_NO  ,    KC_TAB ,    KC_ENT     /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
 ),
 
@@ -183,9 +183,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* | |__| (_| | |_| |  __/ |    | (_) | |  _ <| |_| | |_) | */
 /* |_____\__,_|\__, |\___|_|     \___/  |_| \_\\____|____/  */
 /*             |___/                                        */
-  [6] = LAYOUT( // HSV Color Display Layer
+  [_HV] = LAYOUT( // HSV Color Display Layer
   /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
-      KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    TT(6)  ,            KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
+      KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    TT(_HV),            KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
       KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
       KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
       KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,                                    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
@@ -199,11 +199,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* | |__| (_| | |_| |  __/ |      / /   |  _|| |_| | | | | (__| |_| | (_) | | | | */
 /* |_____\__,_|\__, |\___|_|     /_/    |_|   \__,_|_| |_|\___|\__|_|\___/|_| |_| */
 /*             |___/                                                              */
-  [7]=LAYOUT( // Function Keys Layer
+  [_FN]=LAYOUT( // Function Keys Layer
   /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
     KC_GRV ,    KC_F1  ,    KC_F2  ,    KC_F3  ,    KC_F4  ,    KC_F5  ,    KC_TRNS,            KC_TRNS,    KC_F6  ,    KC_F7  ,    KC_F8  ,    KC_F9  ,    KC_F10 ,    KC_F11 ,
     KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,            KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_F12 ,
-    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    TT(7)  ,            KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
+    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    TT(_FN),            KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
     KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,                                    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
     KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,                KC_TRNS,            KC_TRNS,                KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,    KC_TRNS,
                                                     KC_TRNS,    KC_TRNS,    KC_TRNS,            KC_TRNS,    KC_TRNS,    KC_TRNS
@@ -289,29 +289,29 @@ bool rgb_matrix_indicators_user(void) // RGB matrix indicators handler
 
     switch (current_layer)                          // LAYER-SPECIFIC EXIT KEY MAPPING
     {
-    case 0:                                         // Base layer has no exit keys (it's the destination layer)
+    case _HM:                                       // Base layer has no exit keys (it's the destination layer)
       break;
-    case 1:                                         // Numpad layer: two TT(1) keys for access
+    case _NM:                                       // Numpad layer: two TT(1) keys for access
       r_exit = 4;  c_exit = 0;                      // Left TT(1)
       r_exit2 = 10; c_exit2 = 2;                    // Right TT(1)
       break;
-    case 2:                                         // WordMon + Arrows layer: two TT(3) keys
+    case _WM:                                       // WordMon + Arrows layer: two TT(3) keys
       r_exit = 4;  c_exit = 4;                      // Left TT(3)
       r_exit2 = 10; c_exit2 = 6;                    // Right TT(3)
       break;
-    case 3:                                         // Mouse layer: single TT(2) key
+    case _MS:                                       // Mouse layer: single TT(2) key
       r_exit = 1;  c_exit = 6;                      // TT(2)
       break;
-    case 4:                                         // Gaming layer: single TD_L4TG key
+    case _GM:                                       // Gaming layer: single TD_L4TG key
       r_exit = 6;  c_exit = 0;                      // TD_L4TG
       break;
-    case 5:                                         // Kana layer: single TG(5) key
-      r_exit = 7; c_exit = 0;                      // TG(5)
+    case _KN:                                       // Kana layer: single TG(5) key
+      r_exit = 7; c_exit = 0;                       // TG(5)
       break;
-        case 6:                                     // HSV Color Display layer: single TT(6) key
+    case _HV:                                       // HSV Color Display layer: single TT(6) key
       r_exit = 0; c_exit = 6;                       // TT(6)
       break;
-      case 7:                                       // Function Keys layer: single TT(7) key
+      case _FN:                                     // Function Keys layer: single TT(7) key
       r_exit = 2; c_exit = 6;                       // TT(7)
       break;
     default:                                        // Future/unhandled layers still get base colours
@@ -390,7 +390,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 layer_state_t layer_state_set_user(layer_state_t state) // Layer change event handler
 {
 #ifdef AUDIO_ENABLE
-  if (biton32(state) == 4 && td_layer4_activated)   // Check if layer 4 is active AND tap dance triggered it
+  if (biton32(state) == _GM && td_layer4_activated)   // Check if layer 4 is active AND tap dance triggered it
   {
     PLAY_SONG(overwatch_song);                      // Play the Overwatch theme song when entering layer 4 via tap dance
     td_layer4_activated = false;                    // Reset flag after playing song
