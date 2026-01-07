@@ -21,6 +21,7 @@ enum tap_dance_keycodes {
  * These allow other files to reference tap dance handlers.
  */
 void td_tgll_4_finished(tap_dance_state_t *state, void *user_data);
+void td_pmone_finished(tap_dance_state_t *state, void *user_data);
 // int cur_dance(tap_dance_state_t *state);           // Only needed if used outside tap_dance.c
 
 #endif                                                // End include guard for TAP_DANCE_H
