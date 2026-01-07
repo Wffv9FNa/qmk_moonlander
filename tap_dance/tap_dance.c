@@ -1,6 +1,7 @@
 #include "quantum.h"                                 // Core QMK quantum functions (layers, matrix, keymaps)
 #include <stdbool.h>                                 // Standard C header for boolean types
 #include "tap_dance.h"                               // QMK tap dance feature support
+#include "keymap.h"                                  // Keymap definitions and custom keycodes
 
 // +-----------------------+
 // | Tap Dance Definitions |
@@ -59,7 +60,7 @@ void td_tgll_4_finished(tap_dance_state_t *state, void *user_data) {
     switch (dance_state) {
         case DOUBLE_TAP:
             td_layer4_activated = true;              // Set flag before toggling
-            layer_invert(4);                         // Toggle layer 4 on double tap
+            layer_invert(_GM);                         // Toggle layer 4 on double tap
             break;
 
             default:

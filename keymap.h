@@ -60,5 +60,18 @@
 // +----------------------+
 #define TD_L4TG  TD(TD_TGLL_4)            // TapDance Layer 4 Toggle
 #define TD_PONE  TD(TD_PMONE)             // TapDance private macro one
+// +--------+
+// | Layers |
+// +--------+
+enum layers {
+    _HM = 0, // Home
+    _MS,     // Mouse
+    _GM,     // Gaming
+    _KN,     // Kana
+    _HV,     // HSV Color Display
+    _FN,     // Function Keys
+    _NM,     // Numpad
+    _WM      // WordMon + Arrows
+};
 
 #endif // MYKEYS_KEYMAP_H
