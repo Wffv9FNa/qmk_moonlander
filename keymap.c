@@ -69,6 +69,29 @@ socd_cleaner_t socd_opposing_pairs[] = {
   {{KC_A, KC_D}, SOCD_CLEANER_LAST},                // Horizontal pair: A vs D, prefer last input
 };
 
+// +---------------------------+
+// | EXIT KEY CONFIGURATION    |
+// +---------------------------+
+// Data structure for exit key positions
+typedef struct {
+    uint8_t r1;     // Primary exit key row (255 = no key)
+    uint8_t c1;     // Primary exit key column
+    uint8_t r2;     // Secondary exit key row (255 = no key)
+    uint8_t c2;     // Secondary exit key column
+} exit_key_map_t;
+
+// Layer-specific exit key positions
+// Each layer defines the matrix coordinates for its exit/toggle keys
+static const exit_key_map_t PROGMEM exit_keys[] = {
+    [_HM] = {255, 255, 255, 255},  // Home: no exit keys (base layer)
+    [_MS] = {  1,   6, 255, 255},  // Mouse: TT(_MS) key at (1,6)
+    [_GM] = {  6,   0, 255, 255},  // Gaming: TD_L4TG key at (6,0)
+    [_KN] = {  7,   0, 255, 255},  // Kana: TG(_KN) key at (7,0)
+    [_HV] = {  0,   6, 255, 255},  // HSV Display: TT(_HV) key at (0,6)
+    [_FN] = {  2,   6, 255, 255},  // Function: TT(_FN) key at (2,6)
+    [_NM] = {  4,   0,  10,   2},  // Numpad: TT(_NM) keys at (4,0) and (10,2)
+    [_WM] = {  4,   4,  10,   6},  // WordMon: TT(_WM) keys at (4,4) and (10,6)
+};
 
 // +---------------+
 // | KEY OVERRIDES |
@@ -287,35 +310,12 @@ bool rgb_matrix_indicators_user(void) // RGB matrix indicators handler
     uint8_t r_exit = 255, c_exit = 255;             // Primary exit key position (255 means "no exit key")
     uint8_t r_exit2 = 255, c_exit2 = 255;           // Secondary exit key position (for multiple entry points)
 
-    switch (current_layer)                          // LAYER-SPECIFIC EXIT KEY MAPPING
-    {
-    case _HM:                                       // Base layer has no exit keys (it's the destination layer)
-      break;
-    case _NM:                                       // Numpad layer: two TT(1) keys for access
-      r_exit = 4;  c_exit = 0;                      // Left TT(1)
-      r_exit2 = 10; c_exit2 = 2;                    // Right TT(1)
-      break;
-    case _WM:                                       // WordMon + Arrows layer: two TT(3) keys
-      r_exit = 4;  c_exit = 4;                      // Left TT(3)
-      r_exit2 = 10; c_exit2 = 6;                    // Right TT(3)
-      break;
-    case _MS:                                       // Mouse layer: single TT(2) key
-      r_exit = 1;  c_exit = 6;                      // TT(2)
-      break;
-    case _GM:                                       // Gaming layer: single TD_L4TG key
-      r_exit = 6;  c_exit = 0;                      // TD_L4TG
-      break;
-    case _KN:                                       // Kana layer: single TG(5) key
-      r_exit = 7; c_exit = 0;                       // TG(5)
-      break;
-    case _HV:                                       // HSV Color Display layer: single TT(6) key
-      r_exit = 0; c_exit = 6;                       // TT(6)
-      break;
-      case _FN:                                     // Function Keys layer: single TT(7) key
-      r_exit = 2; c_exit = 6;                       // TT(7)
-      break;
-    default:                                        // Future/unhandled layers still get base colours
-      break;
+    // LAYER-SPECIFIC EXIT KEY MAPPING: Load exit key coordinates from lookup table
+    if (current_layer < (sizeof(exit_keys) / sizeof(exit_keys[0]))) {
+        r_exit  = pgm_read_byte(&exit_keys[current_layer].r1);
+        c_exit  = pgm_read_byte(&exit_keys[current_layer].c1);
+        r_exit2 = pgm_read_byte(&exit_keys[current_layer].r2);
+        c_exit2 = pgm_read_byte(&exit_keys[current_layer].c2);
     }
 
     if (r_exit != 255 && c_exit != 255)             // PRIMARY EXIT KEY ANIMATION: Apply rainbow animation if primary exit key exists
