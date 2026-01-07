@@ -53,9 +53,6 @@ enum custom_keycodes
 #include "keymap.h"                                   // Optional per-user/per-layout overrides
 #endif
 
-// Forward declaration for the new tap dance function
-void td_pmone_finished(tap_dance_state_t *state, void *user_data);
-
 // +--------------------+
 // | TAP DANCE ACTIONS  |
 // +--------------------+
