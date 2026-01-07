@@ -267,6 +267,72 @@ void keyboard_post_init_user(void) // Keyboard post initialization handler
     rgb_matrix_enable();           // Enable RGB matrix lighting after keyboard initialization
 }
 
+// --- RGB Indicator Helpers ---
+
+// Apply Caps Lock visual override (all keys red)
+// Returns: true if override was applied, false otherwise
+static inline bool apply_caps_lock_override(void)
+{
+    if (host_keyboard_led_state().caps_lock)
+    {
+        rgb_matrix_set_color_all(255, 0, 0);  // Bright red for Caps Lock
+        return true;  // Override applied
+    }
+    return false;  // No override needed
+}
+
+// Animate a single exit key with rainbow HSV cycling
+// Parameters:
+//   row: Matrix row (255 = no key at this position)
+//   col: Matrix column (255 = no key at this position)
+//   hue: HSV hue value for current animation frame (0-255)
+// Returns: true if animation was applied, false if LED doesn't exist
+static bool animate_exit_key(uint8_t row, uint8_t col, uint8_t hue)
+{
+    if (row == 255 || col == 255) {
+        return false;  // No exit key at this position
+    }
+
+    uint8_t led_index = g_led_config.matrix_co[row][col];
+    if (led_index == NO_LED) {
+        return false;  // LED doesn't exist at this position
+    }
+
+    HSV hsv = {.h = hue, .s = 255, .v = 255};
+    RGB rgb = hsv_to_rgb(hsv);
+    rgb_matrix_set_color(led_index, rgb.r, rgb.g, rgb.b);
+    return true;  // Animation applied successfully
+}
+
+// Apply rainbow animation to layer exit keys
+// Parameters:
+//   layer: Current layer index
+//   hue: HSV hue value for current animation frame (0-255)
+// Returns: true if any keys were animated, false if layer has no exit keys
+static bool animate_layer_exit_keys(uint8_t layer, uint8_t hue)
+{
+    bool animated = false;
+
+    // Get exit key positions from lookup table
+    uint8_t r_exit = 255, c_exit = 255;
+    uint8_t r_exit2 = 255, c_exit2 = 255;
+
+    if (layer < (sizeof(exit_keys) / sizeof(exit_keys[0]))) {
+        r_exit  = pgm_read_byte(&exit_keys[layer].r1);
+        c_exit  = pgm_read_byte(&exit_keys[layer].c1);
+        r_exit2 = pgm_read_byte(&exit_keys[layer].r2);
+        c_exit2 = pgm_read_byte(&exit_keys[layer].c2);
+    }
+
+    // Animate both exit keys with same hue (synchronised animation)
+    animated |= animate_exit_key(r_exit, c_exit, hue);
+    animated |= animate_exit_key(r_exit2, c_exit2, hue);
+
+    return animated;
+}
+
+// --- Main RGB Indicator Function ---
+
 bool rgb_matrix_indicators_user(void) // RGB matrix indicators handler
 {
   // FUNCTION STRUCTURE:
@@ -275,78 +341,31 @@ bool rgb_matrix_indicators_user(void) // RGB matrix indicators handler
   //  3. Apply base layer colours
   //  4. Animate exit keys with rainbow effect
   //  5. Update animation timing
-  // COORDINATE SYSTEM:
-  //  The Moonlander uses a 12x7 matrix layout where:
-  //  - Rows 0-5: Left half of keyboard
-  //  - Rows 6-11: Right half of keyboard
-  //  - Columns 0-6: Keys from left to right on each half
-  //  - Some positions are empty (NO_LED) due to the split design
 
-
-  if (rawhid_state.rgb_control)                     // Check if external RGB control is active (e.g., from host software)
+  // Check for external RGB control
+  if (rawhid_state.rgb_control || keyboard_config.disable_layer_led)
   {
-    return false;                                   // Let external control handle RGB
+    return false;  // External control active or LEDs disabled
   }
 
-  if (keyboard_config.disable_layer_led)            // Check if layer LED indicators are disabled in keyboard config
+  // Apply Caps Lock override if active
+  if (apply_caps_lock_override())
   {
-    return false;                                   // Don't show layer colours
+    return true;  // Caps Lock overrides all other effects
   }
 
-  uint8_t current_layer = biton32(layer_state);     // Get the currently active layer (highest priority layer)
+  // Apply layer-specific colours
+  uint8_t current_layer = biton32(layer_state);
+  set_layer_color(current_layer);
 
-  static uint8_t exit_key_hue = 0;                  // Static variable to track animation progress across function calls (continuous rainbow effect on exit keys)
-  bool animated_this_cycle = false;                 // Flag to track if we animated any exit keys this cycle (decides hue update)
-
-  if (host_keyboard_led_state().caps_lock)          // CAPS LOCK VISUAL FEEDBACK: When active, override all effects with red
+  // Animate exit keys with rainbow cycling
+  static uint8_t exit_key_hue = 0;
+  if (animate_layer_exit_keys(current_layer, exit_key_hue))
   {
-    rgb_matrix_set_color_all(255, 0, 0);            // Override all keys with bright red to clearly indicate Caps Lock state
-    return true;                                    // Exit early - no need for layer colours or animations
-  }
-  else
-  {
-    set_layer_color(current_layer);                 // LAYER COLOUR SYSTEM: Apply the base colours for the current layer
-
-    uint8_t r_exit = 255, c_exit = 255;             // Primary exit key position (255 means "no exit key")
-    uint8_t r_exit2 = 255, c_exit2 = 255;           // Secondary exit key position (for multiple entry points)
-
-    // LAYER-SPECIFIC EXIT KEY MAPPING: Load exit key coordinates from lookup table
-    if (current_layer < (sizeof(exit_keys) / sizeof(exit_keys[0]))) {
-        r_exit  = pgm_read_byte(&exit_keys[current_layer].r1);
-        c_exit  = pgm_read_byte(&exit_keys[current_layer].c1);
-        r_exit2 = pgm_read_byte(&exit_keys[current_layer].r2);
-        c_exit2 = pgm_read_byte(&exit_keys[current_layer].c2);
-    }
-
-    if (r_exit != 255 && c_exit != 255)             // PRIMARY EXIT KEY ANIMATION: Apply rainbow animation if primary exit key exists
-    {
-      uint8_t led_index = g_led_config.matrix_co[r_exit][c_exit]; // Convert matrix coords to LED index
-      if (led_index != NO_LED) {                                  // Check if LED actually exists at this position
-        HSV hsv = {.h = exit_key_hue, .s = 255, .v = 255};        // Create HSV colour with current hue, full saturation, full brightness
-        RGB rgb = hsv_to_rgb(hsv);                                // Convert HSV to RGB for LED matrix
-        rgb_matrix_set_color(led_index, rgb.r, rgb.g, rgb.b);     // Apply animated colour to LED
-        animated_this_cycle = true;                               // Mark animation happened
-      }
-    }
-
-    if (r_exit2 != 255 && c_exit2 != 255)           // SECONDARY EXIT KEY ANIMATION: Apply rainbow if secondary exit key exists
-    {
-      uint8_t led_index2 = g_led_config.matrix_co[r_exit2][c_exit2]; // Convert coords to LED index
-      if (led_index2 != NO_LED) {
-        HSV hsv = {.h = exit_key_hue, .s = 255, .v = 255};            // Use same hue as primary to keep animation synced
-        RGB rgb = hsv_to_rgb(hsv);                                    // Convert HSV to RGB
-        rgb_matrix_set_color(led_index2, rgb.r, rgb.g, rgb.b);        // Apply animated colour
-        animated_this_cycle = true;                                   // Mark animation happened
-      }
-    }
-
-    if (animated_this_cycle)                        // ANIMATION TIMING: Only update hue if we animated this cycle
-    {
-      exit_key_hue += 2;                            // Increment hue by 2 for next frame (~3 sec full cycle at 60fps)
-    }
+    exit_key_hue += 2;  // Increment hue for next frame (~3 sec cycle at 60fps)
   }
 
-  return true;                                      // Allow QMK's default RGB matrix effects (breathing, reactive, etc.)
+  return true;
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
