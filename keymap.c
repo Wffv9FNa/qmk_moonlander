@@ -9,6 +9,7 @@
 #include "user_song_list.h"                           // User-defined song data
 #include "tap_dance/tap_dance.h"                      // Tap dance actions
 #include "rgb_config/rgb_config.h"                    // RGB configuration helpers
+#include "exit_keys/exit_keys.h"                      // Exit key animation system
 #include "keymap_japanese.h"                          // JP keymap definitions
 #include "sendstring_uk.h"                            // Sendstring LUT Header
 #include "macros_private.h"                           // Private macros not in GIT
@@ -67,30 +68,6 @@ tap_dance_action_t tap_dance_actions[] = {
 socd_cleaner_t socd_opposing_pairs[] = {
   {{KC_W, KC_S}, SOCD_CLEANER_LAST},                // Vertical pair: W vs S, prefer last input
   {{KC_A, KC_D}, SOCD_CLEANER_LAST},                // Horizontal pair: A vs D, prefer last input
-};
-
-// +---------------------------+
-// | EXIT KEY CONFIGURATION    |
-// +---------------------------+
-// Data structure for exit key positions
-typedef struct {
-    uint8_t r1;     // Primary exit key row (255 = no key)
-    uint8_t c1;     // Primary exit key column
-    uint8_t r2;     // Secondary exit key row (255 = no key)
-    uint8_t c2;     // Secondary exit key column
-} exit_key_map_t;
-
-// Layer-specific exit key positions
-// Each layer defines the matrix coordinates for its exit/toggle keys
-static const exit_key_map_t PROGMEM exit_keys[] = {
-    [_HM] = {255, 255, 255, 255},  // Home: no exit keys (base layer)
-    [_MS] = {  1,   6, 255, 255},  // Mouse: TT(_MS) key at (1,6)
-    [_GM] = {  6,   0, 255, 255},  // Gaming: TD_L4TG key at (6,0)
-    [_KN] = {  7,   0, 255, 255},  // Kana: TG(_KN) key at (7,0)
-    [_HV] = {  0,   6, 255, 255},  // HSV Display: TT(_HV) key at (0,6)
-    [_FN] = {  2,   6, 255, 255},  // Function: TT(_FN) key at (2,6)
-    [_NM] = {  4,   0,  10,   2},  // Numpad: TT(_NM) keys at (4,0) and (10,2)
-    [_WM] = {  4,   4,  10,   6},  // WordMon: TT(_WM) keys at (4,4) and (10,6)
 };
 
 // +---------------+
@@ -279,56 +256,6 @@ static inline bool apply_caps_lock_override(void)
         return true;  // Override applied
     }
     return false;  // No override needed
-}
-
-// Animate a single exit key with rainbow HSV cycling
-// Parameters:
-//   row: Matrix row (255 = no key at this position)
-//   col: Matrix column (255 = no key at this position)
-//   hue: HSV hue value for current animation frame (0-255)
-// Returns: true if animation was applied, false if LED doesn't exist
-static bool animate_exit_key(uint8_t row, uint8_t col, uint8_t hue)
-{
-    if (row == 255 || col == 255) {
-        return false;  // No exit key at this position
-    }
-
-    uint8_t led_index = g_led_config.matrix_co[row][col];
-    if (led_index == NO_LED) {
-        return false;  // LED doesn't exist at this position
-    }
-
-    HSV hsv = {.h = hue, .s = 255, .v = 255};
-    RGB rgb = hsv_to_rgb(hsv);
-    rgb_matrix_set_color(led_index, rgb.r, rgb.g, rgb.b);
-    return true;  // Animation applied successfully
-}
-
-// Apply rainbow animation to layer exit keys
-// Parameters:
-//   layer: Current layer index
-//   hue: HSV hue value for current animation frame (0-255)
-// Returns: true if any keys were animated, false if layer has no exit keys
-static bool animate_layer_exit_keys(uint8_t layer, uint8_t hue)
-{
-    bool animated = false;
-
-    // Get exit key positions from lookup table
-    uint8_t r_exit = 255, c_exit = 255;
-    uint8_t r_exit2 = 255, c_exit2 = 255;
-
-    if (layer < (sizeof(exit_keys) / sizeof(exit_keys[0]))) {
-        r_exit  = pgm_read_byte(&exit_keys[layer].r1);
-        c_exit  = pgm_read_byte(&exit_keys[layer].c1);
-        r_exit2 = pgm_read_byte(&exit_keys[layer].r2);
-        c_exit2 = pgm_read_byte(&exit_keys[layer].c2);
-    }
-
-    // Animate both exit keys with same hue (synchronised animation)
-    animated |= animate_exit_key(r_exit, c_exit, hue);
-    animated |= animate_exit_key(r_exit2, c_exit2, hue);
-
-    return animated;
 }
 
 // --- Main RGB Indicator Function ---
