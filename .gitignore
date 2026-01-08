@@ -1,6 +1,6 @@
-.vscode/c_cpp_properties.json
 /docs/
-.vscode/settings.json
+.vscode/
 /builds/
 macros_private.c
 /scratch/
+.local/
