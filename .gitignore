@@ -1,8 +1,8 @@
-.vscode/c_cpp_properties.json
 /docs/
-.vscode/settings.json
+.vscode/
 /builds/
 /.cursor/
 /memory-bank/
 macros_private.c
 /scratch/
+.local/
