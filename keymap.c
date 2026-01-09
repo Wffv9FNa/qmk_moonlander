@@ -65,7 +65,6 @@ socd_cleaner_t socd_opposing_pairs[] = {
 // +---------------+
 // | KEY OVERRIDES |
 // +---------------+
-// Array registration for QMK introspection
 // Individual overrides defined in key_overrides/key_overrides.c
 const key_override_t *key_overrides[] = {
     &nubs_key_override,

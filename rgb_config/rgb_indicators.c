@@ -1,4 +1,4 @@
-#include QMK_KEYBOARD_H                     // Keyboard-specific definitions (includes moonlander.h)
+#include QMK_KEYBOARD_H                  // Keyboard-specific definitions (includes moonlander.h)
 #include "rgb_indicators.h"
 #include "rgb_config/rgb_config.h"       // For set_layer_color()
 #include "exit_keys/exit_keys.h"         // For animate_layer_exit_keys()

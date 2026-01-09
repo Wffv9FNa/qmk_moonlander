@@ -8,7 +8,6 @@
 // These typically correspond to layer toggle/tap-toggle keys.
 //
 // Matrix coordinates are (row, column) - use 255 for "no key"
-// To find coordinates: check your keymap or use QMK's matrix debugging
 //
 // Configuration format:
 //   [LAYER_NAME] = {r1, c1, r2, c2}

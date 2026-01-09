@@ -18,8 +18,8 @@ typedef struct {
     uint8_t c2;     // Secondary exit key column
 } exit_key_map_t;
 
-// Number of layers in the keymap (must match layer enum in keymap.h)
-#define EXIT_KEYS_NUM_LAYERS 8
+
+#define EXIT_KEYS_NUM_LAYERS 8 // Number of layers in the keymap (must match layer enum in keymap.h)
 
 // Animate layer exit keys with rainbow effect
 // Parameters:
