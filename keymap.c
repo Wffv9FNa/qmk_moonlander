@@ -5,14 +5,15 @@
 // | INCLUDES |
 // +----------+
 #include QMK_KEYBOARD_H                               // Core QMK headers
-#include "audio.h"                                    // Audio feature interface
-#include "user_song_list.h"                           // User-defined song data
 #include "tap_dance/tap_dance.h"                      // Tap dance actions
 #include "rgb_config/rgb_config.h"                    // RGB configuration helpers
 #include "exit_keys/exit_keys.h"                      // Exit key animation system
 #include "keymap_japanese.h"                          // JP keymap definitions
 #include "sendstring_uk.h"                            // Sendstring LUT Header
 #include "macros_private.h"                           // Private macros not in GIT
+#ifdef AUDIO_ENABLE
+#include "audio_config/audio_config.h"                // Audio configuration module
+#endif
 
 // +---------+
 // | DEFINES |
@@ -25,12 +26,6 @@
 // +--------------------------+
 extern bool socd_cleaner_enabled;                     // Access global SOCD enable state
 bool td_layer4_activated = false;                     // Flag to track tap dance layer 4 activation
-
-#ifdef AUDIO_ENABLE
-float caps_on_song[][2] = SONG(CAPS_ON_SOUND);        // Audio pattern when Caps Lock turns on
-float caps_off_song[][2] = SONG(CAPS_OFF_SOUND);      // Audio pattern when Caps Lock turns off
-float overwatch_song[][2] = SONG(OVERWATCH_THEME);    // Overwatch theme to play on layer event
-#endif
 
 typedef struct                                        // Raw HID state shared with host
 {
@@ -242,6 +237,12 @@ void td_pmone_finished(tap_dance_state_t *state, void *user_data) {
 void keyboard_post_init_user(void) // Keyboard post initialization handler
 {
     rgb_matrix_enable();           // Enable RGB matrix lighting after keyboard initialization
+#ifdef AUDIO_ENABLE
+    if (!is_audio_on()) {
+        audio_on();                // Enable audio if it was disabled in EEPROM
+    }
+    audio_config_init();           // Play startup song (works around DAC timing issues)
+#endif
 }
 
 // --- RGB Indicator Helpers ---
@@ -307,25 +308,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
     return false;
   }
 
+#ifdef AUDIO_ENABLE
+  if (!process_record_audio(keycode, record)) {
+    return false;
+  }
+#endif
+
   switch (keycode)                                                  // Handle specific keycodes
   {
-  case KC_CAPS:                                                     // Caps Lock key pressed
-    if (record->event.pressed)                                      // Only trigger on press (not release)
-    {
-      bool new_caps_state = !host_keyboard_led_state().caps_lock;   // Toggle Caps Lock state manually
-#ifdef AUDIO_ENABLE
-      if (new_caps_state)                                           // If Caps Lock just turned ON
-      {
-        PLAY_SONG(caps_on_song);                                    // Play "Caps On" sound for feedback
-      }
-      else                                                          // Otherwise, Caps Lock turned OFF
-      {
-        PLAY_SONG(caps_off_song);                                   // Play "Caps Off" sound for feedback
-      }
-#endif
-    }
-    return true;                                                    // Allow further processing of Caps Lock key
-
   case SOCDTOG:                                                     // SOCD toggle key (toggles SOCD cleaning on/off)
     return true;                                                    // Let QMK handle the default SOCDTOG behavior
   }
@@ -336,11 +326,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
 layer_state_t layer_state_set_user(layer_state_t state) // Layer change event handler
 {
 #ifdef AUDIO_ENABLE
-  if (biton32(state) == _GM && td_layer4_activated)   // Check if layer 4 is active AND tap dance triggered it
-  {
-    PLAY_SONG(overwatch_song);                      // Play the Overwatch theme song when entering layer 4 via tap dance
-    td_layer4_activated = false;                    // Reset flag after playing song
-  }
+  state = layer_state_audio(state);
 #endif
   return state;                                     // Always return the updated layer state
 }
