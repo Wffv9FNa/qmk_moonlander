@@ -14,6 +14,7 @@ SRC += exit_keys/exit_keys.c                      # Include exit key animation s
 SRC += exit_keys/exit_key_config.c                # Include exit key configuration source file
 SRC += macros_private.c                           # Include private macro source file
 SRC += audio_config/audio_config.c                # Include audio configuration source file
+SRC += key_overrides/key_overrides.c              # Include key override definitions
 
 MOUSEKEY_ENABLE = yes                             # Enable mouse key emulation
 DEFERRED_EXEC_ENABLE = yes                        # Enable deferred execution (needed for Turbo Click)
