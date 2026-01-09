@@ -13,6 +13,7 @@
 #include "rgb_config/rgb_config.h"                    // RGB configuration helpers
 #include "rgb_config/rgb_indicators.h"                // RGB indicator logic
 #include "exit_keys/exit_keys.h"                      // Exit key animation system
+#include "key_overrides/key_overrides.h"              // Key override definitions
 #include "keymap_japanese.h"                          // JP keymap definitions
 #include "sendstring_uk.h"                            // Sendstring LUT Header
 #ifdef AUDIO_ENABLE
@@ -64,12 +65,12 @@ socd_cleaner_t socd_opposing_pairs[] = {
 // +---------------+
 // | KEY OVERRIDES |
 // +---------------+
-// Change what a key sends when used with a modifier
-const key_override_t nubs_key_override = ko_make_basic(MOD_MASK_CTRL, KC_NUBS, KC_GRV);  // Ctrl + NUBS = `
-
+// Array registration for QMK introspection
+// Individual overrides defined in key_overrides/key_overrides.c
 const key_override_t *key_overrides[] = {
-    &nubs_key_override,                                                                  // Register Ctrl+NUBS override. This is a QMK array
-};                                                                                       // array where we list all of our overrides.
+    &nubs_key_override,
+    NULL  // Array terminator - do not remove
+};
 
 // +---------+
 // | KEYMAPS |
