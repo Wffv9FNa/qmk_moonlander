@@ -74,4 +74,16 @@ enum layers {
     _WM      // WordMon + Arrows
 };
 
+// +--------------------+
+// | TYPE DEFINITIONS  |
+// +--------------------+
+// Raw HID state shared with host
+// Full definition here so modules can access members
+typedef struct rawhid_state_s {
+    bool rgb_control;  // When true, host owns RGB control
+} rawhid_state_t;
+
+// External declarations for global state
+extern rawhid_state_t rawhid_state;
+
 #endif // MYKEYS_KEYMAP_H
