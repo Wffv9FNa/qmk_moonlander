@@ -5,8 +5,8 @@
 
 #ifdef AUDIO_ENABLE
 
-// Initialise audio system (call from keyboard_post_init_user)
-void audio_config_init(void);
+
+void audio_config_init(void); // Initialise audio system (call from keyboard_post_init_user)
 
 // Process audio events for specific keycodes
 // Returns: false if keycode was handled, true to continue processing
