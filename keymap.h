@@ -1,7 +1,7 @@
-#ifndef MYKEYS_KEYMAP_H                              // Header guard to prevent multiple inclusion
-#define MYKEYS_KEYMAP_H                              // Define the header guard symbol
+#ifndef MYKEYS_KEYMAP_H                   // Header guard to prevent multiple inclusion
+#define MYKEYS_KEYMAP_H                   // Define the header guard symbol
 
-#include "macros_private.h"                          // Include private macro definitions
+#include "macros_private.h"               // Include private macro definitions
 
 // Custom Keycode Aliases (7 characters or less)
 // +--------------+
@@ -77,13 +77,11 @@ enum layers {
 // +--------------------+
 // | TYPE DEFINITIONS  |
 // +--------------------+
-// Raw HID state shared with host
-// Full definition here so modules can access members
-typedef struct rawhid_state_s {
-    bool rgb_control;  // When true, host owns RGB control
+typedef struct rawhid_state_s {           // Raw HID state shared with host
+    bool rgb_control;                     // When true, host owns RGB control
 } rawhid_state_t;
 
-// External declarations for global state
-extern rawhid_state_t rawhid_state;
 
-#endif // MYKEYS_KEYMAP_H
+extern rawhid_state_t rawhid_state;       // External declarations for global state
+
+#endif                                    // MYKEYS_KEYMAP_H
