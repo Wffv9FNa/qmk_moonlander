@@ -12,6 +12,7 @@ SRC += rgb_config/rgb_config.c                    # Include RGB configuration so
 SRC += exit_keys/exit_keys.c                      # Include exit key animation source file
 SRC += exit_keys/exit_key_config.c                # Include exit key configuration source file
 SRC += macros_private.c                           # Include private macro source file
+SRC += audio_config/audio_config.c                # Include audio configuration source file
 
 MOUSEKEY_ENABLE = yes                             # Enable mouse key emulation
 DEFERRED_EXEC_ENABLE = yes                        # Enable deferred execution (needed for Turbo Click)
