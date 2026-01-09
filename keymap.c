@@ -5,12 +5,16 @@
 // | INCLUDES |
 // +----------+
 #include QMK_KEYBOARD_H                               // Core QMK headers
+#include "macros_private.h"                           // Private macros not in GIT (must be first for PRIVATE_SAFE_RANGE)
+#if __has_include("keymap.h")
+#include "keymap.h"                                   // Type definitions and layer enums
+#endif
 #include "tap_dance/tap_dance.h"                      // Tap dance actions
 #include "rgb_config/rgb_config.h"                    // RGB configuration helpers
+#include "rgb_config/rgb_indicators.h"                // RGB indicator logic
 #include "exit_keys/exit_keys.h"                      // Exit key animation system
 #include "keymap_japanese.h"                          // JP keymap definitions
 #include "sendstring_uk.h"                            // Sendstring LUT Header
-#include "macros_private.h"                           // Private macros not in GIT
 #ifdef AUDIO_ENABLE
 #include "audio_config/audio_config.h"                // Audio configuration module
 #endif
@@ -27,11 +31,7 @@
 extern bool socd_cleaner_enabled;                     // Access global SOCD enable state
 bool td_layer4_activated = false;                     // Flag to track tap dance layer 4 activation
 
-typedef struct                                        // Raw HID state shared with host
-{
-  bool rgb_control;                                   // When true, host owns RGB control
-} rawhid_state_t;
-
+// Raw HID state - typedef is in keymap.h, included later via __has_include
 rawhid_state_t rawhid_state;                          // Global instance of Raw HID state
 
 extern rgb_config_t rgb_matrix_config;                // Global RGB matrix configuration
@@ -44,10 +44,6 @@ enum custom_keycodes
 {
   NEW_SAFE_RANGE                                      // First custom code (starts at SAFE_RANGE)
 };
-
-#if __has_include("keymap.h")
-#include "keymap.h"                                   // Optional per-user/per-layout overrides
-#endif
 
 // +--------------------+
 // | TAP DANCE ACTIONS  |
@@ -245,55 +241,11 @@ void keyboard_post_init_user(void) // Keyboard post initialization handler
 #endif
 }
 
-// --- RGB Indicator Helpers ---
+// --- RGB Indicator Function ---
 
-// Apply Caps Lock visual override (all keys red)
-// Returns: true if override was applied, false otherwise
-static inline bool apply_caps_lock_override(void)
+bool rgb_matrix_indicators_user(void)
 {
-    if (host_keyboard_led_state().caps_lock)
-    {
-        rgb_matrix_set_color_all(255, 0, 0);  // Bright red for Caps Lock
-        return true;  // Override applied
-    }
-    return false;  // No override needed
-}
-
-// --- Main RGB Indicator Function ---
-
-bool rgb_matrix_indicators_user(void) // RGB matrix indicators handler
-{
-  // FUNCTION STRUCTURE:
-  //  1. Check for external RGB control or disabled LEDs
-  //  2. Handle Caps Lock override (red all keys)
-  //  3. Apply base layer colours
-  //  4. Animate exit keys with rainbow effect
-  //  5. Update animation timing
-
-  // Check for external RGB control
-  if (rawhid_state.rgb_control || keyboard_config.disable_layer_led)
-  {
-    return false;  // External control active or LEDs disabled
-  }
-
-  // Apply Caps Lock override if active
-  if (apply_caps_lock_override())
-  {
-    return true;  // Caps Lock overrides all other effects
-  }
-
-  // Apply layer-specific colours
-  uint8_t current_layer = biton32(layer_state);
-  set_layer_color(current_layer);
-
-  // Animate exit keys with rainbow cycling
-  static uint8_t exit_key_hue = 0;
-  if (animate_layer_exit_keys(current_layer, exit_key_hue))
-  {
-    exit_key_hue += 2;  // Increment hue for next frame (~3 sec cycle at 60fps)
-  }
-
-  return true;
+    return update_rgb_indicators();                   // Delegate to RGB indicators module
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
