@@ -10,18 +10,12 @@
 float caps_on_song[][2] = SONG(CAPS_ON_SOUND);
 float caps_off_song[][2] = SONG(CAPS_OFF_SOUND);
 float overwatch_song[][2] = SONG(OVERWATCH_THEME);
-float startup_song_user[][2] = SONG(CLOSE_ENCOUNTERS_5_NOTE);
 
 extern bool td_layer4_activated;   // External state flag for tap dance layer 4 activation
 
 // +-------------------------+
 // | Audio Event Handlers    |
 // +-------------------------+
-
-void audio_config_init(void)
-{
-    PLAY_SONG(startup_song_user);  // Play startup song manually (works around timing issues with DAC initialisation)
-}
 
 bool process_record_audio(uint16_t keycode, keyrecord_t *record)
 {
