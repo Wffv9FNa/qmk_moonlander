@@ -17,6 +17,7 @@
 #include "keymap_japanese.h"                          // JP keymap definitions
 #include "sendstring_uk.h"                            // Sendstring LUT Header
 #ifdef AUDIO_ENABLE
+#include "audio.h"                                    // Audio feature interface (required for STARTUP_SONG)
 #include "audio_config/audio_config.h"                // Audio configuration module
 #endif
 
@@ -32,8 +33,8 @@
 extern bool socd_cleaner_enabled;                     // Access global SOCD enable state
 bool td_layer4_activated = false;                     // Flag to track tap dance layer 4 activation
 
-// Raw HID state - typedef is in keymap.h, included later via __has_include
-rawhid_state_t rawhid_state;                          // Global instance of Raw HID state
+
+rawhid_state_t rawhid_state;                          // Raw HID state - typedef is in keymap.h, included later via __has_include
 
 extern rgb_config_t rgb_matrix_config;                // Global RGB matrix configuration
 extern led_config_t g_led_config;                     // LED mapping for matrix coords -> indices
@@ -237,7 +238,6 @@ void keyboard_post_init_user(void) // Keyboard post initialization handler
     if (!is_audio_on()) {
         audio_on();                // Enable audio if it was disabled in EEPROM
     }
-    audio_config_init();           // Play startup song (works around DAC timing issues)
 #endif
 }
 
