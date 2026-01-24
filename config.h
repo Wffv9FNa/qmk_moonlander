@@ -23,6 +23,7 @@
  #define CAPS_LOCK_STATUS                           // Track and expose Caps Lock state to firmware
  #define SERIAL_NUMBER "v9D0K/VqyORY"               // Unique keyboard serial number identifier
  #define LAYER_STATE_8BIT                           // Limit layer state tracking to 8 bits (saves memory)
+ #define MOONLANDER_USER_LEDS                       // Take control of indicator LEDs from default firmware
 
  #define RGB_MATRIX_STARTUP_SPD 60                  // Default RGB matrix startup animation speed
  #undef RGB_MATRIX_MAXIMUM_BRIGHTNESS               // Remove default maximum brightness definition

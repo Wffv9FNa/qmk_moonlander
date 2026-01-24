@@ -52,6 +52,7 @@ This is a **keymap-focused repository** for the ZSA Moonlander keyboard, not a f
 Key directories:
 - `tap_dance/` - Tap dance action implementations
 - `rgb_config/` - RGB LED configuration and layer colour mappings
+- `indicator_leds/` - Hardware indicator LED control (6 LEDs on top of keyboard)
 - `.local/` - **Project workspace** for plans, reference materials, code reviews, and other documentation
   - `.local/modules/getreuer/` - External QMK modules (git submodule from getreuer/qmk-modules)
   - `.local/qmk-firmware-files/` - QMK firmware headers needed for local development
@@ -90,6 +91,14 @@ RGB LED colours are defined per-layer using a custom macro system:
 - Each layer has a colour map defined using this macro
 - `set_layer_color()` function applies the colour map when layers change
 - The system accounts for the Moonlander's split layout and thumb clusters
+
+### Indicator LED System
+The Moonlander has 6 dedicated indicator LEDs (3 per half) separate from the per-key RGB matrix. These are controlled via `indicator_leds/`:
+- Requires `MOONLANDER_USER_LEDS` in `config.h` to override default firmware behaviour
+- Each LED can be configured to show: lock states (Caps/Num/Scroll), layer activity, Caps Word, SOCD status, or custom conditions
+- Default configuration: L1=Caps Lock, L2=Gaming, L3=Kana, R1=Mouse, R2=Numpad/WordMon, R3=Caps Word
+- Hardware control via `ML_LED_1(bool)` through `ML_LED_6(bool)` macros
+- Updates run in `housekeeping_task_user()` for continuous state monitoring
 
 ### Tap Dance System
 Tap dance actions are defined in `tap_dance/`:
