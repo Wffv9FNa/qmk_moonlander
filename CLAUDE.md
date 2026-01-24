@@ -96,7 +96,7 @@ RGB LED colours are defined per-layer using a custom macro system:
 The Moonlander has 6 dedicated indicator LEDs (3 per half) separate from the per-key RGB matrix. These are controlled via `indicator_leds/`:
 - Requires `MOONLANDER_USER_LEDS` in `config.h` to override default firmware behaviour
 - Each LED can be configured to show: lock states (Caps/Num/Scroll), layer activity, Caps Word, SOCD status, or custom conditions
-- Default configuration: L1=Caps Lock, L2=Gaming, L3=Kana, R1=Mouse, R2=Numpad/WordMon, R3=Caps Word
+- Default configuration: L1=Caps Lock, L2=SOCD active, L3=Kana, R1=Mouse, R2=Numpad/WordMon, R3=Caps Word
 - Hardware control via `ML_LED_1(bool)` through `ML_LED_6(bool)` macros
 - Updates run in `housekeeping_task_user()` for continuous state monitoring
 
