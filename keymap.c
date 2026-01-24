@@ -14,6 +14,7 @@
 #include "rgb_config/rgb_indicators.h"                // RGB indicator logic
 #include "exit_keys/exit_keys.h"                      // Exit key animation system
 #include "key_overrides/key_overrides.h"              // Key override definitions
+#include "indicator_leds/indicator_leds.h"            // Indicator LED control module
 #include "keymap_japanese.h"                          // JP keymap definitions
 #include "sendstring_uk.h"                            // Sendstring LUT Header
 #ifdef AUDIO_ENABLE
@@ -234,11 +235,17 @@ void td_pmone_finished(tap_dance_state_t *state, void *user_data) {
 void keyboard_post_init_user(void) // Keyboard post initialization handler
 {
     rgb_matrix_enable();           // Enable RGB matrix lighting after keyboard initialization
+    indicator_leds_init();         // Initialise indicator LED system with default configuration
 #ifdef AUDIO_ENABLE
     if (!is_audio_on()) {
         audio_on();                // Enable audio if it was disabled in EEPROM
     }
 #endif
+}
+
+void housekeeping_task_user(void) // Called periodically by QMK
+{
+    indicator_leds_update();       // Update indicator LED states based on current keyboard state
 }
 
 // --- RGB Indicator Function ---

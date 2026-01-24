@@ -15,6 +15,7 @@ SRC += exit_keys/exit_key_config.c                # Include exit key configurati
 SRC += macros_private.c                           # Include private macro source file
 SRC += audio_config/audio_config.c                # Include audio configuration source file
 SRC += key_overrides/key_overrides.c              # Include key override definitions
+SRC += indicator_leds/indicator_leds.c            # Include indicator LED control module
 
 MOUSEKEY_ENABLE = yes                             # Enable mouse key emulation
 DEFERRED_EXEC_ENABLE = yes                        # Enable deferred execution (needed for Turbo Click)
