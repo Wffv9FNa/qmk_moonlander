@@ -84,8 +84,7 @@ void indicator_leds_init(void) {
     // Left side: keyboard state indicators
     indicator_configs[IND_LED_L1].mode = IND_MODE_CAPS_LOCK;
 
-    indicator_configs[IND_LED_L2].mode = IND_MODE_LAYER_ACTIVE;
-    indicator_configs[IND_LED_L2].layer = _GM;  // Gaming layer
+    indicator_configs[IND_LED_L2].mode = IND_MODE_SOCD_ENABLED;  // SOCD cleaner active (on by default)
 
     indicator_configs[IND_LED_L3].mode = IND_MODE_LAYER_ACTIVE;
     indicator_configs[IND_LED_L3].layer = _KN;  // Kana layer
