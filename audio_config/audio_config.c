@@ -28,14 +28,14 @@ bool process_record_audio(uint16_t keycode, keyrecord_t *record)
 
             if (new_caps_state)
             {
-                PLAY_SONG(caps_on_song);   // Caps Lock ON sound
+                PLAY_SONG(caps_on_song);
             }
             else
             {
-                PLAY_SONG(caps_off_song);  // Caps Lock OFF sound
+                PLAY_SONG(caps_off_song);
             }
         }
-        return true;  // Continue processing
+        return true;
     }
 
     return true;      // Not handled by audio, continue processing

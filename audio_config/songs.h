@@ -9,9 +9,6 @@
 // Define your custom songs here using QMK note macros
 // Note length prefixes: HD=half-dotted, W=whole, H=half, Q=quarter, E=eighth, ED=eighth-dotted
 // Note format: _NOTE(pitch) where pitch is like _C4, _E5, _A6
-//
-// NOTE: QMK's song_list.h defines these songs as empty macros by default.
-// We provide the actual note sequences here.
 
 #define CAPS_ON_SOUND \
     E__NOTE(_E6), \
