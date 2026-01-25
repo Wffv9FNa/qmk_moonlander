@@ -15,6 +15,20 @@ extern bool socd_cleaner_enabled;  // From SOCD cleaner module
 // --- Configuration Storage ---
 static indicator_config_t indicator_configs[IND_LED_COUNT];
 
+// --- Layer Code Lookup Table ---
+// Maps layer number to 3-bit LED pattern: bit0=R3, bit1=R2, bit2=R1
+// Sequence: 000, 001, 010, 100, 011, 101, 110, 111
+static const uint8_t layer_led_codes[8] = {
+    0b000,  // Layer 0 (_HM): ---
+    0b001,  // Layer 1 (_MS): --R3
+    0b010,  // Layer 2 (_GM): -R2-
+    0b100,  // Layer 3 (_KN): R1--
+    0b011,  // Layer 4 (_HV): -R2R3
+    0b101,  // Layer 5 (_FN): R1-R3
+    0b110,  // Layer 6 (_NM): R1R2-
+    0b111,  // Layer 7 (_WM): R1R2R3
+};
+
 // --- Hardware Control Mapping ---
 // Maps our enum indices to the ML_LED_n() hardware calls
 
@@ -60,8 +74,19 @@ static bool evaluate_indicator(indicator_led_t led) {
             // Check if any layer in the mask is active
             return (layer_state & cfg->layer_mask) != 0;
 
+        case IND_MODE_LAYER_CODE: {
+            // Look up current layer in spread code table and check bit position
+            uint8_t layer = get_highest_layer(layer_state);
+            if (layer > 7) layer = 7;  // Clamp to table size
+            uint8_t code = layer_led_codes[layer];
+            return (code & (1 << cfg->led_position)) != 0;
+        }
+
         case IND_MODE_CAPS_WORD:
             return is_caps_word_on();
+
+        case IND_MODE_CAPS_ANY:
+            return host_keyboard_led_state().caps_lock || is_caps_word_on();
 
         case IND_MODE_SOCD_ENABLED:
             return socd_cleaner_enabled;
@@ -81,22 +106,24 @@ static bool evaluate_indicator(indicator_led_t led) {
 
 void indicator_leds_init(void) {
     // Set default configuration for each LED
+
     // Left side: keyboard state indicators
-    indicator_configs[IND_LED_L1].mode = IND_MODE_CAPS_LOCK;
+    indicator_configs[IND_LED_L1].mode = IND_MODE_OFF;
 
-    indicator_configs[IND_LED_L2].mode = IND_MODE_SOCD_ENABLED;  // SOCD cleaner active (on by default)
+    indicator_configs[IND_LED_L2].mode = IND_MODE_SOCD_ENABLED;
 
-    indicator_configs[IND_LED_L3].mode = IND_MODE_LAYER_ACTIVE;
-    indicator_configs[IND_LED_L3].layer = _KN;  // Kana layer
+    indicator_configs[IND_LED_L3].mode = IND_MODE_CAPS_ANY;  // Caps Lock or Caps Word
 
-    // Right side: utility indicators
-    indicator_configs[IND_LED_R1].mode = IND_MODE_LAYER_ACTIVE;
-    indicator_configs[IND_LED_R1].layer = _MS;  // Mouse layer
+    // Right side: layer display using spread code pattern
+    // Sequence: 000, 001, 010, 100, 011, 101, 110, 111
+    indicator_configs[IND_LED_R1].mode = IND_MODE_LAYER_CODE;
+    indicator_configs[IND_LED_R1].led_position = 2;  // MSB (bit 2)
 
-    indicator_configs[IND_LED_R2].mode = IND_MODE_LAYER_MASK;
-    indicator_configs[IND_LED_R2].layer_mask = (1 << _NM) | (1 << _WM);  // Numpad or WordMon
+    indicator_configs[IND_LED_R2].mode = IND_MODE_LAYER_CODE;
+    indicator_configs[IND_LED_R2].led_position = 1;  // Middle (bit 1)
 
-    indicator_configs[IND_LED_R3].mode = IND_MODE_CAPS_WORD;
+    indicator_configs[IND_LED_R3].mode = IND_MODE_LAYER_CODE;
+    indicator_configs[IND_LED_R3].led_position = 0;  // LSB (bit 0)
 
     // Ensure all LEDs start in correct state
     indicator_leds_update();
