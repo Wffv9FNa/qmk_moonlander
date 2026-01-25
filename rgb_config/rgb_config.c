@@ -7,12 +7,12 @@
 // New layout-based LED map, defined using COLOR_LAYOUT and HSV aliases
 static const uint8_t PROGMEM ledmap_layout[][MATRIX_ROWS][MATRIX_COLS][3] = {
 //clang-format off
-/*  _                             ___       _   _                       */
-/* | |    __ _ _   _  ___ _ __   / _ \     | | | | ___  _ __ ___   ___  */
-/* | |   / _` | | | |/ _ \ '__| | | | |    | |_| |/ _ \| '_ ` _ \ / _ \ */
-/* | |__| (_| | |_| |  __/ |    | |_| |    |  _  | (_) | | | | | |  __/ */
-/* |_____\__,_|\__, |\___|_|     \___/     |_| |_|\___/|_| |_| |_|\___| */
-/*             |___/                                                    */
+/*  _    _  ____  __  __ ______  */
+/* | |  | |/ __ \|  \/  |  ____| */
+/* | |__| | |  | | \  / | |__    */
+/* |  __  | |  | | |\/| |  __|   */
+/* | |  | | |__| | |  | | |____  */
+/* |_|  |_|\____/|_|  |_|______| */
     [_HM] = COLOR_LAYOUT( //Home
     /*  =               1               2               3               4               5               ---                 ---             6               7               8               9               0               --- */
         CLR_YELLOW ,    CLR_BLUE   ,    CLR_BLUE   ,    CLR_BLUE   ,    CLR_BLUE   ,    CLR_BLUE   ,    CLR_OFF    ,        CLR_PSPYR  ,    CLR_BLUE   ,    CLR_BLUE   ,    CLR_BLUE   ,    CLR_BLUE   ,    CLR_BLUE   ,    CLR_YELLOW ,
@@ -22,12 +22,14 @@ static const uint8_t PROGMEM ledmap_layout[][MATRIX_ROWS][MATRIX_COLS][3] = {
         CLR_PSPYR  ,    CLR_RED    ,    CLR_WHT    ,    CLR_OFF    ,    CLR_PSPYR  ,    /*XXXXXXXX*/    CLR_RED    ,        CLR_RED    ,    /*XXXXXXXX*/    CLR_PSPYR  ,    CLR_WHT    ,    CLR_WHT    ,    CLR_YELLOW ,    CLR_PSPYR  ,
         /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    CLR_WHT    ,    CLR_RED    ,    CLR_WHT    ,        CLR_OFF    ,    CLR_WHT    ,    CLR_WHT         /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/
     ),
-/*  _                            _      _   _                                 _  */
-/* | |    __ _ _   _  ___ _ __  / |    | \ | |_   _ _ __ ___  _ __   __ _  __| | */
-/* | |   / _` | | | |/ _ \ '__| | |    |  \| | | | | '_ ` _ \| '_ \ / _` |/ _` | */
-/* | |__| (_| | |_| |  __/ |    | |    | |\  | |_| | | | | | | |_) | (_| | (_| | */
-/* |_____\__,_|\__, |\___|_|    |_|    |_| \_|\__,_|_| |_| |_| .__/ \__,_|\__,_| */
-/*             |___/                                         |_|                 */
+/*  _   _                                 _  */
+/* | \ | |                               | | */
+/* |  \| |_   _ _ __ ___  _ __   __ _  __| | */
+/* | . ` | | | | '_ ` _ \| '_ \ / _` |/ _` | */
+/* | |\  | |_| | | | | | | |_) | (_| | (_| | */
+/* |_| \_|\__,_|_| |_| |_| .__/ \__,_|\__,_| */
+/*                       | |                 */
+/*                       |_|                 */
 [_NM] = COLOR_LAYOUT( //Numpad
     /*  =               1               2               3               4               5               ---                 ---             6               7               8               9               0               --           */
         CLR_CYAN   ,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_OFF    ,        CLR_OFF    ,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,
@@ -37,12 +39,11 @@ static const uint8_t PROGMEM ledmap_layout[][MATRIX_ROWS][MATRIX_COLS][3] = {
         CLR_OFF    ,    CLR_RED    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    /*XXXXXXXX*/    CLR_OFF    ,        CLR_OFF    ,    /*XXXXXXXX*/    CLR_OFF    ,    CLR_RED    ,    CLR_GREEN  ,    CLR_GREEN  ,    CLR_OFF    ,
         /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,        CLR_OFF    ,    CLR_OFF    ,    CLR_OFF         /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/
     ),
-/*  _                            ____          _                                */
-/* | |    __ _ _   _  ___ _ __  |___ \        / \   _ __ _ __ _____      _____  */
-/* | |   / _` | | | |/ _ \ '__|   __) |      / _ \ | '__| '__/ _ \ \ /\ / / __| */
-/* | |__| (_| | |_| |  __/ |     / __/      / ___ \| |  | | | (_) \ V  V /\__ \ */
-/* |_____\__,_|\__, |\___|_|    |_____|    /_/   \_\_|  |_|  \___/ \_/\_/ |___/ */
-/*             |___/                                                            */
+/*     /\                                */
+/*    /  \   _ __ _ __ _____      _____  */
+/*   / /\ \ | '__| '__/ _ \ \ /\ / / __| */
+/*  / ____ \| |  | | | (_) \ V  V /\__ \ */
+/* /_/    \_\_|  |_|  \___/ \_/\_/ |___/ */
     [_WM] = COLOR_LAYOUT( // WordMon + Arrows
     /*  =               1               2               3               4               5               ---                 ---             6               7               8               9               0               ---          */
         CLR_CYAN   ,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_OFF    ,        CLR_OFF    ,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,
@@ -52,13 +53,12 @@ static const uint8_t PROGMEM ledmap_layout[][MATRIX_ROWS][MATRIX_COLS][3] = {
         CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    /*XXXXXXXX*/    CLR_OFF    ,        CLR_OFF    ,    /*XXXXXXXX*/    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,
         /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,        CLR_OFF    ,    CLR_OFF    ,    CLR_OFF         /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/
     ),
-
-/*  _                            _____      __  __                       */
-/* | |    __ _ _   _  ___ _ __  |___ /     |  \/  | ___  _   _ ___  ___  */
-/* | |   / _` | | | |/ _ \ '__|   |_ \     | |\/| |/ _ \| | | / __|/ _ \ */
-/* | |__| (_| | |_| |  __/ |     ___) |    | |  | | (_) | |_| \__ \  __/ */
-/* |_____\__,_|\__, |\___|_|    |____/     |_|  |_|\___/ \__,_|___/\___| */
-/*             |___/                                                     */
+/*  __  __                       */
+/* |  \/  |                      */
+/* | \  / | ___  _   _ ___  ___  */
+/* | |\/| |/ _ \| | | / __|/ _ \ */
+/* | |  | | (_) | |_| \__ \  __/ */
+/* |_|  |_|\___/ \__,_|___/\___| */
     [_MS] = COLOR_LAYOUT( // Mouse
     /*  =               1                 2               3             4               5               ---                 ---             6               7               8               9               0               ---       */
         CLR_OFF    ,    CLR_OFF    ,      CLR_OFF  ,      CLR_OFF  ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,        CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,
@@ -68,12 +68,12 @@ static const uint8_t PROGMEM ledmap_layout[][MATRIX_ROWS][MATRIX_COLS][3] = {
         CLR_OFF    ,    CLR_OFF    ,      CLR_OFF  ,      CLR_OFF  ,    CLR_OFF    ,    /*XXXXXXXX*/    CLR_MAGENTA,        CLR_MAGENTA,    /*XXXXXXXX*/    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,
         /*XXXXXXXX*/   /*XXXXXXXXX*/       /*XXXXXXXX*/   /*XXXXXXX*/   CLR_MAGENTA,    CLR_MAGENTA,    CLR_OFF    ,        CLR_OFF    ,    CLR_MAGENTA,    CLR_OFF         /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/
     ),
-/*  _                            _  _         ____                            */
-/* | |    __ _ _   _  ___ _ __  | || |       / ___| __ _ _ __ ___   ___  ___  */
-/* | |   / _` | | | |/ _ \ '__| | || |_     | |  _ / _` | '_ ` _ \ / _ \/ __| */
-/* | |__| (_| | |_| |  __/ |    |__   _|    | |_| | (_| | | | | | |  __/\__ \ */
-/* |_____\__,_|\__, |\___|_|       |_|       \____|\__,_|_| |_| |_|\___||___/ */
-/*             |___/                                                          */
+/*   _____                            */
+/*  / ____|                           */
+/* | |  __  __ _ _ __ ___   ___  ___  */
+/* | | |_ |/ _` | '_ ` _ \ / _ \/ __| */
+/* | |__| | (_| | | | | | |  __/\__ \ */
+/*  \_____|\__,_|_| |_| |_|\___||___/ */
     [_GM] = COLOR_LAYOUT( // Gaming Layer with Macro RGB
     /*  =               1               2               3               4               5               ---                 ---             6               7               8               9               0               ---           */
         CLR_YELLOW ,    CLR_BLUE   ,    CLR_BLUE   ,    CLR_BLUE   ,    CLR_BLUE   ,    CLR_BLUE   ,    CLR_YELLOW ,        CLR_ORANGE ,    CLR_BLUE   ,    CLR_BLUE   ,    CLR_BLUE   ,    CLR_BLUE   ,    CLR_BLUE   ,    CLR_YELLOW ,
@@ -83,14 +83,12 @@ static const uint8_t PROGMEM ledmap_layout[][MATRIX_ROWS][MATRIX_COLS][3] = {
         CLR_CYAN   ,    CLR_ORANGE ,    CLR_ORANGE ,    CLR_ORANGE ,    CLR_MAGENTA,    /*XXXXXXXX*/    CLR_ORANGE ,        CLR_CYAN   ,    /*XXXXXXXX*/    CLR_OFF    ,    CLR_OFF    ,    CLR_RED    ,    CLR_RED    ,    CLR_RED    ,
         /*XXXXXXXX*/   /*XXXXXXXX*/     /*XXXXXXXX*/    /*XXXXXXXX*/    CLR_CYAN   ,    CLR_CYAN   ,    CLR_CYAN   ,        CLR_CYAN   ,    CLR_WHT    ,    CLR_CYAN        /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/
 ),
-
-
-/*  _                            ____       _  __                  */
-/* | |    __ _ _   _  ___ _ __  | ___|     | |/ /__ _ _ __   __ _  */
-/* | |   / _` | | | |/ _ \ '__| |___ \     | ' // _` | '_ \ / _` | */
-/* | |__| (_| | |_| |  __/ |     ___) |    | . \ (_| | | | | (_| | */
-/* |_____\__,_|\__, |\___|_|    |____/     |_|\_\__,_|_| |_|\__,_| */
-/*             |___/                                               */
+/*  _  __                  */
+/* | |/ /                  */
+/* | ' / __ _ _ __   __ _  */
+/* |  < / _` | '_ \ / _` | */
+/* | . \ (_| | | | | (_| | */
+/* |_|\_\__,_|_| |_|\__,_| */
     [_KN] = COLOR_LAYOUT( //Kana Layer
     /*  =               1               2               3               4               5               ---                 ---             6               7               8               9               0               --- */
         CLR_ORANGE ,    CLR_RED    ,    CLR_RED    ,    CLR_RED    ,    CLR_RED    ,    CLR_RED    ,    CLR_OFF    ,        CLR_OFF    ,    CLR_RED    ,    CLR_RED    ,    CLR_RED    ,    CLR_RED    ,    CLR_RED    ,    CLR_ORANGE ,
@@ -100,13 +98,12 @@ static const uint8_t PROGMEM ledmap_layout[][MATRIX_ROWS][MATRIX_COLS][3] = {
         CLR_PSPYR  ,    CLR_CYAN   ,    CLR_PSPYR  ,    CLR_OFF    ,    CLR_PSPYR  ,    /*XXXXXXXX*/    CLR_RED    ,        CLR_CYAN   ,    /*XXXXXXXX*/    CLR_PSPYR  ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_ORANGE ,    CLR_PSPYR  ,
         /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    CLR_PURPLE ,    CLR_CYAN   ,    CLR_WHTBLU ,        CLR_OFF    ,    CLR_PURPLE ,    CLR_PURPLE      /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/
 ),
-
-/*  _                             __     ____   ____ ____   */
-/* | |    __ _ _   _  ___ _ __   / /_   |  _ \ / ___| __ )  */
-/* | |   / _` | | | |/ _ \ '__| | '_ \  | |_) | |  _|  _ \  */
-/* | |__| (_| | |_| |  __/ |    | (_) | |  _ <| |_| | |_) | */
-/* |_____\__,_|\__, |\___|_|     \___/  |_| \_\\____|____/  */
-/*             |___/                                        */
+/*  _____   _____ ____   */
+/* |  __ \ / ____|  _ \  */
+/* | |__) | |  __| |_) | */
+/* |  _  /| | |_ |  _ <  */
+/* | | \ \| |__| | |_) | */
+/* |_|  \_\\_____|____/  */
     [_HV] = COLOR_LAYOUT( // HSV Color Display Layer - All 72 colors
     /*  =               1               2               3               4               5               ---                 ---             6               7               8               9               0               --- */
         CLR_RED    ,    CLR_H004   ,    CLR_VERMLN ,    CLR_ORNGRED,    CLR_ORANGE ,    CLR_H018   ,    CLR_H021   ,        CLR_H025   ,    CLR_H028   ,    CLR_H032   ,    CLR_H036   ,    CLR_H039   ,    CLR_H043   ,    CLR_H046   ,
@@ -116,13 +113,12 @@ static const uint8_t PROGMEM ledmap_layout[][MATRIX_ROWS][MATRIX_COLS][3] = {
         CLR_H193   ,    CLR_H196   ,    CLR_H200   ,    CLR_H204   ,    CLR_H207   ,    /*XXXXXXXX*/    CLR_H211   ,        CLR_H214   ,    /*XXXXXXXX*/    CLR_H218   ,    CLR_H221   ,    CLR_H225   ,    CLR_H229   ,    CLR_H232   ,
         /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    CLR_H236   ,    CLR_H239   ,    CLR_H243   ,        CLR_H246   ,    CLR_H250   ,    CLR_H252        /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/
     ),
-
-/*  _                            _____   _____                 _   _              */
-/* | |    __ _ _   _  ___ _ __  |___  | |  ___|   _ _ __   ___| |_(_) ___  _ __   */
-/* | |   / _` | | | |/ _ \ '__|    / /  | |_ | | | | '_ \ / __| __| |/ _ \| '_ \  */
-/* | |__| (_| | |_| |  __/ |      / /   |  _|| |_| | | | | (__| |_| | (_) | | | | */
-/* |_____\__,_|\__, |\___|_|     /_/    |_|   \__,_|_| |_|\___|\__|_|\___/|_| |_| */
-/*             |___/                                                              */
+/*  ______                _   _              */
+/* |  ____|              | | (_)             */
+/* | |__ _   _ _ __   ___| |_ _  ___  _ __   */
+/* |  __| | | | '_ \ / __| __| |/ _ \| '_ \  */
+/* | |  | |_| | | | | (__| |_| | (_) | | | | */
+/* |_|   \__,_|_| |_|\___|\__|_|\___/|_| |_| */
     [_FN] = COLOR_LAYOUT( // Function Keys Layer
         CLR_CYAN   ,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_OFF    ,        CLR_OFF    ,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,    CLR_MAGENTA,
         CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,        CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_OFF    ,    CLR_MAGENTA,

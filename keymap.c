@@ -78,12 +78,12 @@ const key_override_t *key_overrides[] = {
 // +---------+
 //clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-/*  _                             ___       _   _                       */
-/* | |    __ _ _   _  ___ _ __   / _ \     | | | | ___  _ __ ___   ___  */
-/* | |   / _` | | | |/ _ \ '__| | | | |    | |_| |/ _ \| '_ ` _ \ / _ \ */
-/* | |__| (_| | |_| |  __/ |    | |_| |    |  _  | (_) | | | | | |  __/ */
-/* |_____\__,_|\__, |\___|_|     \___/     |_| |_|\___/|_| |_| |_|\___| */
-/*             |___/                                                    */
+/*  _    _  ____  __  __ ______  */
+/* | |  | |/ __ \|  \/  |  ____| */
+/* | |__| | |  | | \  / | |__    */
+/* |  __  | |  | | |\/| |  __|   */
+/* | |  | | |__| | |  | | |____  */
+/* |_|  |_|\____/|_|  |_|______| */
 [_HM] = LAYOUT( //Home
   /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
       KC_EQL ,    KC_1   ,    KC_2   ,    KC_3   ,    KC_4   ,    KC_5   ,    TT(_HV),            TD_L4TG,    KC_6   ,    KC_7   ,    KC_8   ,    KC_9   ,    KC_0   ,    KC_MINS ,
@@ -93,12 +93,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       TT(_NM),    L_GUI  ,    CW_TOGG,    KC_NO  ,    TT(_WM),    /*XXXX*/    KC_ESC ,            KC_CAPS,    /*XXXX*/    TT(_NM),    KC_HYPR,    KC_LBRC,    KC_RBRC,    TT(_WM) ,
       /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_SPC ,    L_ALT  ,    KC_TAB ,            KC_NO  ,    KC_TAB ,    KC_ENT      /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
   ),
-/*  _                            _      _   _                                 _  */
-/* | |    __ _ _   _  ___ _ __  / |    | \ | |_   _ _ __ ___  _ __   __ _  __| | */
-/* | |   / _` | | | |/ _ \ '__| | |    |  \| | | | | '_ ` _ \| '_ \ / _` |/ _` | */
-/* | |__| (_| | |_| |  __/ |    | |    | |\  | |_| | | | | | | |_) | (_| | (_| | */
-/* |_____\__,_|\__, |\___|_|    |_|    |_| \_|\__,_|_| |_| |_| .__/ \__,_|\__,_| */
-/*             |___/                                         |_|                 */
+/*  _   _                                 _  */
+/* | \ | |                               | | */
+/* |  \| |_   _ _ __ ___  _ __   __ _  __| | */
+/* | . ` | | | | '_ ` _ \| '_ \ / _` |/ _` | */
+/* | |\  | |_| | | | | | | |_) | (_| | (_| | */
+/* |_| \_|\__,_|_| |_| |_| .__/ \__,_|\__,_| */
+/*                       | |                 */
+/*                       |_|                 */
   [_NM] = LAYOUT( //Numpad
   /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
       KC_GRV ,    KC_F1  ,    KC_F2  ,    KC_F3  ,    KC_F4  ,    KC_F5  ,    KC_NO  ,            KC_NO  ,    KC_F6  ,    KC_F7  ,    KC_F8  ,    KC_F9  ,    KC_F10 ,    KC_F11 ,
@@ -108,12 +110,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       TT(_NM),    L_GUI  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    /*XXXX*/    KC_NO  ,            KC_TRNS,    /*XXXX*/    TT(_NM),    KC_0   ,    KC_DOT ,    KC_EQL ,    KC_NO  ,
       /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_SPC ,    L_ALT  ,    KC_NO  ,            KC_NO  ,    KC_TAB ,    KC_ENT      /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
   ),
-/*  _                            ____          _                                */
-/* | |    __ _ _   _  ___ _ __  |___ \        / \   _ __ _ __ _____      _____  */
-/* | |   / _` | | | |/ _ \ '__|   __) |      / _ \ | '__| '__/ _ \ \ /\ / / __| */
-/* | |__| (_| | |_| |  __/ |     / __/      / ___ \| |  | | | (_) \ V  V /\__ \ */
-/* |_____\__,_|\__, |\___|_|    |_____|    /_/   \_\_|  |_|  \___/ \_/\_/ |___/ */
-/*             |___/                                                            */
+/*     /\                                */
+/*    /  \   _ __ _ __ _____      _____  */
+/*   / /\ \ | '__| '__/ _ \ \ /\ / / __| */
+/*  / ____ \| |  | | | (_) \ V  V /\__ \ */
+/* /_/    \_\_|  |_|  \___/ \_/\_/ |___/ */
   [_WM] = LAYOUT( // WordMon + Arrows
   /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
       QK_BOOT,    KC_F1  ,    KC_F2  ,    KC_F3  ,    KC_F4  ,    KC_F5  ,    KC_NO  ,            KC_NO  ,    KC_F6  ,    KC_F7  ,    KC_F8  ,    KC_F9  ,    KC_F10 ,    KC_F11 ,
@@ -123,12 +124,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    TT(_WM),    /*XXXX*/    KC_NO  ,            KC_NO  ,    /*XXXX*/    KC_TRNS,    KC_NO  ,    KC_NO  ,    KC_NO  ,    TT(_WM),
       /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_NO  ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_NO  ,    KC_NO       /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
 ),
-/*  _                            _____      __  __                       */
-/* | |    __ _ _   _  ___ _ __  |___ /     |  \/  | ___  _   _ ___  ___  */
-/* | |   / _` | | | |/ _ \ '__|   |_ \     | |\/| |/ _ \| | | / __|/ _ \ */
-/* | |__| (_| | |_| |  __/ |     ___) |    | |  | | (_) | |_| \__ \  __/ */
-/* |_____\__,_|\__, |\___|_|    |____/     |_|  |_|\___/ \__,_|___/\___| */
-/*             |___/                                                     */
+/*  __  __                       */
+/* |  \/  |                      */
+/* | \  / | ___  _   _ ___  ___  */
+/* | |\/| |/ _ \| | | / __|/ _ \ */
+/* | |  | | (_) | |_| \__ \  __/ */
+/* |_|  |_|\___/ \__,_|___/\___| */
   [_MS] = LAYOUT( //Mouse
   /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
       KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
@@ -138,12 +139,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    /*XXXX*/    KC_ESC ,            KC_CAPS,    /*XXXX*/    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
       /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_SPC ,    L_ALT  ,    KC_NO  ,            KC_NO  ,    KC_TAB ,    KC_NO       /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
   ),
-/*  _                            _  _         ____                            */
-/* | |    __ _ _   _  ___ _ __  | || |       / ___| __ _ _ __ ___   ___  ___  */
-/* | |   / _` | | | |/ _ \ '__| | || |_     | |  _ / _` | '_ ` _ \ / _ \/ __| */
-/* | |__| (_| | |_| |  __/ |    |__   _|    | |_| | (_| | | | | | |  __/\__ \ */
-/* |_____\__,_|\__, |\___|_|       |_|       \____|\__,_|_| |_| |_|\___||___/ */
-/*             |___/                                                          */
+/*   _____                            */
+/*  / ____|                           */
+/* | |  __  __ _ _ __ ___   ___  ___  */
+/* | | |_ |/ _` | '_ ` _ \ / _ \/ __| */
+/* | |__| | (_| | | | | | |  __/\__ \ */
+/*  \_____|\__,_|_| |_| |_|\___||___/ *
       [_GM] = LAYOUT( // Gaming Layer
     /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
       KC_EQL ,    KC_1   ,    KC_2   ,    KC_3   ,    KC_4   ,    KC_5   ,    SOCDTG ,            TD_L4TG,    KC_6   ,    KC_7   ,    KC_8   ,    KC_9   ,    KC_0   ,    KC_MINS ,
@@ -154,12 +155,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       /*XXXXX*/   /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_SPC ,    KC_TAB ,    L_ALT  ,            L_GUI  ,    KC_BSPC,    KC_ENT      /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
   ),
 
-/*  _                            ____       _  __                  */
-/* | |    __ _ _   _  ___ _ __  | ___|     | |/ /__ _ _ __   __ _  */
-/* | |   / _` | | | |/ _ \ '__| |___ \     | ' // _` | '_ \ / _` | */
-/* | |__| (_| | |_| |  __/ |     ___) |    | . \ (_| | | | | (_| | */
-/* |_____\__,_|\__, |\___|_|    |____/     |_|\_\__,_|_| |_|\__,_| */
-/*             |___/                                               */
+/*  _  __                  */
+/* | |/ /                  */
+/* | ' / __ _ _ __   __ _  */
+/* |  < / _` | '_ \ / _` | */
+/* | . \ (_| | | | | (_| | */
+/* |_|\_\__,_|_| |_|\__,_| */
   [_KN] = LAYOUT( //Kana Layer
   /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
       KC_EQL ,    KC_1   ,    KC_2   ,    KC_3   ,    KC_4   ,    KC_5   ,    KC_NO  ,            KC_NO  ,    KC_6   ,    KC_7   ,    KC_8   ,    KC_9   ,    KC_0   ,    KC_MINS ,
@@ -170,12 +171,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
       /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/    KC_SPC ,    L_ALT  ,    KC_F13 ,            KC_NO  ,    KC_TAB ,    KC_ENT     /*XXXX*/    /*XXXX*/    /*XXXX*/    /*XXXX*/
 ),
 
-/*  _                             __     ____   ____ ____   */
-/* | |    __ _ _   _  ___ _ __   / /_   |  _ \ / ___| __ )  */
-/* | |   / _` | | | |/ _ \ '__| | '_ \  | |_) | |  _|  _ \  */
-/* | |__| (_| | |_| |  __/ |    | (_) | |  _ <| |_| | |_) | */
-/* |_____\__,_|\__, |\___|_|     \___/  |_| \_\\____|____/  */
-/*             |___/                                        */
+/*  _____   _____ ____   */
+/* |  __ \ / ____|  _ \  */
+/* | |__) | |  __| |_) | */
+/* |  _  /| | |_ |  _ <  */
+/* | | \ \| |__| | |_) | */
+/* |_|  \_\\_____|____/  */
   [_HV] = LAYOUT( // HSV Color Display Layer
   /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
       KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    TT(_HV),            KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
@@ -186,12 +187,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                       KC_NO  ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_NO  ,    KC_NO
   ),
 
-/*  _                            _____   _____                 _   _              */
-/* | |    __ _ _   _  ___ _ __  |___  | |  ___|   _ _ __   ___| |_(_) ___  _ __   */
-/* | |   / _` | | | |/ _ \ '__|    / /  | |_ | | | | '_ \ / __| __| |/ _ \| '_ \  */
-/* | |__| (_| | |_| |  __/ |      / /   |  _|| |_| | | | | (__| |_| | (_) | | | | */
-/* |_____\__,_|\__, |\___|_|     /_/    |_|   \__,_|_| |_|\___|\__|_|\___/|_| |_| */
-/*             |___/                                                              */
+/*  ______                _   _              */
+/* |  ____|              | | (_)             */
+/* | |__ _   _ _ __   ___| |_ _  ___  _ __   */
+/* |  __| | | | '_ \ / __| __| |/ _ \| '_ \  */
+/* | |  | |_| | | | | (__| |_| | (_) | | | | */
+/* |_|   \__,_|_| |_|\___|\__|_|\___/|_| |_| */
   [_FN]=LAYOUT( // Function Keys Layer
   /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
     KC_GRV ,    KC_F1  ,    KC_F2  ,    KC_F3  ,    KC_F4  ,    KC_F5  ,    KC_TRNS,            KC_TRNS,    KC_F6  ,    KC_F7  ,    KC_F8  ,    KC_F9  ,    KC_F10 ,    KC_F11 ,
@@ -245,14 +246,14 @@ void keyboard_post_init_user(void) // Keyboard post initialization handler
 
 void housekeeping_task_user(void) // Called periodically by QMK
 {
-    indicator_leds_update();       // Update indicator LED states based on current keyboard state
+    indicator_leds_update();      // Update indicator LED states based on current keyboard state
 }
 
 // --- RGB Indicator Function ---
 
 bool rgb_matrix_indicators_user(void)
 {
-    return update_rgb_indicators();                   // Delegate to RGB indicators module
+    return update_rgb_indicators();                // Delegate to RGB indicators module
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
@@ -282,7 +283,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record)
   return true;                                                      // Default: process all other keycodes normally
 }
 
-layer_state_t layer_state_set_user(layer_state_t state) // Layer change event handler
+layer_state_t layer_state_set_user(layer_state_t state)             // Layer change event handler
 {
 #ifdef AUDIO_ENABLE
   state = layer_state_audio(state);
