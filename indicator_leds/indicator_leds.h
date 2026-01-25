@@ -39,7 +39,9 @@ typedef enum {
     IND_MODE_SCROLL_LOCK,   // Scroll Lock state (from host)
     IND_MODE_LAYER_ACTIVE,  // Specific layer is active (highest layer matches)
     IND_MODE_LAYER_MASK,    // Any of masked layers is active
+    IND_MODE_LAYER_CODE,    // Layer display using spread code (0=R3, 1=R2, 2=R1)
     IND_MODE_CAPS_WORD,     // Caps Word feature is active
+    IND_MODE_CAPS_ANY,      // Either Caps Lock or Caps Word is active
     IND_MODE_SOCD_ENABLED,  // SOCD cleaner is enabled
     IND_MODE_CUSTOM,        // Custom callback function determines state
 } indicator_mode_t;
@@ -51,6 +53,7 @@ typedef struct {
     union {
         uint8_t layer;           // For IND_MODE_LAYER_ACTIVE
         uint8_t layer_mask;      // For IND_MODE_LAYER_MASK (bitmask of layers 0-7)
+        uint8_t led_position;    // For IND_MODE_LAYER_CODE (0=R3/LSB, 1=R2, 2=R1/MSB)
         bool (*custom_fn)(void); // For IND_MODE_CUSTOM
     };
 } indicator_config_t;
