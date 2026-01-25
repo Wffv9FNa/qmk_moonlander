@@ -144,7 +144,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* | |  __  __ _ _ __ ___   ___  ___  */
 /* | | |_ |/ _` | '_ ` _ \ / _ \/ __| */
 /* | |__| | (_| | | | | | |  __/\__ \ */
-/*  \_____|\__,_|_| |_| |_|\___||___/ *
+/*  \_____|\__,_|_| |_| |_|\___||___/ */
       [_GM] = LAYOUT( // Gaming Layer
     /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
       KC_EQL ,    KC_1   ,    KC_2   ,    KC_3   ,    KC_4   ,    KC_5   ,    SOCDTG ,            TD_L4TG,    KC_6   ,    KC_7   ,    KC_8   ,    KC_9   ,    KC_0   ,    KC_MINS ,
