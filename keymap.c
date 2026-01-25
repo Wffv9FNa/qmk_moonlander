@@ -45,7 +45,7 @@ extern led_config_t g_led_config;                     // LED mapping for matrix 
 // +-------+
 enum custom_keycodes
 {
-  NEW_SAFE_RANGE                                      // First custom code (starts at SAFE_RANGE)
+  NEW_SAFE_RANGE = ML_SAFE_RANGE                      // First custom code (starts after private keycodes)
 };
 
 // +--------------------+
