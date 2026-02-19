@@ -41,8 +41,8 @@
 // +--------------------+
 // | WINDOW MANAGEMENT |
 // +--------------------+
-#define MINWIN   LCTL(LALT(LSFT(KC_U)))   // Minimise window
-#define MAXWIN   LCTL(LALT(LSFT(KC_O)))   // Maximise window
+#define MINWIN   LCTL(LALT(LSFT(KC_F13)))   // Minimise window
+#define MAXWIN   LCTL(LALT(LSFT(KC_F14)))   // Maximise window
 #define GC_Y     LGUI(LCTL(KC_Y))         // GUI + Ctrl + Y (Move window previous)
 #define CS_X     LCTL(LSFT(KC_X))         // Ctrl + Shift + X (Move window next)
 // +--------------------+
