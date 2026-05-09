@@ -38,3 +38,4 @@
  #define TAP_TOGGLE_LAYER_TERM 200                  // Time (ms) window for tap-toggling layers
  #define TAPPING_TOGGLE 2                           // Number of taps required to toggle tap-toggle layers
 
+ #define CYCLOTAB_TIMEOUT 0                         // Cyclotab: disable timeout

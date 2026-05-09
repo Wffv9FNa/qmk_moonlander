@@ -55,6 +55,11 @@
 // | GAME / SYSTEM     |
 // +--------------------+
 #define SOCDTG   SOCDTOG                  // SOCD toggle
+// +--------------------+
+// | CYCLOTAB           |
+// +--------------------+
+#define ALTAB    A(KC_TAB)                // Cyclotab: Alt+Tab (forward)
+#define SALTAB   S(A(KC_TAB))             // Cyclotab: Shift+Alt+Tab (reverse)
 // +----------------------+
 // | TAP DANCE KEYCODES  |
 // +----------------------+
