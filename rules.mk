@@ -1,6 +1,7 @@
 CONSOLE_ENABLE = no                               # Disable console (saves space, no debug printing)
 COMMAND_ENABLE = no                               # Disable QMK command feature
 ORYX_ENABLE = yes                                 # Enable Oryx configurator compatibility
+RAW_ENABLE = yes                                  # Enable raw HID transport for qmkmap live-state
 #RGB_MATRIX_CUSTOM_KB = yes                       # Enable keyboard-level RGB hook (rgb_matrix_indicators_kb)
 SPACE_CADET_ENABLE = no                           # Disable Space Cadet shift key functionality
 CAPS_WORD_ENABLE = yes                            # Enable Caps Word feature
@@ -16,6 +17,7 @@ SRC += macros_private.c                           # Include private macro source
 SRC += audio_config/audio_config.c                # Include audio configuration source file
 SRC += key_overrides/key_overrides.c              # Include key override definitions
 SRC += indicator_leds/indicator_leds.c            # Include indicator LED control module
+SRC += qmkmap.c                                   # Include qmkmap live-state raw HID drop-in
 
 MOUSEKEY_ENABLE = yes                             # Enable mouse key emulation
 DEFERRED_EXEC_ENABLE = yes                        # Enable deferred execution (needed for Turbo Click)

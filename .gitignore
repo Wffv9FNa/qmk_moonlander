@@ -8,3 +8,4 @@ macros_private.c
 /scratch/
 .local/
 CLAUDE.MD
+keymap_drawer_config.yaml
