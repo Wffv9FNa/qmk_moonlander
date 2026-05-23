@@ -15,6 +15,7 @@
 #include "exit_keys/exit_keys.h"                      // Exit key animation system
 #include "key_overrides/key_overrides.h"              // Key override definitions
 #include "indicator_leds/indicator_leds.h"            // Indicator LED control module
+#include "qmkmap.h"                                   // qmkmap live-state raw HID drop-in
 #include "keymap_japanese.h"                          // JP keymap definitions
 #include "sendstring_uk.h"                            // Sendstring LUT Header
 #ifdef AUDIO_ENABLE
@@ -133,7 +134,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_MS] = LAYOUT( //Mouse
   /*  =           1           2           3           4           5           ---                 ---         6           7           8           9           0           ---       */
       KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
-      KC_DEL ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    TT(_MS),            KC_NO  ,    OM_W_U ,    OM_BTNS,    OM_U   ,    OM_DBLS,    KC_NO  ,    KC_NO  ,
+      KC_DEL ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    TT(_MS),            KC_NO  ,    OM_W_U ,    OM_BTNS,    OM_U   ,    OM_BTN2,    KC_NO  ,    KC_NO  ,
       KC_BSPC,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,            KC_NO  ,    OM_W_D ,    OM_L   ,    OM_D   ,    OM_R   ,    OM_SLOW,    KC_NO  ,
       L_SHFT ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    /*XXXX*/            /*XXXX*/    OM_RELS,    OM_HLDS,    OM_SEL1,    OM_SEL2,    OM_SEL3,    R_SHFT ,
       KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    /*XXXX*/    KC_ESC ,            KC_CAPS,    /*XXXX*/    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,    KC_NO  ,
@@ -247,6 +248,7 @@ void keyboard_post_init_user(void) // Keyboard post initialization handler
 void housekeeping_task_user(void) // Called periodically by QMK
 {
     indicator_leds_update();      // Update indicator LED states based on current keyboard state
+    qmkmap_task();                // qmkmap: push live state if layer/mods/lock LEDs changed (debounced)
 }
 
 // --- RGB Indicator Function ---
@@ -288,6 +290,7 @@ layer_state_t layer_state_set_user(layer_state_t state)             // Layer cha
 #ifdef AUDIO_ENABLE
   state = layer_state_audio(state);
 #endif
+  qmkmap_notify_layer(state);                       // qmkmap: push live state on layer change
   return state;                                     // Always return the updated layer state
 }
 
