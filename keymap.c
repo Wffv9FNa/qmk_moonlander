@@ -260,6 +260,7 @@ bool rgb_matrix_indicators_user(void)
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record)
 {
+  qmkmap_record_key(record);                                        // qmkmap: capture pressed-key matrix position BEFORE any early return
   bool socd_handled = process_record_socd_cleaner(keycode, record); // First let the SOCD cleaner process the key (handles opposite direction inputs)
   if (!socd_handled)                                                // If SOCD cleaner blocked the input
   {

@@ -35,7 +35,20 @@
 #define QMKMAP_OFF_LAYER    1  // 1 byte: get_highest_layer(layer_state)
 #define QMKMAP_OFF_MODS     2  // 1 byte: get_mods()
 #define QMKMAP_OFF_LEDS     3  // 1 byte: host_keyboard_led_state().raw
-// bytes 4..(RAW_EPSIZE-1): reserved / zero
+#define QMKMAP_OFF_FLAGS    4  // 1 byte: module flags (bit 0 = SOCD enabled)
+#define QMKMAP_FLAG_SOCD    0x01  // module-flags bit 0
+
+// Pressed-key matrix bitmap. Bytes 5..15 carry an 84-bit row-major bitmap of currently-pressed
+// physical key positions. Bit index = row*MATRIX_COLS + col; byte = QMKMAP_OFF_MATRIX + (bit/8),
+// bit-within-byte = bit%8 (LSB first). MATRIX_ROWS(12) * MATRIX_COLS(7) = 84 bits => 11 bytes; the
+// last byte (byte 15) uses bits 80..83, leaving bits 84..87 zero. Only physical matrix positions are
+// recorded (encoder/dip-switch/synthetic events fall outside row<MATRIX_ROWS && col<MATRIX_COLS and
+// are ignored). The frontend is the sole interpreter via a matrix->layout-index map; the firmware
+// emits raw positions only and decodes no keycodes.
+#define QMKMAP_OFF_MATRIX   5  // first byte of the pressed-key matrix bitmap
+#define QMKMAP_MATRIX_BITS  (MATRIX_ROWS * MATRIX_COLS)        // 84 bits
+#define QMKMAP_MATRIX_BYTES ((QMKMAP_MATRIX_BITS + 7) / 8)     // 11 bytes (bytes 5..15)
+// bytes (QMKMAP_OFF_MATRIX + QMKMAP_MATRIX_BYTES)..(RAW_EPSIZE-1): reserved / zero
 
 // --- Public helpers the user calls from their existing hooks (one line each) ------------------
 // MUST NOT redefine layer_state_set_user / housekeeping_task_user - these are called from inside
@@ -49,8 +62,17 @@ void qmkmap_notify_layer(layer_state_t state);
 // reportable tuple {highest layer, held mods, lock LEDs}: it only pushes a STATE_REPORT when one of
 // those bytes has changed since the last push, so it is safe to call at the scan rate. This is what
 // surfaces held modifiers (Shift/Ctrl/Alt/GUI) and Caps/Num/Scroll lock changes that do not fire a
-// layer event.
+// layer event. It also includes the pressed-key matrix bitmap in its change-detection, so any
+// key press/release pushes a STATE_REPORT.
 void qmkmap_task(void);
+
+// Call from inside process_record_user(), as the FIRST statement - BEFORE any early "return false"
+// (the SOCD/secrets/audio paths consume keys and return false, but the key is still physically
+// down, so this must run first to capture it). Sets the matrix bit for record->event.key on press
+// and clears it on release. Non-matrix events (encoders, dip switches, synthetic positions) are
+// ignored. It does not send a report itself - the per-loop qmkmap_task() detects the bitmap change
+// and pushes. This is intentionally read-only on the key event: it never alters QMK's processing.
+void qmkmap_record_key(keyrecord_t *record);
 
 // raw_hid_receive is defined in qmkmap.c (currently unclaimed on this board; VIA is off, so the
 // only other definition is the weak stub in quantum/raw_hid.c).
