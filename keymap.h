@@ -28,6 +28,8 @@
 #define S_RGHT   LSFT(KC_RGHT)            // Shift + Right (extend selection)
 #define CS_LEFT  LCTL(LSFT(KC_LEFT))      // Ctrl + Shift + Left (select by word)
 #define CS_RGHT  LCTL(LSFT(KC_RIGHT))     // Ctrl + Shift + Right (select by word)
+#define SA_UP    LSFT(LALT(KC_UP))        // Shift + Alt + Up (add cursor above)
+#define SA_DOWN  LSFT(LALT(KC_DOWN))      // Shift + Alt + Down (add cursor below)
 // +--------------------+
 // | CURSOR / NAV      |
 // +--------------------+
