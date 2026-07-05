@@ -96,7 +96,7 @@ static const uint8_t PROGMEM ledmap_layout[][MATRIX_ROWS][MATRIX_COLS][3] = {
         CLR_WHT    ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_MAGENTA,        CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_YELLOW ,    CLR_YELLOW ,
         CLR_RED    ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_PURPLE ,    /*XXXXXXXX*/        /*XXXXXXXX*/    CLR_PURPLE ,    CLR_PURPLE ,    CLR_YELLOW ,    CLR_YELLOW ,    CLR_YELLOW ,    CLR_RED    ,
         CLR_PSPYR  ,    CLR_RED    ,    CLR_PSPYR  ,    CLR_OFF    ,    CLR_PSPYR  ,    /*XXXXXXXX*/    CLR_RED    ,        CLR_CYAN   ,    /*XXXXXXXX*/    CLR_PSPYR  ,    CLR_PURPLE ,    CLR_PURPLE ,    CLR_YELLOW ,    CLR_PSPYR  ,
-        /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    CLR_PURPLE ,    CLR_CYAN   ,    CLR_WHT    ,        CLR_WHTBLU ,    CLR_PURPLE ,    CLR_PURPLE      /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/
+        /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    CLR_WHT    ,    CLR_GREEN  ,    CLR_RED    ,        CLR_WHT    ,    CLR_PURPLE ,    CLR_WHT         /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/    /*XXXXXXXX*/
 ),
 /*  _____   _____ ____   */
 /* |  __ \ / ____|  _ \  */
