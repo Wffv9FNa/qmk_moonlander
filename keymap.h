@@ -40,6 +40,7 @@
 // | EDIT / SHORTCUTS  |
 // +--------------------+
 #define CT_Z     LCTL(KC_Z)               // Ctrl + Z
+#define CS_C    LCTL(LSFT(KC_C))          // Ctrl + Shift + C (copy pathname)
 // +--------------------+
 // | WINDOW MANAGEMENT |
 // +--------------------+
